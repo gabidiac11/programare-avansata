@@ -16,7 +16,7 @@ public class RandomGraph {
     private final boolean isConnected;
 
     /**
-     * helps this class to do generic actions like printing or other that are very not related with this class
+     * helps this class to do generic actions like printing or other that are not related to this class
      */
     Helper helper;
 

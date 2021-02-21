@@ -10,7 +10,7 @@ public class RandomTree {
     private int[][] adjacentMatrix;
 
     /**
-     * helps this class to do generic actions like printing or other that are very not related with this class
+     * helps this class to do generic actions like printing or other that are not related to this class
      */
     Helper helper;
 
@@ -25,12 +25,12 @@ public class RandomTree {
         /*
          * first thing we do is creating a regular graph
          */
-        int matrix[][] = new int[this.n][this.n];
+        int[][] matrix = new int[this.n][this.n];
 
         /*
          * we will use this later to mark the connections for the final matrix
          */
-        int dfsMarkedMatrix[][] = new int[this.n][this.n];
+        int[][] dfsMarkedMatrix = new int[this.n][this.n];
 
         /*
          * initialize all elements as 0
