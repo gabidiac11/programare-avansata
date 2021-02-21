@@ -31,25 +31,58 @@ public class Helper {
         return (int)(Math.random() * range) + min;
     }
 
+    /**
+     * prints a matrix's rows and column
+     *  Exemple: 7 x 7 matrix (connection is highlighted by a ✪)
+     *
+     *            ✶ ✶ ✪ ✶ ✶ ✶ ✶
+     *            ✶ ✶ ✪ ✪ ✶ ✶ ✶
+     *            ✪ ✪ ✶ ✶ ✶ ✶ ✶
+     *            ✶ ✪ ✶ ✶ ✪ ✪ ✪
+     *            ✶ ✶ ✶ ✪ ✶ ✶ ✶
+     *            ✶ ✶ ✶ ✪ ✶ ✶ ✶
+     *            ✶ ✶ ✶ ✪ ✶ ✶ ✶
+     *
+     * designed to print upp to 99 sized squared matrix
+     * @param length - the length of the squared matrix and the number of nodes
+     * @param adjacentMatrix - a matrix of un-oriented graph
+     */
     public void printAdjacentMatrix(int length, int adjacentMatrix[][]) {
-        System.out.printf("  ");
-        for(int i = 0; i < length; i++) {
-            System.out.printf("%d ", i+1);
-        }
-        System.out.printf("\n");
+        System.out.printf("\n------ Printing the matrix -START-");
 
         for(int i = 0; i < length; i++) {
-            System.out.printf("%d ", i+1);
+            System.out.printf("\n");
 
             for(int ii = 0; ii < length; ii++) {
                 if(adjacentMatrix[i][ii] == 1) {
-                    System.out.printf("%c ", (char) 10070);
+                   System.out.printf("%-2c", (char) 10026);
                 } else {
-                    System.out.printf("%c ", (char) 12599);
+                    System.out.printf("%-2c", (char) 10038);
                 }
             }
-            System.out.printf("\n");
         }
+
+        System.out.printf("\n------ Printing the matrix --END--\n");
     }
+
+    /**
+     * prints edges of an un-oriented graph passed as adjacent matrix
+     * @param length - the length of the squared matrix and the number of nodes
+     * @param adjacentMatrix - a matrix of un-oriented graph
+     */
+    public void printAdjacentMatrixEdges(int length, int adjacentMatrix[][]) {
+        System.out.printf("\nStart printing edges:\n");
+
+        for(int i = 0; i < length; i++) {
+            for(int ii = i+1; ii < length; ii++) {
+                if(adjacentMatrix[i][ii] == 1) {
+                    System.out.printf("%d <-> %d \n", i+1, ii+1);
+                }
+            }
+        }
+
+        System.out.printf("End printing edges.\n\n");
+    }
+
 }
 

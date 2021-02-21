@@ -2,17 +2,22 @@ package pa.lab1.optional;
 
 import pa.lab1.helper.Helper;
 
-import java.util.Arrays;
-
 public class RandomGraph {
 
     /**
      * the number of nodes
      */
     public int n;
-    private int[][] adjacentMatrix;
-    private boolean isConnected;
+    private final int[][] adjacentMatrix;
 
+    /**
+     * indicates if the graph is connected
+     */
+    private final boolean isConnected;
+
+    /**
+     * helps this class to do generic actions like printing or other that are very not related with this class
+     */
     Helper helper;
 
     /**
@@ -43,11 +48,22 @@ public class RandomGraph {
 
         this.isConnected = this.checkIfConnected();
     }
+
+    /**
+     * prints a matrix's rows and column
+     * for more graphic details please go to definition of helper.Helper.printAdjacentMatrix
+     */
     public void printMatrix() {
         this.helper.printAdjacentMatrix(this.n, this.adjacentMatrix);
     }
 
-    private void dfs(int nodeIndex, boolean visited[], boolean usePrinting) {
+    /**
+     * traverses a graph in depth first search and can do a printing of visited nodes
+     * @param nodeIndex - the node of whose list of adjacency will be traversed
+     * @param visited - the list of node visited already
+     * @param usePrinting - choose if you want to use this for printing visited nodes
+     */
+    private void dfs(int nodeIndex, boolean[] visited, boolean usePrinting) {
         if(usePrinting) {
             System.out.printf("%d ", nodeIndex+1);
         }
@@ -60,16 +76,23 @@ public class RandomGraph {
         }
     }
 
+    /**
+     * uses the depth first search to print nodes grouped by their membership in a connected component
+     */
     public void printConnectedComponents() {
-        System.out.printf("\n------ Printing connected components -START-\n");
+        System.out.print("\n------ Printing connected components -START-\n");
 
-        boolean visited[] = new boolean[this.n];
+        boolean[] visited = new boolean[this.n];
 
         int startNode = 0;
         do {
             System.out.printf("Group starting from node %d: \n", startNode + 1);
 
             this.dfs(startNode, visited, true);
+
+            /*
+             * if an unvisited node is found after dfs -> there is sure another connected component
+             */
             startNode = -1;
             for(int i = 0; i < this.n; i++) {
                 if(!visited[i]) {
@@ -78,17 +101,28 @@ public class RandomGraph {
                 }
             }
 
-            System.out.printf("\n");
+            System.out.print("\n");
         } while(startNode > -1);
-        System.out.printf("------ Printing connected components --END--\n");
+
+        System.out.print("------ Printing connected components --END--\n");
     }
 
-    public boolean checkIfConnected() {
-        boolean visited[] = new boolean[this.n];
+    /**
+     * is used to initialized the isConnected property - which indicated if the graph is connected
+     * giving the fact that the graph structure is not modifiable after the constructor
+     * @return - true if connected; false if not connected
+     */
+    private boolean checkIfConnected() {
+        boolean[] visited;
+        visited = new boolean[this.n];
 
         int startNode = 0;
         do {
             this.dfs(startNode, visited, false);
+
+            /*
+             * if an unvisited node is found after dfs -> there is sure > 1 number of connected components
+             */
             startNode = -1;
             for(int i = 0; i < this.n; i++) {
                 if(!visited[i]) {
@@ -100,6 +134,11 @@ public class RandomGraph {
         return true;
     }
 
+    /**
+     * gives access to a private property from the outside (is a just getter)
+     * due to the graph structure can't be changed after, isConnected is assigned in the constructor with the final result
+     * @return - true if connected; false if not connected
+     */
     public boolean isConnected() {
         return this.isConnected;
     }
