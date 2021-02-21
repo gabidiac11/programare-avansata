@@ -1,15 +1,15 @@
-﻿# Lab 1
+# Lab 1
 ## _Advanced Programming 2021_
 [![N|Solid](https://plati-taxe.uaic.ro/img/logo-retina1.png)](https://www.info.uaic.ro/)
 
 Diac P. Gabriel
 2A2
 
-This piece is aiming at offering a better understading concerning the following aspects about the source code:
+This piece is aiming at offering a better understanding concerning the following aspects of the source code:
 
-- problem solving strategies that were used
+- problem-solving strategies that were used
 - justification for choices made regarding object modeling 
-- what exactly are the exercises that are completed or partialy completed
+- what exactly are the exercises that are completed or partially completed
 
 ## Addressed exercises 
 ### Compulsory (1p) 
@@ -65,7 +65,7 @@ Output of the pa.lab1.optional.Main.main():
 ````
 Hello world!
 Random number: 340191 
-Random number after operations: 6125094 
+The random number after operations: 6125094 
 Sum of digits for the above number: 6 
 Willy-nilly, this semester I will learn JavaScript 
 
@@ -83,7 +83,7 @@ Verify if the generated graph is connected and display the connected components 
 - For larger n display the running time of the application in nanoseconds (DO NOT display the matrices). Try n > 30_000. You might want to adjust the JVM Heap Space using the VM options -Xms4G -Xmx4G. ~✔️
 - Launch the application from the command line, for example: java Lab1 100. ❌
 
-A package named `pa.lab1.optional` was dedicated fo this chapter. This time I choose to create a class name "RandomGraph", alluding to the way the graph is generated. Bellow are the main properties that chracterize this class:
+A package named `pa.lab1.optional` was dedicated to this chapter. This time I choose to create a class name "RandomGraph", alluding to the way the graph is generated. Below are the main properties that characterize this class:
 
 ```java
     public int n; //the number of nodes
@@ -108,7 +108,7 @@ The constructor takes the job of generating the graph in the form of an adjacent
         }
 ```
 
-The Helper class instance is used for operations that are not neccessary related to RandomClass. Its functionality is shared with other classe. Besides generating a random number, it's also used to pretty print the matrix. The location of this class is `pa.lab1.helper`.
+The Helper class instance is used for operations that are not necessarily related to RandomClass. Its functionality is shared with another class. Besides generating a random number, it's also used to pretty-print the matrix. The location of this class is `pa.lab1.helper`.
 ````java
 /**
      * prints a matrix's rows and column
@@ -122,7 +122,7 @@ The Helper class instance is used for operations that are not neccessary related
      *            ✶ ✶ ✶ ✪ ✶ ✶ ✶
      *            ✶ ✶ ✶ ✪ ✶ ✶ ✶
      *
-     * designed to print upp to 99 sized squared matrix
+     * designed to print up to 99 sized squared matrix
      * @param length - the length of the squared matrix and the number of nodes
      * @param adjacentMatrix - a matrix of un-oriented graph
      */
@@ -145,7 +145,7 @@ The Helper class instance is used for operations that are not neccessary related
     }
 ````
 
-The functionality around the connected components is based around this implementation of depth first search algorithm.
+The functionality around the connected components is based on this implementation of the depth-first search algorithm.
 
 ````java
     /**
@@ -239,7 +239,7 @@ Requirements:
     -node4
     -node5
 ````
-For this section I used a class that very much resemples the previous I described, named RandomTree, in the `pa.lab1.bonus` package. The strategy adopted for creating a tree was using the depth first search sequence of a regular un-oriented graph.
+For this section, I used a class that very much resembles the previous one I described, named RandomTree, in the `pa.lab1.bonus` package. The strategy adopted for creating a tree was using the depth-first search sequence of a regular un-oriented graph.
 The regular graph is created in the same way as it is in the RandomGraph class. The dfs method is adapted in order to create a new adjacent matrix with the visited connections:
 
 ````java
@@ -282,7 +282,7 @@ If the graph has multiple connected components a link is created between them:
             }
 
             /*
-             * connect the previous connected component with the following one, if is any
+             * connect the previously connected component with the following one, if is any
              */
             if(startNode > -1) {
                 dfsMarkedMatrix[startNode][prevIndex] = 1;
@@ -347,4 +347,4 @@ Process finished with exit code 0
 `````
 
 ## Other
-This is build with gradle.
+This is built with Gradle.
