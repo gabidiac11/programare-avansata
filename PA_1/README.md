@@ -9,7 +9,7 @@ This piece is aiming at offering a better understanding concerning the following
 
 - problem-solving strategies that were used
 - justification for choices made regarding object modeling 
-- what exactly are the exercises that are completed or partially completed
+- what exactly are the exercises that I assume are completed (~✔️), partially completed (⏰) or are not started (❌)
 
 ## Addressed exercises 
 ### Compulsory (1p) 
@@ -81,7 +81,7 @@ Verify if the generated graph is connected and display the connected components 
 - Assuming that the generated graph is connected, implement an algorithm that creates a partial tree of the graph. Display the adjacency matrix of the tree. 
 (***I did implement this for the bonus section) [??]
 - For larger n display the running time of the application in nanoseconds (DO NOT display the matrices). Try n > 30_000. You might want to adjust the JVM Heap Space using the VM options -Xms4G -Xmx4G. ~✔️
-- Launch the application from the command line, for example: java Lab1 100. ❌
+- Launch the application from the command line, for example: java Lab1 100. ~✔️
 
 A package named `pa.lab1.optional` was dedicated to this chapter. This time I choose to create a class name "RandomGraph", alluding to the way the graph is generated. Below are the main properties that characterize this class:
 
@@ -226,6 +226,30 @@ The running time of the application in nanoseconds:
 
 Process finished with exit code 0
 `````
+
+Output from running using the java command in the console:
+
+````
+\programare-avansata\PA_1\out\production\programare-avansata> java pa.lab1.optional.Main
+  1 2 3 4
+1 ? ? ? ?
+2 ? ? ? ?
+3 ? ? ? ?
+4 ? ? ? ?
+
+------ Printing connected components -START-
+Group starting from node 1:
+1
+Group starting from node 2:
+2 3 4
+------ Printing connected components --END--
+
+This graph is NOT connected.
+
+The running time of the application in nanoseconds:
+629114458950400.000000
+
+````
 
 ### Bonus (1p) (~✔️)
 
