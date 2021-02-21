@@ -8,8 +8,8 @@ Diac P. Gabriel
 This piece is aiming at offering a better understading concerning the following aspects about the source code:
 
 - problem solving strategies that were used
-- motivation in choices made regarding object modeling 
-- what exactly are the exercises that have been completed or tried to the best of my abilities
+- justification for choices made regarding object modeling 
+- what exactly are the exercises that are completed or partialy completed
 
 ## Addressed exercises 
 ### Compulsory (1p) 
@@ -72,14 +72,14 @@ Willy-nilly, this semester I will learn JavaScript
 Process finished with exit code 0
 `````
 
-### Optional (2p) ()
+### Optional (2p)
 Requirements:
 - Let n be an integer given as a command line argument. Validate the argument!
 Create a n x n matrix, representing the adjacency matrix of a random graph .
 Display on the screen the generated matrix (you might want to use the geometric shapes from the Unicode chart to create a "pretty" representation of the matrix).
 Verify if the generated graph is connected and display the connected components (if it is not).~✔️
 - Assuming that the generated graph is connected, implement an algorithm that creates a partial tree of the graph. Display the adjacency matrix of the tree. 
-(**I did implement this for the bonus section - I don't know it counts) ?`✔️?
+(***I did implement this for the bonus section) [??]
 - For larger n display the running time of the application in nanoseconds (DO NOT display the matrices). Try n > 30_000. You might want to adjust the JVM Heap Space using the VM options -Xms4G -Xmx4G. ~✔️
 - Launch the application from the command line, for example: java Lab1 100. ❌
 
