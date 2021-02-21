@@ -83,7 +83,7 @@ Verify if the generated graph is connected and display the connected components 
 - For larger n display the running time of the application in nanoseconds (DO NOT display the matrices). Try n > 30_000. You might want to adjust the JVM Heap Space using the VM options -Xms4G -Xmx4G. ~✔️
 - Launch the application from the command line, for example: java Lab1 100. ❌
 
-A package named `pa.lab1.optional` was dedicated fo this chapter. This time I choose to create a class name "RandomGraph", alluding to the way is generated. Bellow are the main properties that chracterizes this class:
+A package named `pa.lab1.optional` was dedicated fo this chapter. This time I choose to create a class name "RandomGraph", alluding to the way the graph is generated. Bellow are the main properties that chracterize this class:
 
 ```java
     public int n; //the number of nodes
@@ -91,7 +91,7 @@ A package named `pa.lab1.optional` was dedicated fo this chapter. This time I ch
     private final boolean isConnected;
 ```
 All these properties are only assigned in the constructor. The matrix ought to be of an un-oriented graph.
-The constructor takes the job of generating the graph in the form of a adjacent matrix by assigning a random connection between each combination of nodes:
+The constructor takes the job of generating the graph in the form of an adjacent matrix by assigning a random connection between each combination of nodes:
 ```java
         this.helper = new Helper();
         
@@ -108,7 +108,7 @@ The constructor takes the job of generating the graph in the form of a adjacent 
         }
 ```
 
-The Helper class instance is used for operations that are not neccessary related to RandomClass. Its functionality is shared with other classes. Besides generating a random number, it also used to pretty print the matrix. The location of this class is `pa.lab1.helper`.
+The Helper class instance is used for operations that are not neccessary related to RandomClass. Its functionality is shared with other classe. Besides generating a random number, it's also used to pretty print the matrix. The location of this class is `pa.lab1.helper`.
 ````java
 /**
      * prints a matrix's rows and column
@@ -168,7 +168,7 @@ The functionality around the connected components is based around this implement
     }
 ````
 
-It is used in the same manner for 2 other methods members (RandomClass.printConnectedComponents, RandomClass.checkIfConnected -assigns value to the property isConnected, in the constructor). 
+The above method is used in the same manner by 2 other members (RandomClass.printConnectedComponents, RandomClass.checkIfConnected - assigns value to the property isConnected, in the constructor). 
 I created a simple algorithm that visits each group of connected nodes.
 
 ````java
@@ -239,8 +239,8 @@ Requirements:
     -node4
     -node5
 ````
-For this section I used a class that very much resemples the previous I described, named RandomTree int the `pa.lab1.bonus` package. The strategy adopted for creating a tree was using the depth first search sequence of a regular un-oriented graph.
-The regular graph is created the same way as in the RandomGraph class. The dfs method is adapted in order to create a new adjacent matrix with the visited connections:
+For this section I used a class that very much resemples the previous I described, named RandomTree, in the `pa.lab1.bonus` package. The strategy adopted for creating a tree was using the depth first search sequence of a regular un-oriented graph.
+The regular graph is created in the same way as it is in the RandomGraph class. The dfs method is adapted in order to create a new adjacent matrix with the visited connections:
 
 ````java
     /**
@@ -282,7 +282,7 @@ If the graph has multiple connected components a link is created between them:
             }
 
             /*
-             * connect the previous connected component with the following one if is any other
+             * connect the previous connected component with the following one, if is any
              */
             if(startNode > -1) {
                 dfsMarkedMatrix[startNode][prevIndex] = 1;
@@ -290,7 +290,7 @@ If the graph has multiple connected components a link is created between them:
             }
         } while(startNode > -1);
 ````
-The "hierarchical" printing of the tree is made using the Pre-order Traversal and a a required dose of indentation:
+The "hierarchical" printing of the tree is made using the Pre-order Traversal and a dose of indentation:
 
 ````java
 /**
