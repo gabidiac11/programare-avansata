@@ -43,7 +43,7 @@ I believe I followed through all the requirements:
                 new SourceType[] {SourceType.FACTORY, SourceType.WAREHOUSE, SourceType.WAREHOUSE}
         );
 ```
-   The problem method that solves the problem is called in the constructor. This method create instances of a private inner class named ResultLine. This inner class stores data about a transportation: units, cost, signature of a source (S1, S2 etc.), signature of a destination (D1, D2, etc.). It helps the toString method of Problem class to print the results. The class implements `java.lang.Comparable` which make its instances comparable by source name and can be sorted usign `java.util.Arrays.sort()`. ResultLine.toString()
+   The method that solves the actual problem is called in the constructor. This method creates instances of a private inner class named ResultLine. This inner class stores data about a transportation: units, cost, signature of the source (S1, S2 etc.), signature of the destination (D1, D2, etc.). It helps the Problem.toString method to print the results. The class implements `java.lang.Comparable` which make its instances comparable by source name and can be sorted usign `java.util.Arrays.sort()`. ResultLine.toString :
 ```java
         @Override
         public String toString() {
@@ -59,70 +59,71 @@ I believe I followed through all the requirements:
         }
 ```
 
- - The sources and the destinations have names. The sources will also have the property type. The available types will be implemented as an enum . For example:
-        public enum SourceType {
-            WAREHOUSE, FACTORY;
+ - The sources and the destinations have names. The sources will also have the property type. The available types will be implemented as an enum.~✔️
+  SourceType.java:
+```java
+public enum SourceType {
+    WAREHOUSE, FACTORY;
+}
+```
+ The names of the Destination and Source instances are uniquely generated using a static member.
+```java
+    /**
+     * helps generate a unique name for a instance using an index
+     */
+    private static int numOfInstances;
+    static
+    {
+        numOfInstances = 1;
+    }
+    
+    /* ..... */
+    
+    /**
+     *
+     * @return - unique name based on the number of this class instances
+     */
+    private String generateUniqueSignature() {
+        numOfInstances ++;
+        return String.format("D%d", numOfInstances - 1);
+    }
+```
+
+- Assume S1 is a factory and S2, S3 are warehouses. ~✔️
+ This is done via the single Problem class constructor using the last parameter (exemple above).
+- Each class should have appropriate constructors, getters and setters. ~✔️
+- Use the IDE features for code generation, such as generating getters and setters. ~✔️
+- The toString method form the Object class must be properly overridden for all the classes. ~✔️
+- Use the IDE features for code generation, for example (in NetBeans) press Alt+Ins or invoke the context menu, select "Insert Code" and then "toString()" (or simply start typing "toString" and then press Ctrl+Space). ~✔️
+- Create and print on the screen the instance of the problem described in the example. ~✔️
+
+```java
+   /**
+     * prints the results and makes use of the ResultLine toString method as well and it's unit and cost members to display the cost
+     * @return - a string representation like this:
+            Problem1 results:
+            D1 -> D3: 10 units * cost 1 = 10
+            D2 -> D2: 25 units * cost 4 = 100
+            D3 -> D1: 20 units * cost 5 = 100
+            D2 -> D3: 10 units * cost 8 = 80
+            D3 -> D3: 5 units * cost 8 = 40
+            Problem1 final cost: 330
+     */
+    @Override
+    public String toString() {
+        String value = String.format("\n%s results:", this.signature);
+
+        int totalCost = 0;
+
+        for(int i = 0; i < this.resultLines.length; i++) {
+            totalCost += this.resultLines[i].getTotalCost();
+
+            value = String.format("%s\n%s", value, this.resultLines[i].toString());
         }
 
-Assume S1 is a factory and S2, S3 are warehouses.
-Each class should have appropriate constructors, getters and setters.
-Use the IDE features for code generation, such as generating getters and setters.
-The toString method form the Object class must be properly overridden for all the classes.
-Use the IDE features for code generation, for example (in NetBeans) press Alt+Ins or invoke the context menu, select "Insert Code" and then "toString()" (or simply start typing "toString" and then press Ctrl+Space).
-Create and print on the screen the instance of the problem described in the example.
+        String stringEnd = String.format("%s final cost: %d\n", this.signature, totalCost);
+        value = String.format("%s\n%s", value, stringEnd);
 
-
-
-- Display on the screen the message "Hello World!". Run the application. If it works, go to step 2 :) ~✔️
-- Define an array of strings languages, containing {"C", "C++", "C#", "Python", "Go", "Rust", "JavaScript", "PHP", "Swift", "Java"} ~✔️
-
-```java
-        System.out.println("Hello world!");
-
-        String[] languages = {"C", "C++", "C#", "Python", "Go", "Rust", "JavaScript", "PHP", "Swift", "Java"};
-
-        int n = (int) (Math.random() * 1000000);
-        System.out.printf("Random number: %d \n", n);
+        return value;
+    }
 ```
-
-- Compute the result obtained (n) after performing the following calculations:
-      multiply n by 3;
-      add the binary number 10101 to the result;
-      add the hexadecimal number FF to the result;
-      multiply the result by 6; ~✔️
-```java
-        n = n * 3 + Integer.parseInt("10101",2) + Integer.parseInt("FF",16);
-        n *= 6;
-        System.out.printf("Random number after operations: %d \n", n);
-```
-- Compute the sum of the digits in the result obtained in the previous step. This is the new result. While the new result has more than one digit, continue to sum the digits of the result. ~✔️
-
-For this operation I used the tactic of parsing the number into a String as I'm more used to work with strings in Javascript, which has a lot of methods (reduce, map, slice, etc.) that I like and are found in Java as well. I don't think is the best choice. This would be better done using division, but I was curious about using String methods in Java. 
-```java
-        String[] digits = Integer.toString(n).split("");
-        int sum = 0;
-        for (String aDigit: digits) {
-            sum += Integer.parseInt(aDigit);
-            if(sum / 10 == 0) {
-                break;
-            }
-        }
-        System.out.printf("Sum of digits for the above number: %d \n", sum);
-```
-
-- Display on the screen the message: "Willy-nilly, this semester I will learn " + languages[result]. ~✔️
-```java
-        int result = sum;
-        System.out.printf("Willy-nilly, this semester I will learn %s \n", languages[result]);
-```
-
-Output of the pa.lab1.optional.Main.main():
-````
-Hello world!
-Random number: 340191 
-The random number after operations: 6125094 
-Sum of digits for the above number: 6 
-Willy-nilly, this semester I will learn JavaScript 
-
-Process finished with exit code 0
-`````
