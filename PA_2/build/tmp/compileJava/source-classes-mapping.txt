@@ -1,0 +1,11 @@
+pa/lab1/compulsatory/SourceType.java
+ pa.lab1.compulsatory.SourceType
+pa/lab1/compulsatory/Destination.java
+ pa.lab1.compulsatory.Destination
+pa/lab1/compulsatory/Main.java
+ pa.lab1.compulsatory.Main
+pa/lab1/compulsatory/Source.java
+ pa.lab1.compulsatory.Source
+pa/lab1/compulsatory/Problem.java
+ pa.lab1.compulsatory.Problem
+ pa.lab1.compulsatory.Problem$ResultLine
