@@ -1,5 +1,7 @@
 package pa.lab1.compulsatory;
 
+import java.util.Objects;
+
 public class Source {
     /**
      * helps generate a unique name for a instance using an index
@@ -94,5 +96,18 @@ public class Source {
                 ", initialSupply=" + initialSupply +
                 ", currentSupply=" + currentSupply +
                 '}' + '\n';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Source source = (Source) o;
+        return initialSupply == source.initialSupply && currentSupply == source.currentSupply && Objects.equals(signature, source.signature) && type == source.type;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(signature, type, initialSupply, currentSupply);
     }
 }

@@ -1,5 +1,7 @@
 package pa.lab1.compulsatory;
 
+import java.util.Objects;
+
 public class Destination {
     /**
      * helps generate a unique name for a instance using an index
@@ -68,5 +70,18 @@ public class Destination {
                 ", currentDemand=" + currentDemand +
                 ", signature='" + signature + '\'' +
                 '}' + '\n';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Destination that = (Destination) o;
+        return initialDemand == that.initialDemand && currentDemand == that.currentDemand && Objects.equals(signature, that.signature);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(initialDemand, currentDemand, signature);
     }
 }
