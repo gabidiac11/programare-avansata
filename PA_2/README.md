@@ -13,10 +13,65 @@ This piece is aiming at offering a better understanding concerning the following
 
 ## Addressed exercises 
 ### Compulsory (1p) 
+The code around this section of the lab is placed in the package named `pa.lab1.compulsory`. It has a the following classes: Main, Problem, Source, Destination and the enum SourceType. 
 
-The code around this section of the lab is placed in the package named `pa.lab1.compulsory`. It has a single class, Main. All the logic is placed in the main method as I didn't feel that the code would get more readable if I split it more.
+I believe I followed through all the requirements:
 
-I believe I followed through all the operations:
+ #### 1. Create an object-oriented model of the problem. You should have (at least) the following classes: Source, Destination, Problem.~✔️
+     The class Problem solves the problem using a matrix for the cost between sources and destinations, a list of Source and Destination instances as its data members. These values are assign simple arrays:
+```java
+        /*
+            	D1	D2	D3	Supply
+            S1	2	3	1	10
+            S2	5	4	8	35
+            S3	5	6	8	25
+        Demand	20	25	25
+            The above table is a representation of the bellow example:
+         */
+        Problem problem1 = new Problem(
+                /* the matrix of cost between sources and demands */
+                new int[][]{
+                        {2,3,1},
+                        {5,4,8},
+                        {5,6,8}
+                },
+                /* the source supply values */
+                new int[]{10, 35, 25},
+                /* the demand values */
+                new int[]{20, 25, 25},
+                /* the source type represented by an enum */
+                new SourceType[] {SourceType.FACTORY, SourceType.WAREHOUSE, SourceType.WAREHOUSE}
+        );
+```
+        The problem method that solves the problem is called in the constructor. This method create instances of a private inner class named ResultLine. This inner class stores data about a transportation: units, cost, signature of a source (S1, S2 etc.), signature of a destination (D1, D2, etc.). It helps the toString method of Problem class to print the results. The class implements `java.lang.Comparable` which make its instances comparable by source name and can be sorted usign `java.util.Arrays.sort()`. ResultLine.toString()
+```java
+        @Override
+        public String toString() {
+            return (
+                    String.format("%s -> %s: %d units * cost %d = %d",
+                            this.sourceSignature,
+                            this.destinationSignature,
+                            this.units,
+                            this.cost,
+                            this.units * this.cost
+                    )
+            );
+        }
+```
+
+ - The sources and the destinations have names. The sources will also have the property type. The available types will be implemented as an enum . For example:
+        public enum SourceType {
+            WAREHOUSE, FACTORY;
+        }
+
+Assume S1 is a factory and S2, S3 are warehouses.
+Each class should have appropriate constructors, getters and setters.
+Use the IDE features for code generation, such as generating getters and setters.
+The toString method form the Object class must be properly overridden for all the classes.
+Use the IDE features for code generation, for example (in NetBeans) press Alt+Ins or invoke the context menu, select "Insert Code" and then "toString()" (or simply start typing "toString" and then press Ctrl+Space).
+Create and print on the screen the instance of the problem described in the example.
+
+
 
 - Display on the screen the message "Hello World!". Run the application. If it works, go to step 2 :) ~✔️
 - Define an array of strings languages, containing {"C", "C++", "C#", "Python", "Go", "Rust", "JavaScript", "PHP", "Swift", "Java"} ~✔️
