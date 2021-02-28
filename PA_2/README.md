@@ -18,7 +18,7 @@ The code around this section of the lab is placed in the package named `pa.lab1.
 I believe I followed through all the requirements:
 
  #### 1. Create an object-oriented model of the problem. You should have (at least) the following classes: Source, Destination, Problem.~✔️
-     The class Problem solves the problem using a matrix for the cost between sources and destinations, a list of Source and Destination instances as its data members. These values are assign simple arrays:
+ The class Problem solves the problem using a matrix for the cost between sources and destinations, a list of Source and Destination instances as its data members. These values are assign simple arrays:
 ```java
         /*
             	D1	D2	D3	Supply
@@ -43,7 +43,7 @@ I believe I followed through all the requirements:
                 new SourceType[] {SourceType.FACTORY, SourceType.WAREHOUSE, SourceType.WAREHOUSE}
         );
 ```
-        The problem method that solves the problem is called in the constructor. This method create instances of a private inner class named ResultLine. This inner class stores data about a transportation: units, cost, signature of a source (S1, S2 etc.), signature of a destination (D1, D2, etc.). It helps the toString method of Problem class to print the results. The class implements `java.lang.Comparable` which make its instances comparable by source name and can be sorted usign `java.util.Arrays.sort()`. ResultLine.toString()
+   The problem method that solves the problem is called in the constructor. This method create instances of a private inner class named ResultLine. This inner class stores data about a transportation: units, cost, signature of a source (S1, S2 etc.), signature of a destination (D1, D2, etc.). It helps the toString method of Problem class to print the results. The class implements `java.lang.Comparable` which make its instances comparable by source name and can be sorted usign `java.util.Arrays.sort()`. ResultLine.toString()
 ```java
         @Override
         public String toString() {
