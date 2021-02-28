@@ -92,7 +92,7 @@ public enum SourceType {
 
 #### - Assume S1 is a factory and S2, S3 are warehouses. ~✔️
 
- This is done via the single Problem class constructor using the last parameter (exemple above).
+ This is can be done via the single Problem class constructor, using the last parameters from the first exemple above.
  
  
 #### - Each class should have appropriate constructors, getters and setters. ~✔️
