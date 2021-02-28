@@ -1,15 +1,15 @@
-﻿# Lab 1
+# Lab 1
 ## _Advanced Programming 2021_
 [![N|Solid](https://plati-taxe.uaic.ro/img/logo-retina1.png)](https://www.info.uaic.ro/)
 
 Diac P. Gabriel
 2A2
 
-This piece is aiming at offering a better understading concerning the following aspects about the source code:
+This piece is aiming at offering a better understanding concerning the following aspects of the source code:
 
-- problem solving strategies that were used
-- motivation in choices made regarding object modeling 
-- what exactly are the exercises that have been completed or tried to the best of my abilities
+- problem-solving strategies that were used
+- justification for choices made regarding object modeling 
+- what exactly are the exercises that I assume are completed (~✔️), partially completed (⏰) or are not started (❌)
 
 ## Addressed exercises 
 ### Compulsory (1p) 
@@ -65,25 +65,25 @@ Output of the pa.lab1.optional.Main.main():
 ````
 Hello world!
 Random number: 340191 
-Random number after operations: 6125094 
+The random number after operations: 6125094 
 Sum of digits for the above number: 6 
 Willy-nilly, this semester I will learn JavaScript 
 
 Process finished with exit code 0
 `````
 
-### Optional (2p) ()
+### Optional (2p)
 Requirements:
 - Let n be an integer given as a command line argument. Validate the argument!
 Create a n x n matrix, representing the adjacency matrix of a random graph .
 Display on the screen the generated matrix (you might want to use the geometric shapes from the Unicode chart to create a "pretty" representation of the matrix).
 Verify if the generated graph is connected and display the connected components (if it is not).~✔️
 - Assuming that the generated graph is connected, implement an algorithm that creates a partial tree of the graph. Display the adjacency matrix of the tree. 
-(**I did implement this for the bonus section - I don't know it counts) ?`✔️?
+(***I did implement this for the bonus section) [??]
 - For larger n display the running time of the application in nanoseconds (DO NOT display the matrices). Try n > 30_000. You might want to adjust the JVM Heap Space using the VM options -Xms4G -Xmx4G. ~✔️
-- Launch the application from the command line, for example: java Lab1 100. ❌
+- Launch the application from the command line, for example: java Lab1 100. ~✔️
 
-A package named `pa.lab1.optional` was dedicated fo this chapter. This time I choose to create a class name "RandomGraph", alluding to the way is generated. Bellow are the main properties that chracterizes this class:
+A package named `pa.lab1.optional` was dedicated to this chapter. This time I choose to create a class name "RandomGraph", alluding to the way the graph is generated. Below are the main properties that characterize this class:
 
 ```java
     public int n; //the number of nodes
@@ -91,7 +91,7 @@ A package named `pa.lab1.optional` was dedicated fo this chapter. This time I ch
     private final boolean isConnected;
 ```
 All these properties are only assigned in the constructor. The matrix ought to be of an un-oriented graph.
-The constructor takes the job of generating the graph in the form of a adjacent matrix by assigning a random connection between each combination of nodes:
+The constructor takes the job of generating the graph in the form of an adjacent matrix by assigning a random connection between each combination of nodes:
 ```java
         this.helper = new Helper();
         
@@ -108,7 +108,7 @@ The constructor takes the job of generating the graph in the form of a adjacent 
         }
 ```
 
-The Helper class instance is used for operations that are not neccessary related to RandomClass. Its functionality is shared with other classes. Besides generating a random number, it also used to pretty print the matrix. The location of this class is `pa.lab1.helper`.
+The Helper class instance is used for operations that are not necessarily related to RandomClass. Its functionality is shared with another class. Besides generating a random number, it's also used to pretty-print the matrix. The location of this class is `pa.lab1.helper`.
 ````java
 /**
      * prints a matrix's rows and column
@@ -122,7 +122,7 @@ The Helper class instance is used for operations that are not neccessary related
      *            ✶ ✶ ✶ ✪ ✶ ✶ ✶
      *            ✶ ✶ ✶ ✪ ✶ ✶ ✶
      *
-     * designed to print upp to 99 sized squared matrix
+     * designed to print up to 99 sized squared matrix
      * @param length - the length of the squared matrix and the number of nodes
      * @param adjacentMatrix - a matrix of un-oriented graph
      */
@@ -145,7 +145,7 @@ The Helper class instance is used for operations that are not neccessary related
     }
 ````
 
-The functionality around the connected components is based around this implementation of depth first search algorithm.
+The functionality around the connected components is based on this implementation of the depth-first search algorithm.
 
 ````java
     /**
@@ -168,7 +168,7 @@ The functionality around the connected components is based around this implement
     }
 ````
 
-It is used in the same manner for 2 other methods members (RandomClass.printConnectedComponents, RandomClass.checkIfConnected -assigns value to the property isConnected, in the constructor). 
+The above method is used in the same manner by 2 other members (RandomClass.printConnectedComponents, RandomClass.checkIfConnected - assigns value to the property isConnected, in the constructor). 
 I created a simple algorithm that visits each group of connected nodes.
 
 ````java
@@ -227,6 +227,30 @@ The running time of the application in nanoseconds:
 Process finished with exit code 0
 `````
 
+Output from running using the java command in the console:
+
+````
+\programare-avansata\PA_1\out\production\programare-avansata> java pa.lab1.optional.Main
+  1 2 3 4
+1 ? ? ? ?
+2 ? ? ? ?
+3 ? ? ? ?
+4 ? ? ? ?
+
+------ Printing connected components -START-
+Group starting from node 1:
+1
+Group starting from node 2:
+2 3 4
+------ Printing connected components --END--
+
+This graph is NOT connected.
+
+The running time of the application in nanoseconds:
+629114458950400.000000
+
+````
+
 ### Bonus (1p) (~✔️)
 
 Requirements:
@@ -239,8 +263,8 @@ Requirements:
     -node4
     -node5
 ````
-For this section I used a class that very much resemples the previous I described, named RandomTree int the `pa.lab1.bonus` package. The strategy adopted for creating a tree was using the depth first search sequence of a regular un-oriented graph.
-The regular graph is created the same way as in the RandomGraph class. The dfs method is adapted in order to create a new adjacent matrix with the visited connections:
+For this section, I used a class that very much resembles the previous one I described, named RandomTree, in the `pa.lab1.bonus` package. The strategy adopted for creating a tree was using the depth-first search sequence of a regular un-oriented graph.
+The regular graph is created in the same way as it is in the RandomGraph class. The dfs method is adapted in order to create a new adjacent matrix with the visited connections:
 
 ````java
     /**
@@ -282,7 +306,7 @@ If the graph has multiple connected components a link is created between them:
             }
 
             /*
-             * connect the previous connected component with the following one if is any other
+             * connect the previously connected component with the following one, if is any
              */
             if(startNode > -1) {
                 dfsMarkedMatrix[startNode][prevIndex] = 1;
@@ -290,7 +314,7 @@ If the graph has multiple connected components a link is created between them:
             }
         } while(startNode > -1);
 ````
-The "hierarchical" printing of the tree is made using the Pre-order Traversal and a a required dose of indentation:
+The "hierarchical" printing of the tree is made using the Pre-order Traversal and a dose of indentation:
 
 ````java
 /**
@@ -347,4 +371,4 @@ Process finished with exit code 0
 `````
 
 ## Other
-This is build with gradle.
+This is built with Gradle.
