@@ -17,7 +17,7 @@ The code around this section of the lab is placed in the package named `pa.lab1.
 
 I believe I followed through all the requirements:
 
- #### 1. Create an object-oriented model of the problem. You should have (at least) the following classes: Source, Destination, Problem.~✔️
+ #### Create an object-oriented model of the problem. You should have (at least) the following classes: Source, Destination, Problem.~✔️
  The class Problem solves the problem using a matrix for the cost between sources and destinations, a list of Source and Destination instances as its data members. These values are assign simple arrays:
 ```java
         /*
@@ -59,8 +59,9 @@ I believe I followed through all the requirements:
         }
 ```
 
- - The sources and the destinations have names. The sources will also have the property type. The available types will be implemented as an enum.~✔️
-  SourceType.java:
+ #### The sources and the destinations have names. The sources will also have the property type. The available types will be implemented as an enum.~✔️
+  
+ SourceType.java:
 ```java
 public enum SourceType {
     WAREHOUSE, FACTORY;
@@ -89,13 +90,13 @@ public enum SourceType {
     }
 ```
 
-- Assume S1 is a factory and S2, S3 are warehouses. ~✔️
+#### Assume S1 is a factory and S2, S3 are warehouses. ~✔️
  This is done via the single Problem class constructor using the last parameter (exemple above).
-- Each class should have appropriate constructors, getters and setters. ~✔️
-- Use the IDE features for code generation, such as generating getters and setters. ~✔️
-- The toString method form the Object class must be properly overridden for all the classes. ~✔️
-- Use the IDE features for code generation, for example (in NetBeans) press Alt+Ins or invoke the context menu, select "Insert Code" and then "toString()" (or simply start typing "toString" and then press Ctrl+Space). ~✔️
-- Create and print on the screen the instance of the problem described in the example. ~✔️
+#### Each class should have appropriate constructors, getters and setters. ~✔️
+#### Use the IDE features for code generation, such as generating getters and setters. ~✔️
+#### The toString method form the Object class must be properly overridden for all the classes. ~✔️
+#### Use the IDE features for code generation, for example (in NetBeans) press Alt+Ins or invoke the context menu, select "Insert Code" and then "toString()" (or simply start typing "toString" and then press Ctrl+Space). ~✔️
+#### Create and print on the screen the instance of the problem described in the example. ~✔️
 
 ```java
    /**
