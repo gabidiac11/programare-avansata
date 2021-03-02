@@ -135,12 +135,12 @@ public enum SourceType {
 ### Optional (2p) 
 The code around this section of the lab is placed in the package named `pa.lab1.optional` (which is wrongly named - it should be lab2). It's almost the same as the compulsatory, it has the following classes: Main, Solution (changed with a new constructor and class name), Source, Destination, BUT no enum, instead it has 2 other classes: Factory and Warehouse. These are inheriting from Source (which is now abstract).
 
-#### - Override the equals method form the Object class for the Source, Destination classes. The problem should not allow adding the same source or destination twice. ~✔️
- I choose to make the code a bit smaller (and inherit all the logic from the compulsatory package) by using the *Source.equals* method, called in each child classes (*Factory* and *Warehouse*). In order to make this method hold completely true, I also check for the object to be an instance of the same class.
+#### - Override the equals method from the Object class for the Source, Destination classes. The problem should not allow adding the same source or destination twice. ~✔️
+ I choose to make the code a bit smaller (and inherit all the logic from the compulsatory package) by using the *Source.equals* method, called in each child's classes (*Factory* and *Warehouse*). To make this method hold completely true, I also check for the object to be an instance of the same class.
  ```java
 /**
      * overwrite equals using the parent class equals function
-     * draw the distinction between Warehouse and Factory
+     * distinguish Warehouse and Factory
      * @param o - an Object
      * @return - shallow equal
      */
@@ -151,13 +151,13 @@ The code around this section of the lab is placed in the package named `pa.lab1.
 ```
  The Source class implements the equals method comparing the signature and the other private properties (the code is auto-generated). The same can be said about the Destination class.
  
- #### -  Instead of using an enum, create dedicated classes for warehouses and factories. Source will become abstract. ~✔️
+ #### -  Instead of using an enum, create dedicated classes for warehouses and factories. *Source* will become abstract. ~✔️
  The two classes, *Factory* and *Warehouse*, are behaving the same way as the *Source* class was behaving in the compulsory package by inheriting all the public methods and properties. Each of these classes has a constant value (meaning static and final) that denotes their type (as a String; the values: "Factory", "Warehouse"). They call the *Source* class constructor via super and overwrite the abstract method *getType*. 
  
- #### - Create a class to describe the solution.
- #### - Implement a simple algorithm for creating a feasible solution to the problem (one that satisfies the supply and demand constraints).
- I think these were accidentaly done by the time the compulsatory was finished, as my *Problem* class after which the *Solution* class is designed, does the same thing. Gets the initial data, calculates the solution, prints the solution.
+ #### - Create a class to describe the solution.~✔️
+ #### - Implement a simple algorithm for creating a feasible solution to the problem (one that satisfies the supply and demand constraints).~✔️
+ I think these were accidentally done by the time the compulsatory was finished, as my *Problem* class after which the *Solution* class is designed, does the same thing. Gets the initial data, calculates the solution, prints the solution.
  
- #### -  Write doc comments in your source code and generate the class documentation using javadoc.
+ #### -  Write doc comments in your source code and generate the class documentation using javadoc.~✔️
  I think I took care to document all the code I've done in both packages.
 
