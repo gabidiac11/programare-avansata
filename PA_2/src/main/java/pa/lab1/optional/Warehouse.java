@@ -7,6 +7,7 @@ public class Warehouse extends Source {
         super(supply);
     }
 
+    @Override
     public String getType() {
         return type;
     }

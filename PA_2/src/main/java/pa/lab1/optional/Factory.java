@@ -7,6 +7,7 @@ public class Factory extends Source {
         super(supply);
     }
 
+    @Override
     public String getType() {
         return type;
     }
