@@ -1,5 +1,9 @@
 package pa.lab3.program;
 
 public class Program {
-    OpeningHour
+    WeekDayProgram[] weekDayProgram;
+
+    public Program(WeekDayProgram[] weekDayProgram) {
+        this.weekDayProgram = weekDayProgram;
+    }
 }
