@@ -2,7 +2,7 @@ package pa.lab3.location;
 
 import java.util.Arrays;
 
-public class Location {
+public abstract class Location {
     protected static int numOfLocations = 0;
     protected static int[][] costMatrix = new int[0][0];
     private static Location[] allInstances = new Location[0];
@@ -125,6 +125,14 @@ public class Location {
     public void setLongitude(float longitude) {
         this.longitude = longitude;
     }
+
+    public abstract boolean isVisitable();
+
+    public abstract boolean isPayable();
+
+    public abstract boolean isClassifiable();
+
+    public abstract String getSpecialization();
 
     @Override
     public String toString() {
