@@ -1,4 +1,4 @@
-package pa.lab3.compulsatory;
+package pa.lab3.location;
 
 import pa.lab3.location.*;
 
