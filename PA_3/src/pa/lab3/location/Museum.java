@@ -21,7 +21,7 @@ public class Museum extends Location implements Visitable, Payable {
 
     @Override
     public Program getProgram() {
-        return null;
+        return this.program;
     }
 
     @Override

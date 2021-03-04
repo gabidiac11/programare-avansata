@@ -1,6 +1,39 @@
 package pa.lab3.program;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Initializer {
+
+    private static Date dateFromShortHour(String hourString) throws ParseException {
+        String dateString = String.format("31-Dec-1998 %s:00", hourString);
+        return new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss").parse(dateString);
+    }
+
+    /**
+     *
+     * @param timeString - a string in this format "hh:mm" (Ex. 18:30)
+     * @return - Time object based on string
+     */
+    private static Time stringToTime(String timeString) throws ParseException {
+        Date date = dateFromShortHour(timeString);
+        return new Time(date.getHours(), date.getMinutes(), date.getSeconds());
+    }
+
+    private static WeekDayProgram createWeekProgramForDay(String[][] hours, WeekDay weekDay) throws ParseException {
+        Interval[] intervals = new Interval[hours.length];
+
+        for(int i = 0; i < hours.length; i++) {
+            intervals[i] = new Interval(stringToTime(hours[i][0]), stringToTime((hours[i][1])));
+        }
+
+        return new WeekDayProgram(
+                intervals,
+                weekDay
+        );
+    }
+
     public static Program createProgram() {
         //MONDAY
         Time monStart = new Time(9, 30, 0);
