@@ -1,5 +1,6 @@
 package pa.lab3.location.interfaces;
 
 public interface Classifiable {
-    int rank = 5;
+    void setRank(int rank);
+    int getRank();
 }

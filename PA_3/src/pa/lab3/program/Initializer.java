@@ -1,7 +1,7 @@
 package pa.lab3.program;
 
 public class Initializer {
-    public Program createProgram() {
+    public static Program createProgram() {
         //MONDAY
         Time monStart = new Time(9, 30, 0);
         Time monEnd = new Time(20, 0, 0);
@@ -60,7 +60,7 @@ public class Initializer {
                 WeekDay.WEDNESDAY
         );
 
-        Program program = new Program(new WeekDayProgram[] {
+        return new Program(new WeekDayProgram[] {
                 mondayProgram,
                 tueProgram,
                 wedProgram,
@@ -69,7 +69,5 @@ public class Initializer {
                 satProgram,
                 sunProgram
         });
-
-        return program;
     }
 }
