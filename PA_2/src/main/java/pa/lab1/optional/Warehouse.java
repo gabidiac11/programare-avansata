@@ -1,6 +1,7 @@
 package pa.lab1.optional;
 
 public class Warehouse extends Source {
+    //majuscule - constante
     private static final String type = "WAREHOUSE";
 
     public Warehouse(int supply) {

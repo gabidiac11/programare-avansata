@@ -26,7 +26,7 @@ public abstract class Source {
      *
      * @return - unique name based on the number of this class instances
      */
-    private String generateUniqueSignature() {
+    private static String generateUniqueSignature() {
         numOfInstances ++;
         return String.format("D%d", numOfInstances - 1);
     }
@@ -103,6 +103,6 @@ public abstract class Source {
 
     @Override
     public int hashCode() {
-        return Objects.hash(signature, initialSupply, currentSupply);
+        return Objects.hash(signature);
     }
 }

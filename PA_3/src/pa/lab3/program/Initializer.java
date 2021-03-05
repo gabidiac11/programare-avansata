@@ -3,6 +3,8 @@ package pa.lab3.program;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class Initializer {
 
@@ -35,72 +37,45 @@ public class Initializer {
     }
 
     public static Program createProgram() {
+
+        TreeMap<WeekDay, Interval[]> weekDaysIntervals= new TreeMap<>();
+
         //MONDAY
-        Time monStart = new Time(9, 30, 0);
-        Time monEnd = new Time(20, 0, 0);
-        WeekDayProgram mondayProgram = new WeekDayProgram(
-                new Interval[]{ new Interval(monStart, monEnd) },
-                WeekDay.MONDAY
-        );
+        weekDaysIntervals.put(WeekDay.MONDAY, new Interval[]{
+                new Interval(new Time(9, 30, 0), new Time(20, 0, 0))
+        });
 
         //TUESDAY
-        Time tueStart = new Time(10, 30, 0);
-        Time tueEnd = new Time(15, 0, 0);
-        Time tueStart2 = new Time(17, 30, 0);
-        Time tueEnd2 = new Time(20, 0, 0);
-        WeekDayProgram tueProgram = new WeekDayProgram(
-                new Interval[]{ new Interval(tueStart, tueEnd), new Interval(tueStart2, tueEnd2) },
-                WeekDay.TUESDAY
-        );
+        weekDaysIntervals.put(WeekDay.TUESDAY, new Interval[]{
+                new Interval(new Time(10, 30, 0), new Time(15, 0, 0)),
+                new Interval(new Time(17, 30, 0), new Time(20, 0, 0))
+        });
 
         //WEDNESDAY
-        Time wedStart = new Time(10, 30, 0);
-        Time wedEnd = new Time(12, 0, 0);
-        WeekDayProgram wedProgram = new WeekDayProgram(
-                new Interval[]{ new Interval(tueStart, tueEnd), new Interval(wedStart, wedEnd) },
-                WeekDay.WEDNESDAY
-        );
+        weekDaysIntervals.put(WeekDay.WEDNESDAY, new Interval[]{
+                new Interval(new Time(10, 30, 0), new Time(15, 0, 0))
+        });
 
         //THURSDAY
-        Time thuStart = new Time(12, 30, 0);
-        Time thuEnd = new Time(16, 0, 0);
-        WeekDayProgram thuProgram = new WeekDayProgram(
-                new Interval[]{ new Interval(tueStart, tueEnd), new Interval(thuStart, thuEnd) },
-                WeekDay.WEDNESDAY
-        );
+        weekDaysIntervals.put(WeekDay.THURSDAY, new Interval[]{
+                new Interval(new Time(10, 30, 0), new Time(15, 0, 0))
+        });
 
         //FRIDAY
-        Time friStart = new Time(14, 30, 0);
-        Time friEnd = new Time(21, 0, 0);
-        WeekDayProgram friProgram = new WeekDayProgram(
-                new Interval[]{ new Interval(tueStart, tueEnd), new Interval(friStart, friEnd) },
-                WeekDay.WEDNESDAY
-        );
+        weekDaysIntervals.put(WeekDay.FRIDAY, new Interval[]{
+                new Interval(new Time(10, 30, 0), new Time(15, 0, 0))
+        });
 
         //SATURDAY
-        Time satStart = new Time(18, 30, 0);
-        Time satEnd = new Time(22, 0, 0);
-        WeekDayProgram satProgram = new WeekDayProgram(
-                new Interval[]{ new Interval(tueStart, tueEnd), new Interval(satStart, satEnd) },
-                WeekDay.WEDNESDAY
-        );
+        weekDaysIntervals.put(WeekDay.SATURDAY, new Interval[]{
+                new Interval(new Time(10, 30, 0), new Time(15, 0, 0))
+        });
 
         //SUNDAY
-        Time sunStart = new Time(11, 30, 0);
-        Time sunEnd = new Time(17, 0, 0);
-        WeekDayProgram sunProgram = new WeekDayProgram(
-                new Interval[]{ new Interval(tueStart, tueEnd), new Interval(sunStart, sunEnd) },
-                WeekDay.WEDNESDAY
-        );
-
-        return new Program(new WeekDayProgram[] {
-                mondayProgram,
-                tueProgram,
-                wedProgram,
-                thuProgram,
-                friProgram,
-                satProgram,
-                sunProgram
+        weekDaysIntervals.put(WeekDay.SUNDAY, new Interval[]{
+                new Interval(new Time(10, 30, 0), new Time(15, 0, 0))
         });
+
+        return new Program(weekDaysIntervals);
     }
 }

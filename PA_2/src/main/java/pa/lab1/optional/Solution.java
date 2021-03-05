@@ -6,6 +6,7 @@ import pa.lab1.optional.Source;
 import java.lang.Comparable;
 import java.util.Arrays;
 
+// #####exista adnotari pt get-uri si set-uri direct (fara definitii) "lombok" - tb plugin pt intellij ca sa interpreteze bine
 public class Solution {
     /**
      * helps generate a unique name for a instance using an index
@@ -16,74 +17,10 @@ public class Solution {
         numOfProblems = 1;
     }
 
-    /**
-     * this class is mainly used for the toString method of the parent class
-     *
-     * is also sortable using Arrays.sort using the signature of the destination
-     */
-    private class ResultLine implements Comparable<ResultLine> {
-        private final String sourceSignature;
-        private final String destinationSignature;
-        private final int units;
-        private final int cost;
-
-        /**
-         *
-         * @param sourceSignature - signature name of the Source instance that took part in this transportation
-         * @param destinationSignature - signature name of the Destination instance that took part in this transportation
-         * @param units -  number of units transported
-         * @param cost - the cost of a transport of a unit
-         */
-        public ResultLine(String sourceSignature, String destinationSignature, int units, int cost) {
-            this.sourceSignature = sourceSignature;
-            this.destinationSignature = destinationSignature;
-            this.units = units;
-            this.cost = cost;
-        }
-
-        /**
-         * helps toString implementation of its parent class
-         * @return - string representation of a transportation line (looks like this: "$source -> $destination: $units units * cost $cost = $result")
-         */
-        @Override
-        public String toString() {
-            return (
-                    String.format("%s -> %s: %d units * cost %d = %d",
-                            this.sourceSignature,
-                            this.destinationSignature,
-                            this.units,
-                            this.cost,
-                            this.units * this.cost
-                    )
-            );
-        }
-
-        /**
-         *
-         * @return - how much this line of transportation consumed
-         */
-        public int getTotalCost() {
-            return this.cost * this.units;
-        }
-
-        /**
-         * helps Arrays implement the its sort functionality
-         * @param line - an instance of this class
-         * @return - the sum of char values that is used for comparison in sorting
-         */
-        @Override
-        public int compareTo(ResultLine line) {
-            int sum = 0;
-            for(int i = 0; i < line.sourceSignature.length(); i++) {
-                sum += (int) line.sourceSignature.charAt(i);
-            }
-            return sum;
-        }
-    }
-
     private Destination[] destinations;
     private Source[] sources;
     private int[][] costMatrix;
+    //#####sorted set --- aici mai bine
     private ResultLine[] resultLines = new ResultLine[0];
     /* unique signature of a Problem instance */
     private final String signature;
@@ -290,5 +227,74 @@ public class Solution {
         value = String.format("%s\n%s", value, stringEnd);
 
         return value;
+    }
+
+
+
+//#####MUTAT LA FINAL!!!
+
+    /**
+     * this class is mainly used for the toString method of the parent class
+     *
+     * is also sortable using Arrays.sort using the signature of the destination
+     */
+    private class ResultLine implements Comparable<ResultLine> {
+        private final String sourceSignature;
+        private final String destinationSignature;
+        private final int units;
+        private final int cost;
+
+        /**
+         *
+         * @param sourceSignature - signature name of the Source instance that took part in this transportation
+         * @param destinationSignature - signature name of the Destination instance that took part in this transportation
+         * @param units -  number of units transported
+         * @param cost - the cost of a transport of a unit
+         */
+        public ResultLine(String sourceSignature, String destinationSignature, int units, int cost) {
+            this.sourceSignature = sourceSignature;
+            this.destinationSignature = destinationSignature;
+            this.units = units;
+            this.cost = cost;
+        }
+
+        /**
+         * helps toString implementation of its parent class
+         * @return - string representation of a transportation line (looks like this: "$source -> $destination: $units units * cost $cost = $result")
+         */
+        @Override
+        public String toString() {
+            return (
+                    String.format("%s -> %s: %d units * cost %d = %d",
+                            this.sourceSignature,
+                            this.destinationSignature,
+                            this.units,
+                            this.cost,
+                            this.units * this.cost
+                    )
+            );
+        }
+
+        /**
+         *
+         * @return - how much this line of transportation consumed
+         */
+        public int getTotalCost() {
+            return this.cost * this.units;
+        }
+
+        /**
+         * helps Arrays implement the its sort functionality
+         * @param line - an instance of this class
+         * @return - the sum of char values that is used for comparison in sorting
+         */
+        @Override
+        public int compareTo(ResultLine line) {
+            int sum = 0;
+            for(int i = 0; i < line.sourceSignature.length(); i++) {
+                sum += (int) line.sourceSignature.charAt(i);
+            }
+            return sum;
+        }
     }
 }
