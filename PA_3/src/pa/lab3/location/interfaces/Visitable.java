@@ -15,4 +15,17 @@ public interface Visitable {
         duration = Duration.between(LocalTime.NOON,LocalTime.MAX);
         return duration;
     }
+
+
+//    static int sortByOpeningHour(Object loc1, Object loc2) {
+//        if(!(loc1 instanceof Visitable)) {
+//            return -1;
+//        }
+//        if(!(loc2 instanceof Visitable)) {
+//            return 1;
+//        }
+//
+//        Time time1 = ((Visitable) loc1).getProgram();
+//        Time time2 = ((Visitable) loc2).getProgram();
+//    }
 }

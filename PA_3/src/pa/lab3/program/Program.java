@@ -3,10 +3,13 @@ package pa.lab3.program;
 import java.time.DayOfWeek;
 
 public class Program {
-    WeekDayProgram[] weekDayProgram;
+    WeekDayProgram<WeekDay> week;
 
     public Program(WeekDayProgram[] weekDayProgram) {
-        this.weekDayProgram = weekDayProgram;
+
     }
 
+//    public Interval[] getFirstDayWihOpenInterval(WeekDay weekDay) {
+//
+//    }
 }
