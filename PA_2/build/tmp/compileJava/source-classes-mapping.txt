@@ -1,24 +1,24 @@
-pa/lab1/compulsatory/SourceType.java
- pa.lab1.compulsatory.SourceType
-pa/lab1/compulsatory/Main.java
- pa.lab1.compulsatory.Main
-pa/lab1/compulsatory/Destination.java
- pa.lab1.compulsatory.Destination
-pa/lab1/compulsatory/Source.java
- pa.lab1.compulsatory.Source
-pa/lab1/compulsatory/Problem.java
- pa.lab1.compulsatory.Problem
- pa.lab1.compulsatory.Problem$ResultLine
 pa/lab1/optional/Destination.java
  pa.lab1.optional.Destination
+pa/lab1/compulsatory/Destination.java
+ pa.lab1.compulsatory.Destination
 pa/lab1/optional/Factory.java
  pa.lab1.optional.Factory
 pa/lab1/optional/Warehouse.java
  pa.lab1.optional.Warehouse
 pa/lab1/optional/Source.java
  pa.lab1.optional.Source
+pa/lab1/compulsatory/Main.java
+ pa.lab1.compulsatory.Main
 pa/lab1/optional/Main.java
  pa.lab1.optional.Main
+pa/lab1/compulsatory/Source.java
+ pa.lab1.compulsatory.Source
+pa/lab1/compulsatory/SourceType.java
+ pa.lab1.compulsatory.SourceType
+pa/lab1/compulsatory/Problem.java
+ pa.lab1.compulsatory.Problem
+ pa.lab1.compulsatory.Problem$ResultLine
 pa/lab1/optional/Solution.java
  pa.lab1.optional.Solution
  pa.lab1.optional.Solution$ResultLine

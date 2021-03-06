@@ -1,5 +1,8 @@
 package pa.lab3.program;
 
+import java.time.Duration;
+import java.util.Date;
+
 public class Interval {
     private Time startTime;
     private Time endTime;
@@ -24,4 +27,9 @@ public class Interval {
     public void setEndTime(Time endTime) {
         this.endTime = endTime;
     }
+
+//    public Duration getDuration() {
+//
+//        return new Duration(this.endTime. - this.startTime);
+//    }
 }
