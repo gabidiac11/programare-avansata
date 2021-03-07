@@ -1,7 +1,10 @@
 package pa.lab3.location;
 
-import java.util.Arrays;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public abstract class Location {
     protected static int numOfLocations = 0;
     protected static int[][] costMatrix = new int[0][0];
@@ -72,58 +75,33 @@ public abstract class Location {
         costMatrix[loc2.id][loc1.id] = distance;
     }
 
+    /**
+     * @return - a string detailing the cost of travelling between 2 locations (according to cost matrix)
+     *         - each row has this format: [*location-name1 -> *location-name2]: *distance
+     *  Example:
+         [v1 -> v2]: 10
+         [v1 -> v3]: 50
+         [v2 -> v3]: 20
+         [v2 -> v4]: 20
+         [v2 -> v5]: 10
+         [v3 -> v4]: 20
+         [v4 -> v5]: 30
+         [v4 -> v6]: 10
+         [v5 -> v6]: 20
+     *
+     */
     public static String getMapToString() {
         String stringResult = "";
 
         for(int i = 0; i < costMatrix.length; i++) {
             for(int ii = i+1; ii < costMatrix.length; ii++) {
                 if(costMatrix[i][ii] > 0) {
-                    stringResult = String.format("%s\n %s -> %s %d", stringResult, allInstances[i].getName(), allInstances[ii].getName(), costMatrix[i][ii]);
+                    stringResult = String.format("%s\n [%s -> %s]: %d", stringResult, allInstances[i].getName(), allInstances[ii].getName(), costMatrix[i][ii]);
                 }
             }
         }
 
         return stringResult;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public float getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(float latitude) {
-        this.latitude = latitude;
-    }
-
-    public float getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(float longitude) {
-        this.longitude = longitude;
     }
 
     public abstract boolean isVisitable();

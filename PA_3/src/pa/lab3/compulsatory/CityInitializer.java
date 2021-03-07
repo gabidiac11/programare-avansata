@@ -5,6 +5,15 @@ import pa.lab3.program.Initializer;
 import pa.lab3.program.Program;
 
 public class CityInitializer {
+    /**
+     * creates a test city with the required locations for compulsory exercise
+     * @return - City instance, having these locations: v1 (Hotel),
+     *                                              v2 (Museum A),
+     *                                              v3 (Museum B),
+     *                                              v4 (Church A),
+     *                                              v5 (Church B),
+     *                                              v6 (Restaurant).
+     */
     public static City createATestCity() {
         Program genericProgram = Initializer.createProgram();
 
@@ -16,7 +25,7 @@ public class CityInitializer {
         Location v6 = new Restaurant("v6", "Italian", "", 10, 10, 4, 99.99f, genericProgram);
 
         /*
-         * Map the values as in the following scheme:
+         * Maps the values as in the following scheme:
             From-To	    Cost
             v1→v2	    10
             v1→v3	    50
