@@ -19,6 +19,8 @@ The main bulk of these part is placed in `pa.lab3.location`, which has a sub-pac
 [![N|Solid](https://github.com/gabidiac11/programare-avansata/blob/main/PA_3/compulsory_diagram.png)](https://github.com/gabidiac11/programare-avansata/blob/main/PA_3/compulsory_diagram.png)
 
 
+
+
 Requirements and their status:
 
  #### - Create an object-oriented model of the problem. You should have at least the following classes City, Hotel, Museum, Church, Restaurant. The natural ordering of their objects is given by their names.~✔️
