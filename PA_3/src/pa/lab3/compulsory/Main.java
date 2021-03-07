@@ -1,6 +1,4 @@
-package pa.lab3.compulsatory;
-
-import pa.lab3.location.*;
+package pa.lab3.compulsory;
 
 public class Main {
     public static void main(String[] args) {

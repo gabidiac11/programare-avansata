@@ -1,6 +1,6 @@
 package pa.lab3.optional;
 
-import pa.lab3.compulsatory.CityInitializer;
+import pa.lab3.compulsory.CityInitializer;
 import pa.lab3.location.City;
 
 public class Main {
