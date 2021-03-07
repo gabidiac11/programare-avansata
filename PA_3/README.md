@@ -14,6 +14,8 @@ This piece is aiming at offering a better understanding concerning the following
 ## Addressed exercises 
 ### Compulsory (1p) 
 The main bulk of these part is placed in `pa.lab3.location`, which has a sub-package `pa.lab3.location.interfaces`. The class modeling of the problem is representated in this uml schema (which does not offer all, but mostly all methods and properties neccessary for understanding what has been tried for compulsory):
+
+
 [![N|Solid](https://github.com/gabidiac11/programare-avansata/blob/main/PA_3/compulsory_diagram.png)](https://github.com/gabidiac11/programare-avansata/blob/main/PA_3/compulsory_diagram.png)
 
 
