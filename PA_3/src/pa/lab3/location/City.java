@@ -58,11 +58,20 @@ public class City {
         System.out.printf("===========================================\n");
     }
 
+    public Location getLocationByName(String locationName) {
+        for(Location loc : this.locations) {
+            if(locationName.equals(loc.getName())) {
+                return loc;
+            }
+        }
+        return null;
+    }
+
     /**
      * print the city's map cost between each location -> for more info go to Location.getMapToString
      */
     public void printMap() {
-        System.out.printf("City with the name %s has the following map: %s",
+        System.out.printf("City with the name %s has the following map: %s\n",
                 this.name,
                 Location.getMapToString());
     }

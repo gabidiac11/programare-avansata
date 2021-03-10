@@ -109,6 +109,14 @@ public abstract class Location {
 
     public abstract String getSpecialization();
 
+    protected static int getCost(Location location1, Location location2) {
+        Map<Location, Integer> costLine = costMatrix.get(location1);
+        if(costLine != null && costLine.containsKey(location2)) {
+            return costLine.get(location2);
+        }
+        return -1;
+    }
+
     @Override
     public String toString() {
         return "Location{" +
@@ -116,7 +124,7 @@ public abstract class Location {
                 ", description='" + description + '\'' +
                 ", image='" + image + '\'' +
                 ", latitude=" + latitude +
-                ", longitude=" + longitude
+                ", longitude=" + longitude + String.format(", priority=%d", this.getPriority())
                 ;
     }
 }

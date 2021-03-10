@@ -4,7 +4,7 @@ import lombok.Getter;
 
 import java.util.Comparator;
 
-public class Node <T extends NodeComparator> {
+public class Node <T extends NodeComparator> implements Comparable<Node> {
     @Getter
     private T subject;
 
@@ -13,11 +13,15 @@ public class Node <T extends NodeComparator> {
     }
 
     public boolean hasEdgeWith(Node<T> node) {
-        return  node.subject.getCost(node.getSubject()) > -1;
+        return  this.subject.getCost(node.getSubject()) > -1;
     }
 
     public int getCostBetween(Node<T> node) {
-        return node.subject.getCost(node.getSubject());
+        return this.subject.getCost(node.getSubject());
     }
 
+    @Override
+    public int compareTo(Node o) {
+        return this.getSubject().compareToNode(o.getSubject());
+    }
 }

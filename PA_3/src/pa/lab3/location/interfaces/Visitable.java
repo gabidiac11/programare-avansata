@@ -6,7 +6,7 @@ import pa.lab3.program.*;
 import java.time.Duration;
 import java.util.Comparator;
 
-public interface Visitable extends NodeComparator {
+public interface Visitable extends NodeComparator, Comparable<Visitable> {
     Program getProgram();
 
     void setProgram(Program program);

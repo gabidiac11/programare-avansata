@@ -60,6 +60,15 @@ public class Graph <T extends NodeComparator> {
              settled.add(minNode);
 
              for(Node<T> node : this.priorityQueueNodes) {
+//                 System.out.printf("%s, %s, %s, %s __ %s __ %s\n",
+//                         new Boolean(!settled.contains(node)).toString(),
+//                         new Boolean(minNode.hasEdgeWith(node) ).toString(),
+//                         new Boolean(distances.get(minNode) != Integer.MAX_VALUE ).toString(),
+//                         new Boolean(distances.get(minNode) + minNode.getCostBetween(node) < distances.get(node)).toString(),
+//                         minNode.getSubject().nodeToString(),
+//                         node.getSubject().nodeToString()
+//                 );
+
                  if(
                     !settled.contains(node) &&
                     minNode.hasEdgeWith(node) &&
@@ -72,7 +81,7 @@ public class Graph <T extends NodeComparator> {
          }
 
          for(Node<T> node : distances.keySet()) {
-             System.out.printf("Distance: %d, Node: %s\n", distances.get(node), node.getSubject().nodeToString());
+             System.out.printf("Distance: %d, %s\n", distances.get(node), node.getSubject().nodeToString());
          }
     }
 }

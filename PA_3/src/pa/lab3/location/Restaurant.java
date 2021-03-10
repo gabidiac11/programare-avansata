@@ -74,7 +74,7 @@ public class Restaurant extends Location implements Visitable, Payable, Classifi
 
     @Override
     public int getCost(NodeComparator object) {
-        return 0;
+        return Location.getCost(this, (Location) object);
     }
 
     @Override
@@ -83,7 +83,13 @@ public class Restaurant extends Location implements Visitable, Payable, Classifi
     }
 
     @Override
-    public int compare(NodeComparator o1, NodeComparator o2) {
-        return 0;
+    public int compareTo(Visitable o) {
+        return Integer.compare(this.getPriority(), o.getPriority());
+    }
+
+    @Override
+    public int compareToNode(NodeComparator subject) {
+        //TODO: check type
+        return this.compareTo((Visitable) subject);
     }
 }
