@@ -1,16 +1,17 @@
 package pa.lab3.location;
 
+import javafx.util.Pair;
 import lombok.Getter;
 import lombok.Setter;
+import pa.lab3.location.interfaces.Visitable;
 
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 @Getter
 @Setter
 public abstract class Location {
     protected static int numOfLocations = 0;
-    protected static Map<Location, Map<Location, Integer>> costMatrix = new TreeMap<>();
+    protected static Map<Location, Map<Location, Integer>> costMatrix = new HashMap<>();
     private static Location[] allInstances = new Location[0];
 
 
@@ -42,9 +43,10 @@ public abstract class Location {
      * @param distance - a number of km
      */
     public static void setDistanceBetweenLocations(Location loc1, Location loc2, int distance) {
+
         Map<Location, Integer> costLine = costMatrix.get(loc1);
         if(costLine == null) {
-            costLine = new TreeMap<>();
+            costLine = new HashMap<>();
         }
 
         costLine.put(loc2, distance);
@@ -52,7 +54,7 @@ public abstract class Location {
 
         costLine = costMatrix.get(loc2);
         if(costLine == null) {
-            costLine = new TreeMap<>();
+            costLine = new HashMap<>();
         }
 
         costLine.put(loc1, distance);
@@ -76,11 +78,16 @@ public abstract class Location {
      */
     public static String getMapToString() {
         String stringResult = "";
+        Set<Location> alreadyDisplayed = new HashSet<>();
 
         for(Location location : costMatrix.keySet()) {
             Map<Location, Integer> costLine = costMatrix.get(location);
 
             for(Location location2 : costLine.keySet()) {
+                if(alreadyDisplayed.contains(location2)) {
+                    continue;
+                }
+
                 stringResult = String.format(
                         "%s\n [%s -> %s]: %d",
                         stringResult,
@@ -88,6 +95,7 @@ public abstract class Location {
                         location2.getName(),
                         costLine.get(location2));
             }
+            alreadyDisplayed.add(location);
         }
 
         return stringResult;
