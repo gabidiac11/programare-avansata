@@ -3,7 +3,9 @@ package pa.lab3.location;
 import pa.lab3.location.interfaces.Visitable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.PriorityQueue;
 
 public class City {
     private Location[] locations;
@@ -71,6 +73,21 @@ public class City {
             text = String.format("%s\n%s", text, this.locations[i].toString());
         }
         return text;
+    }
+
+    /**
+     * @return - a priority queue of visitable locations sorted by the preference
+     */
+    public PriorityQueue<Visitable> getVisitableLocations() {
+        PriorityQueue<Visitable> resultLocations = new PriorityQueue<>();
+
+        for(Location location : this.locations) {
+            if(location.isVisitable()) {
+                resultLocations.add((Visitable) location);
+            }
+        }
+
+        return resultLocations;
     }
 
     @Override

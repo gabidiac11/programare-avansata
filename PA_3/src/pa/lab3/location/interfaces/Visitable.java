@@ -1,15 +1,20 @@
 package pa.lab3.location.interfaces;
 
+import pa.lab3.graph.NodeComparator;
 import pa.lab3.program.*;
 
 import java.time.Duration;
+import java.util.Comparator;
 
-public interface Visitable {
+public interface Visitable extends NodeComparator {
     Program getProgram();
 
     void setProgram(Program program);
     String getName();
     String getSpecialization();
+    int getPriority();
+    void setPriority(int priority);
+    int compare(Visitable v1, Visitable v2);
 
     /**
      * @param location - Visitable
@@ -50,4 +55,5 @@ public interface Visitable {
 
         return Time.compareIntervals(firstInterval1.getStartTime(), firstInterval2.getStartTime());
     }
+
 }

@@ -3,12 +3,17 @@ package pa.lab3.location;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Map;
+import java.util.TreeMap;
+
 @Getter
 @Setter
 public abstract class Location {
     protected static int numOfLocations = 0;
-    protected static int[][] costMatrix = new int[0][0];
+    protected static Map<Location, Map<Location, Integer>> costMatrix = new TreeMap<>();
     private static Location[] allInstances = new Location[0];
+
+
 
     private String name;
     private String description;
@@ -16,52 +21,18 @@ public abstract class Location {
     private float latitude;
     private float longitude;
     private final int id;
+    private int priority = Integer.MAX_VALUE;
 
     public Location(String name, String description, String image, float latitude, float longitude) {
+
         this.name = name;
 
         this.id = numOfLocations;
-        this.pushNewLocationToCostMatrix();
 
         this.description = description;
         this.image = image;
         this.latitude = latitude;
         this.longitude = longitude;
-    }
-
-    /**
-     * append the new location to the linking matrix of location cost
-     */
-    private void pushNewLocationToCostMatrix() {
-        /*
-         * increase the count indicator of instances
-         */
-        numOfLocations++;
-
-        /*
-         * copy the previous state of the cost matrix
-         */
-        int costMatrixCopy[][] = new int[numOfLocations][numOfLocations];
-        for(int i = 0; i < costMatrix.length; i++) {
-            for(int ii = 0; ii < costMatrix.length; ii++) {
-                costMatrixCopy[i][ii] = costMatrix[i][ii];
-            }
-        }
-        /*
-         *  initialize the link with the new location added and the rest
-         */
-        for(int ii = 0; ii < costMatrixCopy.length; ii++) {
-            costMatrixCopy[costMatrixCopy.length - 1][ii] = 0;
-        }
-        costMatrix = costMatrixCopy;
-
-        /*
-         * push this instance reference to stack
-         */
-        Location[] allInstancesCopy = new Location[numOfLocations];
-        System.arraycopy(allInstances, 0, allInstancesCopy, 0, allInstances.length);
-        allInstancesCopy[numOfLocations-1] = this;
-        allInstances = allInstancesCopy;
     }
 
     /**
@@ -71,8 +42,21 @@ public abstract class Location {
      * @param distance - a number of km
      */
     public static void setDistanceBetweenLocations(Location loc1, Location loc2, int distance) {
-        costMatrix[loc1.id][loc2.id] = distance;
-        costMatrix[loc2.id][loc1.id] = distance;
+        Map<Location, Integer> costLine = costMatrix.get(loc1);
+        if(costLine == null) {
+            costLine = new TreeMap<>();
+        }
+
+        costLine.put(loc2, distance);
+        costMatrix.put(loc1, costLine);
+
+        costLine = costMatrix.get(loc2);
+        if(costLine == null) {
+            costLine = new TreeMap<>();
+        }
+
+        costLine.put(loc1, distance);
+        costMatrix.put(loc2, costLine);
     }
 
     /**
@@ -93,11 +77,16 @@ public abstract class Location {
     public static String getMapToString() {
         String stringResult = "";
 
-        for(int i = 0; i < costMatrix.length; i++) {
-            for(int ii = i+1; ii < costMatrix.length; ii++) {
-                if(costMatrix[i][ii] > 0) {
-                    stringResult = String.format("%s\n [%s -> %s]: %d", stringResult, allInstances[i].getName(), allInstances[ii].getName(), costMatrix[i][ii]);
-                }
+        for(Location location : costMatrix.keySet()) {
+            Map<Location, Integer> costLine = costMatrix.get(location);
+
+            for(Location location2 : costLine.keySet()) {
+                stringResult = String.format(
+                        "%s\n [%s -> %s]: %d",
+                        stringResult,
+                        location.getName(),
+                        location2.getName(),
+                        costLine.get(location2));
             }
         }
 
