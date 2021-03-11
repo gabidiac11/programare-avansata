@@ -247,7 +247,7 @@ Requirements and their status:
 
 ```
   
-   The algorithm used for sorting the node is the Dijkstra algorithm. I adapted in my own way `[this](https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/)` c++ implementation, using HashMaps and other type of data structures as I saw fit (now that I look again I see there is a java algorithm as well). 
+   The algorithm used for sorting the node is the Dijkstra algorithm. I adapted in my own way [this](https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/) c++ implementation, using HashMaps and other type of data structures as I saw fit (now that I look again I see there is a java algorithm as well). 
    
    
    The main method of this class `Map<T, Integer> dijkstra(T startPointSubject)` returns a the type we are interested in with the distance between the startPoint and the rest of the nodes in the form of a HashMap. 
