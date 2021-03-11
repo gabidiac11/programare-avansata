@@ -38,7 +38,7 @@ public class Graph <T extends NodeComparator> {
         return resultNode;
     }
 
-    public void dijkstra(T startPointSubject) {
+    public Map<T, Integer> dijkstra(T startPointSubject) {
          Set<Node<T>> settled = new HashSet<>();
          Map<Node<T>, Integer> distances = new TreeMap<>();
 
@@ -60,15 +60,6 @@ public class Graph <T extends NodeComparator> {
              settled.add(minNode);
 
              for(Node<T> node : this.priorityQueueNodes) {
-//                 System.out.printf("%s, %s, %s, %s __ %s __ %s\n",
-//                         new Boolean(!settled.contains(node)).toString(),
-//                         new Boolean(minNode.hasEdgeWith(node) ).toString(),
-//                         new Boolean(distances.get(minNode) != Integer.MAX_VALUE ).toString(),
-//                         new Boolean(distances.get(minNode) + minNode.getCostBetween(node) < distances.get(node)).toString(),
-//                         minNode.getSubject().nodeToString(),
-//                         node.getSubject().nodeToString()
-//                 );
-
                  if(
                     !settled.contains(node) &&
                     minNode.hasEdgeWith(node) &&
@@ -80,9 +71,13 @@ public class Graph <T extends NodeComparator> {
              }
          }
 
+         Map<T, Integer> result = new HashMap<>();
          for(Node<T> node : distances.keySet()) {
-             System.out.printf("Distance: %d, %s\n", distances.get(node), node.getSubject().nodeToString());
+             result.put(node.getSubject(), distances.get(node));
+             //System.out.printf("Distance: %d, %s\n", distances.get(node), node.getSubject().nodeToString());
          }
+
+         return result;
     }
 }
 

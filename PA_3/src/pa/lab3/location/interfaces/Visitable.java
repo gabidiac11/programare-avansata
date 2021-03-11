@@ -5,6 +5,8 @@ import pa.lab3.program.*;
 
 import java.time.Duration;
 import java.util.Comparator;
+import java.util.Map;
+import java.util.TreeMap;
 
 public interface Visitable extends NodeComparator, Comparable<Visitable> {
     Program getProgram();
@@ -54,6 +56,25 @@ public interface Visitable extends NodeComparator, Comparable<Visitable> {
         Interval firstInterval2 = loc2.getProgram().getFirstDayWihOpenIntervals()[0];
 
         return Time.compareIntervals(firstInterval1.getStartTime(), firstInterval2.getStartTime());
+    }
+
+    /**
+     * This should work as in the following requirement
+     * - Create default methods in the interface Visitable,
+     *   with the opening hour 09:30 and the closing hour 20:00.
+     * @return - a program with with the opening hour 09:30 and the closing hour 20:00 for each day
+     */
+    default Program createDefaultProgram() {
+        Map<WeekDay, Interval[]> weekDays = new TreeMap<>();
+
+        Interval[] defaultIntervals = new Interval[]{ new Interval(new Time(9, 30, 0), new Time(20, 0, 0)) };
+
+        for(WeekDay weekDay : WeekDay.values()) {
+            weekDays.put(WeekDay.MONDAY,
+                    defaultIntervals
+            );
+        }
+        return new Program(weekDays);
     }
 
 }

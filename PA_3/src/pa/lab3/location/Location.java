@@ -98,7 +98,7 @@ public abstract class Location {
             alreadyDisplayed.add(location);
         }
 
-        return stringResult;
+        return String.format("%s\n", stringResult);
     }
 
     public abstract boolean isVisitable();
