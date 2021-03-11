@@ -1,21 +1,43 @@
 package pa.lab3.location.interfaces;
 
 import pa.lab3.graph.NodeComparator;
-import pa.lab3.program.*;
+import pa.lab3.program.Interval;
+import pa.lab3.program.Program;
+import pa.lab3.program.Time;
+import pa.lab3.program.WeekDay;
 
 import java.time.Duration;
-import java.util.Comparator;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * make this implement priority queue based on preference
+ * make this implement NodeComparator in order to get the shortest path between 2 visitable locations
+ */
 public interface Visitable extends NodeComparator, Comparable<Visitable> {
+    /**
+     * required classes to have a program
+     * @return - Program - intervals (start, end) for each day (WeekDay enum)
+     */
     Program getProgram();
-
     void setProgram(Program program);
+
     String getName();
+
+    /**
+     * specify what kind of locations is: is a museum? a restaurant, a hotel
+     * @return - string - as it only used for printing none much else
+     */
     String getSpecialization();
+
+    /**
+     * require classes to use priorities (refers to the preference of a order in which to traverse a list of locations)
+     * is important for Visitable priority queue and shortest path
+     * @return - a number measuring the preference (NOTE: the lower the number the bigger the priority)
+     */
     int getPriority();
     void setPriority(int priority);
+
     int compare(Visitable v1, Visitable v2);
 
     /**
@@ -38,8 +60,8 @@ public interface Visitable extends NodeComparator, Comparable<Visitable> {
         WeekDay weekDay2 = loc2.getProgram().getFirstDayWithOpenIntervals();
 
         /*
-         * see if one of both are not never opening
-         * (the first week day with open program is null)
+         * see if one (or both) are not never open
+         * (weekday is null)
          */
         if(weekDay1 == null && weekDay2 == null) {
             return 0;

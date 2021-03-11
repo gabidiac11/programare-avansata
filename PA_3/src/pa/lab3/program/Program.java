@@ -1,21 +1,9 @@
 package pa.lab3.program;
 
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.Map;
 
 public class Program {
-    private static final ArrayList<WeekDay> ALL_WEEK_DAYS = new ArrayList<>();
-    {
-        ALL_WEEK_DAYS.add(WeekDay.MONDAY);
-        ALL_WEEK_DAYS.add(WeekDay.TUESDAY);
-        ALL_WEEK_DAYS.add(WeekDay.WEDNESDAY);
-        ALL_WEEK_DAYS.add(WeekDay.THURSDAY);
-        ALL_WEEK_DAYS.add(WeekDay.FRIDAY);
-        ALL_WEEK_DAYS.add(WeekDay.SATURDAY);
-        ALL_WEEK_DAYS.add(WeekDay.SUNDAY);
-    }
-
     private Map<WeekDay, Interval[]> programPerDay;
 
     public Program(Map<WeekDay, Interval[]> programPerDay) {
@@ -26,7 +14,7 @@ public class Program {
      * @return - the intervals while the first day of the week that is opened
      */
     public Interval[] getFirstDayWihOpenIntervals() {
-        for(WeekDay weekDay : ALL_WEEK_DAYS) {
+        for(WeekDay weekDay : WeekDay.values()) {
             if(this.programPerDay.containsKey(weekDay) && this.programPerDay.get(weekDay).length > 0) {
                 return this.programPerDay.get(weekDay);
             }
@@ -38,7 +26,7 @@ public class Program {
      * @return - the first day of the week that is NOT closed
      */
     public WeekDay getFirstDayWithOpenIntervals() {
-        for(WeekDay weekDay : ALL_WEEK_DAYS) {
+        for(WeekDay weekDay : WeekDay.values()) {
             if(this.programPerDay.containsKey(weekDay) && this.programPerDay.get(weekDay).length > 0) {
                 return weekDay;
             }
@@ -90,7 +78,7 @@ public class Program {
     @Override
     public String toString() {
         String resultString = "PROGRAM: \n";
-        for(WeekDay weekDay : ALL_WEEK_DAYS) {
+        for(WeekDay weekDay : WeekDay.values()) {
             resultString = String.format("%s%s", resultString, this.dayProgramToString(weekDay));
         }
         return resultString;

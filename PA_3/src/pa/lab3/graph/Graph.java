@@ -6,11 +6,9 @@ import java.util.*;
 
 
 public class Graph <T extends NodeComparator> {
-    private int count;
     private PriorityQueue<Node<T>> priorityQueueNodes;
 
     public Graph(PriorityQueue<T> subjects) {
-        this.count = subjects.size();
 
         /*
          * assign list of nodes
@@ -21,6 +19,11 @@ public class Graph <T extends NodeComparator> {
         }
     }
 
+    /**
+     * @param distances - distance from source to each node computed so far (and not computed so far)
+     * @param settled - nodes that are computed in the path already
+     * @return - the node that has the lowest distance so far
+     */
     private Node<T> minDistance(Map<Node<T>, Integer> distances, Set<Node<T>> settled) {
         int minim = Integer.MAX_VALUE;
         Node<T> resultNode = null;
@@ -38,6 +41,11 @@ public class Graph <T extends NodeComparator> {
         return resultNode;
     }
 
+    /**
+     * use dijkstra algorithm to calculate the shortest path
+     * @param startPointSubject - the type that is used for identifing a node
+     * @return - a map from T to a distance from the source of type T
+     */
     public Map<T, Integer> dijkstra(T startPointSubject) {
          Set<Node<T>> settled = new HashSet<>();
          Map<Node<T>, Integer> distances = new TreeMap<>();
