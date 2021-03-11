@@ -195,5 +195,76 @@ Requirements and their status:
    #### - Create the class TravelPlan. An instance of this class will contain a city and the preferences regarding the visiting order.~✔️
    #### - Implement an efficient agorithm to determine the shortest path between two given locations, conforming to the preferences.~✔️
    
+   For these two I used a generic typed Graph (`pa.lab3.graph`). This class takes a parameter a priority queue of the generic type `T`.
+```java
+   public class Graph <T extends NodeComparator> {
+    private PriorityQueue<Node<T>> priorityQueueNodes;
+
+    public Graph(PriorityQueue<T> subjects) {...}
+      
+      ...
+    
+    }
+```
+
+    
+   This generic type needs to implement the `pa.lab3.graph.NodeComparator` interface which constrains the deriving class to implement methods regarding the cost between each node of the graph as well as the way to compare 2 nodes. 
+```java
+
+   public interface NodeComparator {
+       int getCost(NodeComparator object);
+       String nodeToString();
+       String getName();
+
+       int compareToNode(NodeComparator subject);
+   }
+```
+
+   This interface helps the `pa.lab3.graph.Node` class implements his part in the shortest path algorithm.
+
+```java
+   public class Node <T extends NodeComparator> implements Comparable<Node> {
+    @Getter
+    private T subject;
+
+    public Node(T subject) {
+        this.subject = subject;
+    }
+
+    public boolean hasEdgeWith(Node<T> node) {
+        return  this.subject.getCost(node.getSubject()) > -1;
+    }
+
+    public int getCostBetween(Node<T> node) {
+        return this.subject.getCost(node.getSubject());
+    }
+
+    @Override
+    public int compareTo(Node o) {
+        return this.getSubject().compareToNode(o.getSubject());
+    }
+}
+
+```
+  
+   The algorithm used for sorting the node is the Dijkstra algorithm. I adapted it in my own way [this](https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/) c++ implementation, using HashMaps and other type of data structures as I saw fit (now that I look again I see there is a java algorithm as well). 
    
+   
+   The main method of this class `Map<T, Integer> dijkstra(T startPointSubject)` returns a the type we are interested in with the distance between the startPoint and the rest of the nodes in the form of a HashMap. 
+   
+   Coming back to the location problem. What I did is implementing a priority queue of Visitable locations around the order preference, then passed that to the Graph with the Visitable as a generic type. The Visitable implements the Comparator interface. The result is printed like this:
+   
+````
+Shortest path between locations:
+===========================================
+Distance from location v2 to location v3 is 20
+Distance from location v2 to location v6 is 30
+Distance from location v2 to location v5 is 10
+Distance from location v2 to location v4 is 20
+Shortest path between locations - END:
+===========================================
+
+````
+
+
  
