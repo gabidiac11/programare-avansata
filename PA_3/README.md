@@ -158,4 +158,42 @@ Requirements and their status:
         return Duration.between(timeStamp1.toLocalDateTime(), timeStamp1.toLocalDateTime());
     }
       ```
+      
+      
+  #### - In the City class, create a method to display the locations that are visitable and are not payable, sorted by their opening hour.~✔️
+   Int the Visitable interface I run through all the enum WeekDay elements and I added this single interval for each given day. 
+   
+```java
+       default Program createDefaultProgram() {
+        Map<WeekDay, Interval[]> weekDays = new TreeMap<>();
+
+        Interval[] defaultIntervals = new Interval[]{ new Interval(new Time(9, 30, 0), new Time(20, 0, 0)) };
+
+        for(WeekDay weekDay : WeekDay.values()) {
+            weekDays.put(WeekDay.MONDAY,
+                    defaultIntervals
+            );
+        }
+        return new Program(weekDays);
+    }
+```
+    
+    
+  #### - Create a static method getVisitingDuration,in the interface Visitable, that returns a Duration object, representing how long a location is opened during a day..~✔️
+   Int the Visitable interface uses the `Program.java` method, `getDayOpenDuration`, to get a Duration object. To get the Duration that represents the time between 2 Time instances the Timestamp class from java is once again used:
+   
+```java
+       //static Duration getDurationBetween(Time, Time) - Time.java
+       
+       Timestamp timeStamp1 = timeToTimestamp(time1);
+       Timestamp timeStamp2 = timeToTimestamp(time2);
+       return Duration.between(timeStamp1.toLocalDateTime(), timeStamp1.toLocalDateTime())
+```
+
+ Each duration is added together using `Duration.plus`, while iterating through all <Interval[], WeekDay> pairs of a Program.
+ 
+   #### - Create the class TravelPlan. An instance of this class will contain a city and the preferences regarding the visiting order.~✔️
+   #### - Implement an efficient agorithm to determine the shortest path between two given locations, conforming to the preferences.~✔️
+   
+   
  
