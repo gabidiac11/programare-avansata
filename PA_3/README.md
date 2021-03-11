@@ -73,3 +73,89 @@ Requirements and their status:
                 v1, v2, v3, v4, v5, v6
         });
 ```
+
+### Optional (2p) 
+For this section I used multiple packages, but the example is made in the main function of the `pa.lab3.optional`. 
+
+Requirements and their status:
+
+ #### - In the City class, create a method to display the locations that are visitable and are not payable, sorted by their opening hour.~✔️
+   The `Location` class has the abtract boolean methods `isVisitable` and `isPayable`. Because the location to be printed are visitable I created a list of Visitable typed instances results and for the interface a static compartor methods compareByOpeningHour. 
+   
+  ```java
+  /**
+     * print all the city names that are visitable, but not payable (with the program attached)
+     * sorted by opening hour
+     *
+     * Example:
+         * Location visitable, but not payable:
+         * ===========================================
+         * v4 (CHURCH)
+         * PROGRAM:
+         *       MONDAY:  [09:30:00 - 20:00:00]
+         *      TUESDAY:  [10:30:00 - 15:00:00] [17:30:00 - 20:00:00]
+         *    WEDNESDAY:  [10:30:00 - 12:00:00]
+         *     THURSDAY:  [12:30:00 - 16:00:00]
+         *       FRIDAY:  [14:30:00 - 21:00:00]
+         *     SATURDAY:  [11:30:00 - 17:00:00]
+         *       SUNDAY:  CLOSED
+         *
+         *  ....(etc.)....
+     */
+    public void printVisitableButNotPayable() {
+        System.out.printf("Location visitable, but not payable:\n===========================================\n");
+        List locationResults = new ArrayList<Visitable>();
+
+        for(int i = 0; i < this.locations.length; i++) {
+            if(this.locations[i].isVisitable() && !this.locations[i].isPayable()) {
+                locationResults.add(this.locations[i]);
+            }
+        }
+
+        locationResults.sort((a, b) -> Visitable.compareByOpeningHour((Visitable) a, (Visitable) b));
+
+        if(locationResults.size() == 0) {
+            System.out.printf("No location.\n");
+        } else {
+            for (Object locationResult : locationResults) {
+                Visitable currentLocation = (Visitable) locationResult;
+                System.out.printf("%s (%s)\n%s \n", currentLocation.getName(), currentLocation.getSpecialization(), currentLocation.getProgram().toString());
+            }
+        }
+        System.out.printf("===========================================\n");
+    }
+  ```
+  
+  Every class that implements Visitable needs to have a Program. In the Program class I implemented a method that checks what is the first day that these location are open. If the day is the same, it generates instances of Time (`pa.lab3.program.Time` - keeps hours, minutes, seconds) for each program. These times are compared using the static method `Time.compareIntervals`, that creates `java.sql.Timestamp` instances to help compare Time instances.
+  
+    ```java
+    private static Timestamp timeToTimestamp(Time time) {
+        return Timestamp.valueOf(String.format("1953-03-05 %s", time.toString()));
+    }
+    
+    /**
+     * compare 2 Time instances using the java Timestamp
+     * @param time1
+     * @param time2
+     * @return - (-1 | 0 | 1)
+     */
+    public static int compareIntervals(Time time1, Time time2) {
+        Timestamp timeStamp1 = timeToTimestamp(time1);
+        Timestamp timeStamp2 = timeToTimestamp(time2);
+
+        return timeStamp1.compareTo(timeStamp2);
+    }
+    /**
+     * gets a Duration instance consisting of amount of time betwee 2 Time instances using the java Timestamp
+     * @param time1
+     * @param time2
+     * @return - Duration instance
+     */
+    public static Duration getDurationBetween(Time time1, Time time2) {
+        Timestamp timeStamp1 = timeToTimestamp(time1);
+        Timestamp timeStamp2 = timeToTimestamp(time2);
+
+        return Duration.between(timeStamp1.toLocalDateTime(), timeStamp1.toLocalDateTime());
+    }
+      ```
+ 
