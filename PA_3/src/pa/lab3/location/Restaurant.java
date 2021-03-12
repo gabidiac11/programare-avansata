@@ -6,6 +6,8 @@ import pa.lab3.location.interfaces.Payable;
 import pa.lab3.location.interfaces.Visitable;
 import pa.lab3.program.Program;
 
+import java.util.Objects;
+
 public class Restaurant extends Location implements Visitable, Payable, Classifiable {
     private int rank;
     private float fee;
@@ -91,5 +93,19 @@ public class Restaurant extends Location implements Visitable, Payable, Classifi
     public int compareToNode(NodeComparator subject) {
         //TODO: check type
         return this.compareTo((Visitable) subject);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Restaurant that = (Restaurant) o;
+        return rank == that.rank && Float.compare(that.fee, fee) == 0 && Objects.equals(program, that.program);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode());
     }
 }

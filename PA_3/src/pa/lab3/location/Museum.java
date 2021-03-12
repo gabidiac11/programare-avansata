@@ -5,6 +5,8 @@ import pa.lab3.location.interfaces.Payable;
 import pa.lab3.location.interfaces.Visitable;
 import pa.lab3.program.Program;
 
+import java.util.Objects;
+
 public class Museum extends Location implements Visitable, Payable {
     private float fee;
     private Program program;
@@ -78,5 +80,19 @@ public class Museum extends Location implements Visitable, Payable {
     public int compareToNode(NodeComparator subject) {
         //TODO: check type
         return this.compareTo((Visitable) subject);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Museum museum = (Museum) o;
+        return Float.compare(museum.fee, fee) == 0 && Objects.equals(program, museum.program);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode());
     }
 }

@@ -52,4 +52,5 @@ public class Hotel extends Location implements Payable, Classifiable {
     public String getSpecialization() {
         return "HOTEL";
     }
+
 }
