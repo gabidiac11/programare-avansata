@@ -1,9 +1,9 @@
 package pa.lab3.graph;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
-import java.util.Comparator;
-
+@EqualsAndHashCode
 public class Node <T extends NodeComparator> implements Comparable<Node> {
     @Getter
     private T subject;

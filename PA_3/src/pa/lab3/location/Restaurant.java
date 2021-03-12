@@ -1,11 +1,13 @@
 package pa.lab3.location;
 
+import lombok.EqualsAndHashCode;
 import pa.lab3.graph.NodeComparator;
 import pa.lab3.location.interfaces.Classifiable;
 import pa.lab3.location.interfaces.Payable;
 import pa.lab3.location.interfaces.Visitable;
 import pa.lab3.program.Program;
 
+@EqualsAndHashCode
 public class Restaurant extends Location implements Visitable, Payable, Classifiable {
     private int rank;
     private float fee;
@@ -92,5 +94,4 @@ public class Restaurant extends Location implements Visitable, Payable, Classifi
         //TODO: check type
         return this.compareTo((Visitable) subject);
     }
-
 }

@@ -88,7 +88,7 @@ public class Graph <T extends NodeComparator> {
          Map<T, Integer> result = new HashMap<>();
          for(Node<T> node : distances.keySet()) {
              result.put(node.getSubject(), distances.get(node));
-             //System.out.printf("Distance: %d, %s\n", distances.get(node), node.getSubject().nodeToString());
+             System.out.printf("Distance: %d, %s\n", distances.get(node), node.getSubject().nodeToString());
          }
 
          return result;
