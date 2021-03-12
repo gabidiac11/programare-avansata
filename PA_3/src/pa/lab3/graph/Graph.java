@@ -43,8 +43,9 @@ public class Graph <T extends NodeComparator> {
 
     /**
      * use dijkstra algorithm to calculate the shortest path
-     * @param startPointSubject - the type that is used for identifing a node
+     * @param startPointSubject - the type that is used for identifying a node
      * @return - a map from T to a distance from the source of type T
+     *
      */
     public Map<T, Integer> dijkstra(T startPointSubject) {
          Set<Node<T>> settled = new HashSet<>();
@@ -61,8 +62,9 @@ public class Graph <T extends NodeComparator> {
         distances.put(startPoint, 0);
 
          while(this.priorityQueueNodes.size() != settled.size()) {
-             // Pick the minimum distance vertex from the set of vertices not
-             // yet processed. u is always equal to src in the first iteration.
+             /*
+              * this source will be the first one here
+              */
              Node<T> minNode = this.minDistance(distances, settled);
 
              settled.add(minNode);
