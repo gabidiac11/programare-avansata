@@ -4,8 +4,6 @@ import pa.lab3.graph.NodeComparator;
 import pa.lab3.location.interfaces.Visitable;
 import pa.lab3.program.Program;
 
-import java.util.Objects;
-
 public class Church extends Location implements Visitable {
     private Program program;
 
@@ -70,17 +68,17 @@ public class Church extends Location implements Visitable {
         return this.compareTo((Visitable) subject);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        Church church = (Church) o;
-        return Objects.equals(program, church.program);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode());
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        if (!super.equals(o)) return false;
+//        Church church = (Church) o;
+//        return Objects.equals(program, church.program) && super.equals(o) && super.equals(o);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return super.hashCode();
+//    }
 }

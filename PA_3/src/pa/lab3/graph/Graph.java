@@ -2,13 +2,17 @@ package pa.lab3.graph;
 
 // Java implementation of Dijkstra's Algorithm
 // using Priority Queue
+import lombok.NonNull;
+
 import java.util.*;
 
+//pe clasa javadoc mereu
 
 public class Graph <T extends NodeComparator> {
     private PriorityQueue<Node<T>> priorityQueueNodes;
 
-    public Graph(PriorityQueue<T> subjects) {
+
+    public Graph(@NonNull PriorityQueue<T> subjects) {
 
         /*
          * assign list of nodes
@@ -49,7 +53,7 @@ public class Graph <T extends NodeComparator> {
      */
     public Map<T, Integer> dijkstra(T startPointSubject) {
          Set<Node<T>> settled = new HashSet<>();
-         Map<Node<T>, Integer> distances = new TreeMap<>();
+         Map<Node<T>, Integer> distances = new HashMap<>();
 
         Node<T> startPoint = null;
          for(Node<T> node : this.priorityQueueNodes) {
