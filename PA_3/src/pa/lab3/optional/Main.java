@@ -14,7 +14,7 @@ public class Main {
         newCity.printMap();
 
         /*
-         * for this exemple I added to all of them these preferences - but only Visitable will be set
+         * for this example I added to all of them these preferences - but only Visitable will be set
          */
         travelPlan.addPreference("v1", 1);
         travelPlan.addPreference("v2", 2);

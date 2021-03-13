@@ -1,10 +1,12 @@
 package pa.lab3.location;
 
+import lombok.EqualsAndHashCode;
 import pa.lab3.graph.NodeComparator;
 import pa.lab3.location.interfaces.Payable;
 import pa.lab3.location.interfaces.Visitable;
 import pa.lab3.program.Program;
 
+@EqualsAndHashCode
 public class Museum extends Location implements Visitable, Payable {
     private float fee;
     private Program program;

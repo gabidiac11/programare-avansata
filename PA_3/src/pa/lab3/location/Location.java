@@ -1,9 +1,7 @@
 package pa.lab3.location;
 
-import javafx.util.Pair;
 import lombok.Getter;
 import lombok.Setter;
-import pa.lab3.location.interfaces.Visitable;
 
 import java.util.*;
 
@@ -126,5 +124,18 @@ public abstract class Location {
                 ", latitude=" + latitude +
                 ", longitude=" + longitude + String.format(", priority=%d", this.getPriority())
                 ;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Location location = (Location) o;
+        return Float.compare(location.latitude, latitude) == 0 && Float.compare(location.longitude, longitude) == 0 && id == location.id && priority == location.priority && Objects.equals(name, location.name) && Objects.equals(description, location.description) && Objects.equals(image, location.image);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, description, image, latitude, longitude, id, priority);
     }
 }

@@ -7,6 +7,9 @@ import java.sql.Timestamp;
 import java.time.Duration;
 import java.util.Objects;
 
+/**
+ * NOTE: this is better if is replaced by timestamp
+ */
 @Getter
 @Setter
 public class Time {
