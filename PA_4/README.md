@@ -31,10 +31,10 @@ Requirements and their status:
         });
  ````
 
-  I also used on one more occasion in order to generate a string having this format: "S0: (H0, H1, H2)", where S0 - the name of the students and the H's the schools:
+  I also used on one more occasion in order to generate a string having the format "S0: (H0, H1, H2)":
  ````java
         //pa.lab4.didactic.studentPreferencesToString()
-        ------------------------------------------------------------
+        /* ------------------------------------------------------------ */
         //studentPreferences has this type: Map<Student, Set<School>> 
         
         for(Map.Entry<Student, Set<School>> entry : this.studentPreferences.entrySet()) {
@@ -82,5 +82,24 @@ Requirements and their status:
  ````
  
  #### - Create two maps (having different implementations) describing the students and the school preferences and print them on the screen.~✔️
-  This is done using a map from student to a LinkedHashSet of schools by which order the preference is given. The same maping is done in reverve for the schools. These 2 variables are generated in compulsory main `generateStudentPreferences(List<Student> students, Set<School> schools)` and `generateSchoolPreferences(List<Student> students, Set<School> schools)`. The printing is done in `pa.lab4.didactic.SchoolAllocation`
+  This is done using a map from student to a LinkedHashSet of schools by which order the preference is given. The same maping is done in reverve for the schools. These 2 variables are generated in compulsory main `generateStudentPreferences(List<Student> students, Set<School> schools)` and `generateSchoolPreferences(List<Student> students, Set<School> schools)`. The text printed is generated in `pa.lab4.didactic.SchoolAllocation.studentPreferencesToString()`.
+  
+  ````
+  
+        -----STUDENTS-PREFERENCES----
+        S0:(H0,H1,H2)
+        S3:(H0,H2)
+        S1:(H0,H1,H2)
+        S2:(H0,H1)
+        -----STUDENTS-PREFERENCES----end
+
+        -----UNIVERSITIES-PREFERENCES----
+        H2:(S0,S1,S3)
+        H1:(S0,S2,S1)
+        H0:(S3,S0,S1,S2)
+        H3:(S0,S1,S3)
+        -----UNIVERSITIES-PREFERENCES----end
+
+```
+  
  
