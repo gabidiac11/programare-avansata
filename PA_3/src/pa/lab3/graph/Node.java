@@ -3,6 +3,7 @@ package pa.lab3.graph;
 import lombok.Getter;
 
 import java.util.Comparator;
+import java.util.Objects;
 
 public class Node <T extends NodeComparator> implements Comparable<Node> {
     @Getter
@@ -23,5 +24,18 @@ public class Node <T extends NodeComparator> implements Comparable<Node> {
     @Override
     public int compareTo(Node o) {
         return this.getSubject().compareToNode(o.getSubject());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Node<?> node = (Node<?>) o;
+        return Objects.equals(subject, node.subject);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(subject);
     }
 }
