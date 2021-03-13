@@ -7,6 +7,7 @@ import pa.lab4.didactic.Student;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.*;
+import java.util.stream.Stream;
 
 /**
  * generates a instance of SchoolAllocation to print an example of the problem (the preferences of each student and school)
@@ -20,9 +21,10 @@ public class Main {
     private static List<Student> generateStudentList() {
         /* create a list of students using a linked list */
         List<Student> students = new LinkedList<>();
-        for(int i : new int[]{0, 1,2,3}) {
+
+        Stream.of(0, 1, 2, 3).forEach(i -> {
             students.add(new Student(String.format("S%d", i), "", String.format("serial_number_%d", i)));
-        }
+        });
 
         /*
          * sort students by name
@@ -43,9 +45,11 @@ public class Main {
      */
     private static Set<School> generateSchoolList() {
         Set<School> schools = new TreeSet<>();
-        for(int i : new int[]{0, 1,2}) {
+
+        Stream.of(0, 1, 2, 3).forEach(i -> {
             schools.add(new School(String.format("H%d", i), String.format("serial_school_number_%d", i)));
-        }
+        });
+
         return schools;
     }
 

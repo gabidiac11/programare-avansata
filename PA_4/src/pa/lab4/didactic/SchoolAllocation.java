@@ -54,9 +54,10 @@ public class SchoolAllocation {
             Student student = entry.getKey();
 
             output = output + String.format("%s:(", student.getFirstName());
-            Object[] schools = entry.getValue().toArray();
-
-            output += Arrays.stream(schools).map(school -> ((School) school).getName()).collect(Collectors.joining(","));
+            output += entry.getValue()
+                    .stream()
+                    .map(school -> school.getName())
+                    .collect(Collectors.joining(","));
 
             output += ")\n";
         }
@@ -84,10 +85,10 @@ public class SchoolAllocation {
 
             output = output + String.format("%s:(", school.getName());
 
-            output += Arrays.stream(
-                            entry.getValue()
-                                    .toArray()
-                        ).map(item -> ((Student) item).getName()).collect(Collectors.joining(","));
+            output += entry.getValue()
+                    .stream()
+                    .map(item -> item.getName())
+                    .collect(Collectors.joining(","));
 
             output += ")\n";
         }

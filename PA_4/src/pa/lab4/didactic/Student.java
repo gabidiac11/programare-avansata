@@ -14,7 +14,7 @@ public class Student {
     private String serialNumber;
 
     public String getName() {
-        return String.format("%s %s", this.firstName, this.lastName);
+        return this.firstName + (this.lastName.length() > 0 ? " " + this.lastName : "");
     }
 }
 
