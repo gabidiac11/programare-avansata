@@ -99,7 +99,6 @@ Requirements and their status:
         H0:(S3,S0,S1,S2)
         H3:(S0,S1,S3)
         -----UNIVERSITIES-PREFERENCES----end
-
-```
+  ````
   
  
