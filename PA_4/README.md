@@ -19,7 +19,7 @@ Requirements and their status:
 
  #### - Create an object-oriented model of the problem. You should have at least the following classes: Student, School, and the main class..~✔️
  #### - Create all the objects in the example using streams.~✔️
-  I used these *stream* to create the students and school objects and their names (.
+  I used *stream* to create the students and school objects and their names (.
  
  ````java
         //pa.lab4.compulsory.Main.generateStudentList()
