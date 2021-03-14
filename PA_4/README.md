@@ -93,19 +93,48 @@ Requirements and their status:
   
   ````
   
-        -----STUDENTS-PREFERENCES----
-        S0:(H0,H1,H2)
-        S3:(H0,H2)
-        S1:(H0,H1,H2)
-        S2:(H0,H1)
-        -----STUDENTS-PREFERENCES----end
+     ------------------------------------------------------------STUDENTS-PREFERENCES----
+     S0:(H0,H1,H2)
+     S3:(H0,H2)
+     S1:(H0,H1,H2)
+     S2:(H0,H1)
+     ------------------------------------------------------------STUDENTS-PREFERENCES----end
 
-        -----UNIVERSITIES-PREFERENCES----
-        H2:(S0,S1,S3)
-        H1:(S0,S2,S1)
-        H0:(S3,S0,S1,S2)
-        H3:(S0,S1,S3)
-        -----UNIVERSITIES-PREFERENCES----end
+
+     ------------------------------------------------------------SCHOOLS-PREFERENCES----
+     H1:(S0,S2,S1)
+     H2:(S0,S1,S3)
+     H0:(S3,S0,S1,S2)
+     ------------------------------------------------------------SCHOOLS-PREFERENCES----end
   ````
+  
+  
+  ### Optional (2p) 
+For this part, besides changes to the `didactic` package, I created a new package (`pa.lab4.stablematching`) with generic type classes that specializes in solving the [*Stable Marriage*](https://www.youtube.com/watch?v=ZeIBwYK0DEQ) problem. An exemple that ilustrates the requirements from optional is done in `pa.lab4.optional.Main`. 
+
+Requirements and their status:
+
+ #### - Create a class that describes the problem and one that describes a solution (a matching) to this problem.~✔️
+  Matching problem is solved using the Gale Shapley algorithm. I adapted this algoritm to my own implementation: https://www.geeksforgeeks.org/stable-marriage-problem/
+  
+````
+  Initialize all men and women to free
+  while there exist a free man m who still has a woman w to propose to 
+  {
+      w = m's highest ranked such woman to whom he has not yet proposed
+      if w is free
+         (m, w) become engaged
+      else some pair (m', w) already exists
+         if w prefers m to m'
+            (m, w) become engaged
+             m' becomes free
+         else
+            (m', w) remain engaged    
+  }
+
+````
+ The difference from the above implementation and what we need is that a school can be 'engaged' to multiple students. For this I created a generic class *Woman<W, M>* that holds the School (W) and Student (M). In this class the preferences are stored as well as the list of 'fiances'. The most important method of this class is `Pair<M, Boolean> manProposes(M newMan)`. This method adds a man to a list of fiances if the respective man is prefered more than at least one of current list of fiances or the list of fiances is empty. The class that resolve the problem is `pa.lab4.stablematching.StableMarriage`, in `Map<M, W> generateStableMatching()`. This method creates a map from W to a Woman<W, M> from the list of W and each W object's preferences for a list of M objects, initialized in constructor. 
+ 
+ #### - Create all the objects in the example using streams.~✔️
   
  
