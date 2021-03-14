@@ -44,9 +44,11 @@ public class PreferencePrinter <T extends PreferencePrintable, M extends Prefere
     }
 
     /**
-     * string representing matches
+     * ------------------------------------------------------------Matches-------------------
+     * [(Christian Zemlak:The Alabama College),(Na Davis:South Colorado College),(Fumiko Hodkiewicz:The Alabama College),(Rosenda Wilderman:Western Mississippi College)]
+     * ------------------------------------------------------------Matches-------------------
      * @param matches
-     * @return
+     * @return - string representing matches
      */
     public String matchesToString(Map<T, M> matches) {
        return String.format("\n------------------------------------------------------------Matches-------------------\n[%s]\n------------------------------------------------------------Matches-------------------\n",

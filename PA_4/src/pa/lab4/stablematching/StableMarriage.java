@@ -88,25 +88,6 @@ public class StableMarriage <M, W> {
                         }
                     }
                 }
-
-//                notFreeMen.stream().forEach(item -> {
-//                    System.out.printf(item.toString());
-//                    System.out.println(1);
-//                });
-//                System.out.println();
-//                notFreeWomen.stream().forEach(item -> {
-//                    System.out.printf(item.toString());
-//                    System.out.println(1);
-//                });
-//
-//                System.out.println(2);
-//
-//                System.out.printf("\n\n-%d-%d----%d-%d--\n\n",
-//                        this.men.size(),
-//                        notFreeMen.size(),
-//                        this.women.size(),
-//                        notFreeWomen.size()
-//                );
             } else {
                 break;
             }
