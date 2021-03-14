@@ -1,14 +1,13 @@
 package pa.lab4.didactic;
 
-import com.sun.istack.internal.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import pa.lab4.stablemathing.PreferencePrintable;
+import pa.lab4.stablematching.PreferencePrintable;
 
 @AllArgsConstructor
 @EqualsAndHashCode
-public class Student implements PreferencePrintable {
+public class Student implements PreferencePrintable, Comparable<Student>{
     @Getter
     private String firstName;
     private String lastName;
@@ -16,6 +15,11 @@ public class Student implements PreferencePrintable {
 
     public String getName() {
         return this.firstName + (this.lastName.length() > 0 ? " " + this.lastName : "");
+    }
+
+    @Override
+    public int compareTo(Student o) {
+        return this.serialNumber.compareTo(o.serialNumber);
     }
 }
 

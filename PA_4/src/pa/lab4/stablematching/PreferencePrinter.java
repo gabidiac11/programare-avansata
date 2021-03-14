@@ -1,8 +1,6 @@
-package pa.lab4.stablemathing;
+package pa.lab4.stablematching;
 
-import pa.lab4.didactic.School;
-import pa.lab4.didactic.Student;
-
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -38,5 +36,20 @@ public class PreferencePrinter <T extends PreferencePrintable, M extends Prefere
         output = output + "-----" + title + "----end\n";
 
         return output;
+    }
+
+    /**
+     * string representing matches
+     * @param matches
+     * @return
+     */
+    public String matchesToString(Map<T, M> matches) {
+       return String.format("-------------------Matches-------------------\n[%s]\n-------------------Matches-------------------\n",
+               matches
+                .entrySet()
+                .stream()
+                .map((Map.Entry<T, M> match) -> String.format("(%s:%s)", match.getKey().getName(), match.getValue().getName()))
+                .collect(Collectors.joining(","))
+       );
     }
 }

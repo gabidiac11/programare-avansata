@@ -46,7 +46,7 @@ public class Main {
     public static Set<School> generateSchoolList() {
         Set<School> schools = new TreeSet<>();
 
-        Stream.of(0, 1, 2, 3).forEach(i -> {
+        Stream.of(0, 1, 2).forEach(i -> {
             schools.add(new School(String.format("H%d", i), String.format("serial_school_number_%d", i)));
         });
 
@@ -100,7 +100,7 @@ public class Main {
         Object[] schoolsArray = schools.toArray();
 
         for(int  i = 0; i < schoolsArray.length; i++) {
-            School student = (School) schoolsArray[i];
+            School school = (School) schoolsArray[i];
 
             /*
              * preferences are given by the order in which each item is pushed
@@ -126,7 +126,7 @@ public class Main {
                     preferredStudents.add(students.get(3));
                     break;
             }
-            schoolPreferences.put(student, preferredStudents);
+            schoolPreferences.put(school, preferredStudents);
         }
         return schoolPreferences;
     }
