@@ -33,21 +33,28 @@ Requirements and their status:
 
   I also used on one more occasion in order to generate a string having the format "S0: (H0, H1, H2)":
  ````java
-        //pa.lab4.didactic.studentPreferencesToString()
-        /* ------------------------------------------------------------ */
-        //studentPreferences has this type: Map<Student, Set<School>> 
+    //pa.lab4.stablematching.PreferencePrinter.preferenceToString(Map<T, Set<M>> preferences, String title)
+    /* ------------------------------------------------------------ */
         
-        for(Map.Entry<Student, Set<School>> entry : this.studentPreferences.entrySet()) {
-            Student student = entry.getKey();
+    public String preferenceToString(Map<T, Set<M>> preferences, String title) {
+        String output = "\n-----" + title + "----\n";
 
-            output = output + String.format("%s:(", student.getFirstName());
+        for(Map.Entry<T, Set<M>> entry : preferences.entrySet()) {
+            T student = entry.getKey();
+
+            output = output + String.format("%s:(", student.getName());
             output += entry.getValue()
                     .stream()
-                    .map(school -> school.getName())
+                    .map(item -> item.getName())
                     .collect(Collectors.joining(","));
 
             output += ")\n";
         }
+
+        output = output + "-----" + title + "----end\n";
+
+        return output;
+    }
  ````
  
  
@@ -82,7 +89,7 @@ Requirements and their status:
  ````
  
  #### - Create two maps (having different implementations) describing the students and the school preferences and print them on the screen.~✔️
-  This is done using a map from student to a LinkedHashSet of schools by which order the preference is given. The same maping is done in reverve for the schools. These 2 variables are generated in compulsory main `generateStudentPreferences(List<Student> students, Set<School> schools)` and `generateSchoolPreferences(List<Student> students, Set<School> schools)`. The text printed is generated in `pa.lab4.didactic.SchoolAllocation.studentPreferencesToString()`.
+  This is done using a map from student to a LinkedHashSet of schools by which order the preference is given. The same maping is done in reverve for the schools. These 2 variables are generated in compulsory main `generateStudentPreferences(List<Student> students, Set<School> schools)` and `generateSchoolPreferences(List<Student> students, Set<School> schools)`. The text printed is generated in `pa.lab4.stablematching.PreferencePrinter.preferenceToString(Map<T, Set<M>> preferences, String title)`. `PreferencePrinter` uses a generic type in order to avoid using 2 different functions that do the same thing.
   
   ````
   
