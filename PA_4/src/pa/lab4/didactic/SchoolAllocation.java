@@ -1,6 +1,8 @@
 package pa.lab4.didactic;
 
 import com.sun.istack.internal.NotNull;
+import pa.lab4.stablemathing.PreferencePrintable;
+import pa.lab4.stablemathing.PreferencePrinter;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -15,6 +17,8 @@ public class SchoolAllocation {
     private Map<Student, Set<School>> studentPreferences;
     private Map<School, Set<Student>> schoolPreferences;
 
+    private Map<School, Set<Student>> allocationResults;
+
 
     public SchoolAllocation(
             @NotNull List<Student> students,
@@ -26,6 +30,7 @@ public class SchoolAllocation {
         this.schools = schools;
         this.studentPreferences = studentPreferences;
         this.schoolPreferences = schoolPreferences;
+        this.allocateStudents();
     }
 
     /**
@@ -33,68 +38,61 @@ public class SchoolAllocation {
      * @return - string
      */
     public String allPreferenceToString() {
-        return String.format("%s%s", this.studentPreferencesToString(), this.schoolPreferencesToString());
+        PreferencePrinter<Student, School> printerStudent = new PreferencePrinter<>();
+        PreferencePrinter<School, Student> printerSchool = new PreferencePrinter<>();
+
+        return String.format("%s%s",
+                printerStudent.preferenceToString(this.studentPreferences, "STUDENTS-PREFERENCES"),
+                printerSchool.preferenceToString(this.schoolPreferences, "SCHOOLS-PREFERENCES")
+        );
     }
 
-    /**
-     * generates a visual representation of preferences:
-     * -----STUDENTS-PREFERENCES----
-     * S0:(H0,H1,H2)
-     * S3:(H0,H2)
-     * S1:(H0,H1,H2)
-     * S2:(H0,H1)
-     * -----STUDENTS-PREFERENCES----end
-     *
-     * @return - string
-     */
-    private String studentPreferencesToString() {
-        String output = "\n-----STUDENTS-PREFERENCES----\n";
+    private boolean isTheBiggestRank(Student student, School school, Map<School, Boolean> schoolSettled) {
+        Object[] schools = this.studentPreferences.get(student).toArray();
 
-        for(Map.Entry<Student, Set<School>> entry : this.studentPreferences.entrySet()) {
-            Student student = entry.getKey();
-
-            output = output + String.format("%s:(", student.getFirstName());
-            output += entry.getValue()
-                    .stream()
-                    .map(school -> school.getName())
-                    .collect(Collectors.joining(","));
-
-            output += ")\n";
+        for(int i = 0; i < schools.length; i++) {
+            if(((School) (schools[i])).equals(school)) {
+                return true;
+            } else {
+                return false;
+            }
         }
 
-        output = output + "-----STUDENTS-PREFERENCES----end\n";
-
-        return output;
+        return Integer.MAX_VALUE == 1;
     }
 
-    /**
-     * generates a visual representation of preferences:
-     * -----UNIVERSITIES-PREFERENCES----
-     * H2:(S0 ,S1 ,S3 )
-     * H1:(S0 ,S2 ,S1 )
-     * H0:(S3 ,S0 ,S1 ,S2 )
-     * -----UNIVERSITIES-PREFERENCES----end
-     *
-     * @return - string
-     */
-    private String schoolPreferencesToString() {
-        String output = "\n-----UNIVERSITIES-PREFERENCES----\n";
+    public void allocateStudents() {
+        /* students assigned */
+        Map<Student, Boolean> studentSettled = new HashMap<>();
+        Map<School, Boolean> schoolSettled = new HashMap<>();
 
-        for(Map.Entry<School, Set<Student>> entry : this.schoolPreferences.entrySet()) {
-            School school = entry.getKey();
+        this.allocationResults = new HashMap<>();
 
-            output = output + String.format("%s:(", school.getName());
+//        while(
+//                studentSettled.keySet().size() != this.students.size() &&
+//                schoolSettled.keySet().size() != this.schools.size()
+//        ) {
+//            for(Map.Entry<School, Set<Student>> entry : this.schoolPreferences.entrySet()) {
+//                School school = entry.getKey();
+//
+//                /* get students allocated so far for the current school */
+//                Set<Student> preferredStudents;
+//                if(this.allocationResults.containsKey(school)) {
+//                    preferredStudents = this.allocationResults.get(school);
+//                } else {
+//                    preferredStudents = new LinkedHashSet<>();
+//                }
+//
+//                if(!schoolSettled.containsKey(school)) {
+//                    for(Student student : entry.getValue()) {
+//                        if(!studentSettled.containsKey(student)) {
+//
+//                        }
+//                    }
+//                }
+//            }
+//        }
 
-            output += entry.getValue()
-                    .stream()
-                    .map(item -> item.getName())
-                    .collect(Collectors.joining(","));
 
-            output += ")\n";
-        }
-
-        output = output + "-----UNIVERSITIES-PREFERENCES----end\n";
-
-        return output;
     }
 }

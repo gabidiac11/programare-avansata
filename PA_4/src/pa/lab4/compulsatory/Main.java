@@ -18,7 +18,7 @@ public class Main {
      * generates a list of students
      * @return - a linked list of students sorted by name
      */
-    private static List<Student> generateStudentList() {
+    public static List<Student> generateStudentList() {
         /* create a list of students using a linked list */
         List<Student> students = new LinkedList<>();
 
@@ -43,7 +43,7 @@ public class Main {
      * generates a list of students sortable by their name
      * @return - a tree set of schools
      */
-    private static Set<School> generateSchoolList() {
+    public static Set<School> generateSchoolList() {
         Set<School> schools = new TreeSet<>();
 
         Stream.of(0, 1, 2, 3).forEach(i -> {
@@ -58,7 +58,7 @@ public class Main {
      * @param schools
      * @return - a map from a student to a ordinated set of school (the preference is given by the order in which are pushed)
      */
-    private static Map<Student, Set<School>> generateStudentPreferences(List<Student> students, Set<School> schools) {
+    public static Map<Student, Set<School>> generateStudentPreferences(List<Student> students, Set<School> schools) {
         Map<Student, Set<School>> studentPreferences = new HashMap<>();
         Object[] schoolsArray = schools.toArray();
 
@@ -95,7 +95,7 @@ public class Main {
      * @param schools
      * @return - a map from a school to a ordinated set of students (the preference is given by the order in which are pushed)
      */
-    private static Map<School, Set<Student>> generateSchoolPreferences(List<Student> students, Set<School> schools) {
+    public static Map<School, Set<Student>> generateSchoolPreferences(List<Student> students, Set<School> schools) {
         Map<School, Set<Student>> schoolPreferences = new HashMap<>();
         Object[] schoolsArray = schools.toArray();
 

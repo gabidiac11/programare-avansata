@@ -4,10 +4,11 @@ import com.sun.istack.internal.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import pa.lab4.stablemathing.PreferencePrintable;
 
 @AllArgsConstructor
 @EqualsAndHashCode
-public class Student {
+public class Student implements PreferencePrintable {
     @Getter
     private String firstName;
     private String lastName;
