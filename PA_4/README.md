@@ -13,13 +13,13 @@ This piece is aiming at offering a better understanding concerning the following
 
 ## Addressed exercises 
 ### Compulsory (1p) 
-The main bulk of these part is placed in `pa.lab4.didactic`, with exemple in the  `pa.lab4.compulsory.Main`. 
+The main bulk of this part is placed in `pa.lab4.didactic`, with exemple in the  `pa.lab4.compulsory.Main`. 
 
 Requirements and their status:
 
- #### - Create an object-oriented model of the problem. You should have at least the following classes: Student, School and the main class..~✔️
+ #### - Create an object-oriented model of the problem. You should have at least the following classes: Student, School, and the main class..~✔️
  #### - Create all the objects in the example using streams.~✔️
-  I used these stream to create the students and school objects and their names (.
+  I used these *stream* to create the students and school objects and their names (.
  
  ````java
         //pa.lab4.compulsory.Main.generateStudentList()
@@ -89,7 +89,7 @@ Requirements and their status:
  ````
  
  #### - Create two maps (having different implementations) describing the students and the school preferences and print them on the screen.~✔️
-  This is done using a map from student to a LinkedHashSet of schools by which order the preference is given. The same maping is done in reverve for the schools. These 2 variables are generated in compulsory main `generateStudentPreferences(List<Student> students, Set<School> schools)` and `generateSchoolPreferences(List<Student> students, Set<School> schools)`. The text printed is generated in `pa.lab4.stablematching.PreferencePrinter.preferenceToString(Map<T, Set<M>> preferences, String title)`. `PreferencePrinter` uses a generic type in order to avoid using 2 different functions that do the same thing.
+  This is done using a map from student to a LinkedHashSet of schools by which order the preference is given. The same mapping is done in reverse for the schools. These 2 variables are generated in compulsory main `generateStudentPreferences(List<Student> students, Set<School> schools)` and `generateSchoolPreferences(List<Student> students, Set<School> schools)`. The text printed is generated in `pa.lab4.stablematching.PreferencePrinter.preferenceToString(Map<T, Set<M>> preferences, String title)`. `PreferencePrinter` uses a generic type to avoid using 2 different functions that do the same thing.
   
   ````
   
@@ -110,18 +110,18 @@ Requirements and their status:
   
   
   ### Optional (2p) 
-For this part, besides changes to the `didactic` package, I created a new package (`pa.lab4.stablematching`) with generic type classes that specializes in solving the [*Stable Marriage*](https://www.youtube.com/watch?v=ZeIBwYK0DEQ) problem. An exemple that ilustrates the requirements from optional is done in `pa.lab4.optional.Main`. 
+For this part, besides changes to the `didactic` package, I created a new package (`pa.lab4.stablematching`) with generic type classes that specialize in solving the [*Stable Marriage*](https://www.youtube.com/watch?v=ZeIBwYK0DEQ) problem. An example that illustrates the requirements from optional is done in `pa.lab4.optional.Main`. 
 
 Requirements and their status:
 
  #### - Create a class that describes the problem and one that describes a solution (a matching) to this problem.~✔️
-  Matching problem is solved using the Gale Shapley algorithm. I adapted this algoritm to my own implementation: 
+  The matching problem is solved using the Gale Shapley algorithm. I adapted this algorithm to my implementation: 
   
 ````
   Initialize all men and women to free
-  while there exist a free man m who still has a woman w to propose to 
+  while there exists a free man m who still has a woman w to propose to 
   {
-      w = m's highest ranked such woman to whom he has not yet proposed
+      w = m's highest-ranked such woman to whom he has not yet proposed
       if w is free
          (m, w) become engaged
       else some pair (m', w) already exists
@@ -135,14 +135,14 @@ Requirements and their status:
   https://www.geeksforgeeks.org/stable-marriage-problem/
 
 ````
-  The difference from the above implementation and what we need is that a school can be 'engaged' to multiple students. For this I created a generic class *Woman<W, M>* that holds the School (W) and Student (M). In this class the preferences are stored as well as the list of 'fiances'. 
+  The difference between the above implementation and what we need is that a school can be 'engaged' to multiple students. For this, I created a generic class *Woman<W, M>* that holds the School (W) and Student (M). In this class, the preferences are stored as well as the list of 'fiances'. 
  
-  The most important method of this class is `Pair<M, Boolean> manProposes(M newMan)`. This method adds a man to a list of fiances if the respective man is prefered more than at least one of current list of fiances or the list of fiances is empty. 
+  The most important method of this class is `Pair<M, Boolean> manProposes(M newMan)`. This method adds a man to a list of fiances if the respective man is preferred more than at least one of the current list of fiances or the list of fiances is empty. 
   
-  The class that resolve the problem is `pa.lab4.stablematching.StableMarriage`, in `Map<M, W> generateStableMatching()`. This method creates a map from W to a Woman<W, M> from the list of W and each W object's preferences for a list of M objects, initialized in constructor. This method implements the above described algorithm using generics and adapted to work with polygamy.
+  The class that resolve the problem is `pa.lab4.stablematching.StableMarriage`, in `Map<M, W> generateStableMatching()`. This method creates a map from W to a Woman<W, M> from the list of W and each W object's preferences for a list of M objects, initialized in the constructor. This method implements the above-described algorithm using generics and adapted to work with polygamy.
  
  #### - Create all the objects in the example using streams.~✔️
-  I used streams on multiple ocasions, where I found it helpful. 
+  I used streams on multiple occasions, where I found it helpful. 
   For example, this is the way I printed the results from stable matching, in `pa.lab4.stablematching.PreferencePrinter`:
   
 ````java
@@ -175,9 +175,9 @@ Requirements and their status:
             manPreferences.put(entry.getKey(), entry.getValue().stream().collect(Collectors.toList()));
         });
 ````
-  I used *stream* on regular occassions, as are very useful.
+  I used *stream* on regular occasions, as are very useful.
   
- #### - Use a third-party library in order to generate random fake names for students and schools.~✔️
+ #### - Use a third-party library to generate random fake names for students and schools.~✔️
  For this one I search on google on how to add external libraries and found a list of [jar files](https://jar-download.com/artifacts/com.github.javafaker) that helped me install the *JavaFaker* library. I installed all of them by adding them into *Project Structure -> Project Settings -> Modules -> + -> JARS or Directories*.
   I generated first name and last name for students (`faker.name()`) and school names (`faker.university()`) in `pa.lab4.optional.Main`:
   
@@ -210,13 +210,13 @@ Requirements and their status:
 
 
 #### - Implement an algorithm for creating a matching, considering that each student has a score obtained at the evaluation exam and the schools rank students based on this score.~✔️
-   I added a new data member to `pa.lab4.didactic.School`, *grades*, a map from Student to a number. In order to not break the prior implementation, I added second constructor without the grades. Other thing I did in this matter is a second constructor for `pa.lab4.didactic.SchoolAllocation`, one that doesn't receive the school preference, but it generates based on the grades of each student that applied or had a grade greater than 0. The following method does that by filtering and sorting the students:
+   I added a new data member to `pa.lab4.didactic.School`, *grades*, a map from Student to a number. To not break the prior implementation, I added a second constructor without the grades. Another thing I did in this matter is a second constructor for `pa.lab4.didactic.SchoolAllocation`, one that doesn't receive the school preference, but it generates based on the grades of each student that applied or had a grade greater than 0. The following method does that by filtering and sorting the students:
   
 ````java
      /**
      * @param students
      * @param schools
-     * @return - a map from a school to a ordinated set of students (the preference is given by the order in which are pushed)
+     * @return - a map from a school to an ordinated set of students (the preference is given by the order in which are pushed)
      */
     private Map<School, Set<Student>> schoolPreferenceBasedOnGrades(List<Student> students, Set<School> schools) {
         Map<School, Set<Student>> schoolPreferences = new HashMap<>();
@@ -245,4 +245,3 @@ Requirements and their status:
     }
 ````
  #### - Test your algorithm.~✔️
-
