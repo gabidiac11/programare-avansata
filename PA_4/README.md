@@ -31,7 +31,7 @@ Requirements and their status:
         });
  ````
 
-  I also used on one more occasion in order to generate a string having the format "S0: (H0, H1, H2)":
+  I also used on another occasion in order to generate a string having the format "S0: (H0, H1, H2)":
  ````java
     //pa.lab4.stablematching.PreferencePrinter.preferenceToString(Map<T, Set<M>> preferences, String title)
     /* ------------------------------------------------------------ */
