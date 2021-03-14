@@ -7,9 +7,12 @@ import pa.lab4.didactic.Student;
 import java.util.*;
 import java.util.stream.Stream;
 
+import com.github.javafaker.Faker;
+
 /**
  * this generate examples like in compulsory - but changes some things:
  * - the way students are preferred by the schools -> it only insert grades and the SchoolAllocation figures out the preference
+ * - FAKER for generating students and schools names
  */
 public class Main {
 
@@ -21,8 +24,10 @@ public class Main {
         /* create a list of students using a linked list */
         List<Student> students = new LinkedList<>();
 
+        Faker faker = new Faker();
+
         Stream.of(0, 1, 2, 3).forEach(i -> {
-            students.add(new Student(String.format("S%d", i), "", String.format("serial_number_%d", i)));
+            students.add(new Student(faker.name().firstName(), faker.name().lastName(), String.format("serial_number_%d", i)));
         });
 
         /*
@@ -45,8 +50,10 @@ public class Main {
     public static Set<School> generateSchoolList() {
         Set<School> schools = new TreeSet<>();
 
+        Faker faker = new Faker();
+
         Stream.of(0, 1, 2).forEach(i -> {
-            schools.add(new School(String.format("H%d", i), String.format("serial_school_number_%d", i)));
+            schools.add(new School(faker.university().name(), String.format("serial_school_number_%d", i)));
         });
 
         return schools;

@@ -1,10 +1,15 @@
 package pa.lab4.stablematching;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+
+/**
+ * - use a single function for printing preferences: Map<Student, Set<School>
+ *                                                 Map<School, Set<Student>
+ * - or stable matching results
+ */
 public class PreferencePrinter <T extends PreferencePrintable, M extends PreferencePrintable> {
 
     /**
@@ -19,7 +24,7 @@ public class PreferencePrinter <T extends PreferencePrintable, M extends Prefere
      * @return - string
      */
     public String preferenceToString(Map<T, Set<M>> preferences, String title) {
-        String output = "\n-----" + title + "----\n";
+        String output = "\n------------------------------------------------------------" + title + "----\n";
 
         for(Map.Entry<T, Set<M>> entry : preferences.entrySet()) {
             T student = entry.getKey();
@@ -33,7 +38,7 @@ public class PreferencePrinter <T extends PreferencePrintable, M extends Prefere
             output += ")\n";
         }
 
-        output = output + "-----" + title + "----end\n";
+        output = output + "------------------------------------------------------------" + title + "----end\n\n";
 
         return output;
     }
@@ -44,7 +49,7 @@ public class PreferencePrinter <T extends PreferencePrintable, M extends Prefere
      * @return
      */
     public String matchesToString(Map<T, M> matches) {
-       return String.format("-------------------Matches-------------------\n[%s]\n-------------------Matches-------------------\n",
+       return String.format("\n------------------------------------------------------------Matches-------------------\n[%s]\n------------------------------------------------------------Matches-------------------\n",
                matches
                 .entrySet()
                 .stream()

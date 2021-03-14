@@ -5,6 +5,9 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import pa.lab4.stablematching.PreferencePrintable;
 
+/**
+ * student needs to be ordered by serial number in ThreeSet's
+ */
 @AllArgsConstructor
 @EqualsAndHashCode
 public class Student implements PreferencePrintable, Comparable<Student>{
