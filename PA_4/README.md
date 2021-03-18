@@ -244,4 +244,4 @@ Requirements and their status:
         return schoolPreferences;
     }
 ````
- #### - Test your algorithm.~✔️
+ #### - Test your algorithm.~❌ (no unit testing..)
