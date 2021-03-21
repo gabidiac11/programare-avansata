@@ -178,15 +178,15 @@ public class Catalog {
      * @return
      */
     public static JSONArray toJsonArray(List<Media> mediaList) {
-        JSONArray books = new JSONArray();
+        JSONArray item = new JSONArray();
 
         mediaList
                 .stream()
                 .forEach(item -> {
-                    books.add(item.toMap());
+                    item.add(item.toMap());
                 });
 
-        return books;
+        return item;
     }
 
     public void list() {
