@@ -89,6 +89,117 @@ Requirements and their status:
 ````
   #####  play: playback using the native operating system application (see the Desktop class);
   
-  ##### save: saves the catalog to an external file (either as a text or binary, using object serialization);
+  For this one I've created 2 methods, one for the books and one for the songs (*playBookByName*, *playSongByName*). It's searching by name and throws error if is not found.
+  ````java
   
-  #####  load: loads the catalog from an external file.
+      /**
+     * searches and opens a media file by name that is a song
+     * @param name
+     * @throws IOException
+     * @throws MediaException
+     */
+    public void playSongByName(@NonNull String name) throws IOException, MediaException {
+        for(Media item : this.mediaList) {
+            if(item instanceof Song && item.getName().contains(name)) {
+                File file = new File(item.getPath());
+                Desktop.getDesktop().open(file);
+
+                return;
+            }
+        }
+        throw new MediaPlayableNotFound(name);
+    }
+    
+   ````
+   
+   #####  load: loads the catalog from an external file.
+   
+   `Catalog.load(String path)` opens a json file, parses the file and creates Media objects. The exemple from the `pa.lab5.compulsory.main()` is using the config file from `pa.lab5.files.json.Catalog.json` (which has a backup `pa.lab5.files.json.CatalogBackup.json`, for emergencies). Media, Book and Song have a static method that creates a map from their properties to the values (<String, String>). Book and Song class have a constructor which receives this kind of map. This map is validated and throws custom errors if something is wrong with the data. All media error classes are stored into `pa.lab5.multimedia.library.exception` packages and each of them (that is thrown) extends the abstract class `MediaException`. The data is validated (and better logged) in terms of in terms of null values (`MediaFieldNullException`), numerical values (`MediaNumericFieldException`), paths that don't exist (`MediaFileMissingException`).
+   
+   ````java
+   
+   /**
+     * creates a list of media by reading and parsing a json file of this form:
+     * {
+     *   "books": [
+     *     {
+     *       "author": "Feodor Dostoevsky",
+     *       "name": "Insermari din subterana",
+     *       "path": "src\\main\\java\\pa\\lab5\\files\\books\\Feodor_Mihailovici_Dostoievski_Insemnari_Din_Subterana.pdf",
+     *       "year": "1846",
+     *       "rating": "1000000",
+     *       "publication": "POLIROM"
+     *     }
+     *   ],
+     *   "songs": [
+     *     {
+     *       "author": "Alexandrov Ensemble",
+     *       "name": "To serve Russia",
+     *       "path": "src\\main\\java\\pa\\lab5\\files\\songs\\Russian_Federation_1991_Military_March_To_Serve_Russia.mp3",
+     *       "year": "1945",
+     *       "rating": "1000000",
+     *       "genre": "Classical, folk tunes, hymns, operatic arias, popular music"
+     *     }
+     *   ]
+     * }
+     * @param  - the path to the json file
+     * @throws IOException
+     * @throws ParseException
+     * @throws MediaException - case: a fields is null, a field is not numerical, a path from a media json object does not exist
+     */
+    void load(String path) throws IOException, ParseException, MediaException {
+        FileReader file = null;
+        try {
+            file = new FileReader(path);
+
+            Object obj = new JSONParser().parse(file);
+            JSONObject jsonObject = (JSONObject) obj;
+
+
+            List<Media> mediaList = Book.computeStringMaps(
+                    createMediaListFromArrayJson((JSONArray) jsonObject.get("books"), Book.ACCEPTED_PROPERTIES)
+            );
+
+            Song.computeStringMaps(
+                    createMediaListFromArrayJson((JSONArray) jsonObject.get("songs"), Song.ACCEPTED_PROPERTIES)
+            ).stream().forEach(item -> {
+                mediaList.add(item);
+            });
+
+            this.mediaList = mediaList;
+        } catch (IOException|ParseException|MediaException e) {
+            throw e;
+        } finally {
+            if(file != null) {
+                file.close();
+            }
+        }
+    }
+    
+   ````
+  
+  ##### save: saves the catalog to an external file (either as a text or binary, using object serialization);
+   Using `Catalog.toString()` a json text is generated from the current state of the catalog. The method uses this text and puts that in the path provided at instanciation.
+   
+   ````java
+     /**
+     * save the current list as config json file (see Catalog.load() for info about this file structure)
+     * @throws FileNotFoundException
+     */
+    public void save() throws FileNotFoundException {
+        PrintWriter pw = null;
+        try {
+            pw = new PrintWriter(this.path);
+            pw.write(this.toString());
+        } catch (FileNotFoundException e) {
+            throw e;
+        } finally {
+            if(pw != null) {
+                pw.flush();
+                pw.close();
+            }
+        }
+    }
+   ````
+  
+  
