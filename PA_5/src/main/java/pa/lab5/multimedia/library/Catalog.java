@@ -249,6 +249,10 @@ public class Catalog {
         throw new MediaPlayableNotFound(name);
     }
 
+    /**
+     * save the current list as config json file (see Catalog.load() for info about this file structure)
+     * @throws FileNotFoundException
+     */
     public void save() throws FileNotFoundException {
         PrintWriter pw = null;
         try {
