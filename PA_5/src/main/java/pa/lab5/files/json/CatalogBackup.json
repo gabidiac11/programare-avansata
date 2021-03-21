@@ -1,0 +1,38 @@
+{
+  "books": [
+    {
+      "name": "Insermari din subterana",
+      "author": "Feodor Dostoevsky",
+      "year": 1846,
+      "rating": 1000000,
+      "publication": "POLIROM",
+      "path": "src\\main\\java\\pa\\lab5\\files\\books\\Feodor_Mihailovici_Dostoievski_Insemnari_Din_Subterana.pdf"
+    },
+    {
+      "name": "Invierea",
+      "author": "Lev Tolstoy",
+      "year": 1889,
+      "rating": 1000000,
+      "publication": "POLIROM",
+      "path": "src\\main\\java\\pa\\lab5\\files\\books\\Lev_Tolstoi_Invierea.pdf"
+    },
+    {
+      "name": "Cel mai iubit dintre pamanteni",
+      "author": "Marin Preda",
+      "year": 1980,
+      "rating": 1000000,
+      "publication": "POLIROM",
+      "path": "src\\main\\java\\pa\\lab5\\files\\books\\Preda_Marin_Cel_mai_iubit_dintre_pamanteni.pdf"
+    }
+  ],
+  "songs": [
+    {
+      "name": "To serve Russia",
+      "author": "Alexandrov Ensemble",
+      "year": 1945,
+      "genre": "Classical, folk tunes, hymns, operatic arias, popular music",
+      "rating": 1000000,
+      "path": "src\\main\\java\\pa\\lab5\\files\\songs\\Russian_Federation_1991_Military_March_To_Serve_Russia.mp3"
+    }
+  ]
+}
