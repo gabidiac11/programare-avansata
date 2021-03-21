@@ -25,8 +25,37 @@ Requirements and their status:
   ##### add: adds a new entry into the catalog;
     The *Catalog* instance has a list of *Media* objects. `Catalog.add(Media media)` adds a new element to the list.
   ##### list: prints the content of the catalog on the screen;
-    `Catalog.list()` converts a list of items to json then prints the result using `org.apache.logging.log4j`. 
-    ````JSON
+  `Catalog.list()` converts the list of items to json (`org.json.simple.*`) then prints the result using `org.apache.logging.log4j`. Each media has a method *toMap* which maps property value to a property name, and this list gets converted to json. Each property name is managed using a enum for a better implementation (`pa.lab5.files.json.JsonFileProperty`):
+  
+  ````java
+   public enum JsonFileProperty {
+       /**
+        * general enums for media items
+        */
+       NAME("name"),
+       AUTHOR("author"),
+       RELEASE_YEAR("year"),
+       RATING("rating"),
+       PATH("path"),
+
+       /**
+        * particularities for a subclass of media
+        */
+       PUBLICATION("publication"),
+
+       GENRE("genre");
+
+       public final String label;
+
+       JsonFileProperty(String label) {
+           this.label = label;
+       }
+   }
+````
+
+
+  Output: 
+ ````JSON
     12:28:20.548 [main] OFF   pa.lab5.multimedia.library.Catalog - 
         --------------------------------------LISTA----------------------------------------------
         {
@@ -38,31 +67,7 @@ Requirements and their status:
               "year": "1846",
               "rating": "1000000",
               "publication": "POLIROM"
-            },
-            {
-              "author": "Lev Tolstoy",
-              "name": "Invierea",
-              "path": "src\\main\\java\\pa\\lab5\\files\\books\\Lev_Tolstoi_Invierea.pdf",
-              "year": "1889",
-              "rating": "1000000",
-              "publication": "POLIROM"
-            },
-            {
-              "author": "Marin Preda",
-              "name": "Cel mai iubit dintre pamanteni",
-              "path": "src\\main\\java\\pa\\lab5\\files\\books\\Preda_Marin_Cel_mai_iubit_dintre_pamanteni.pdf",
-              "year": "1980",
-              "rating": "1000000",
-              "publication": "POLIROM"
-            },
-            {
-              "author": "Liviu Rebreanu",
-              "name": "Ion (John)",
-              "path": "src\\main\\java\\pa\\lab5\\files\\books\\liviu.pdf",
-              "year": "1920",
-              "rating": "9",
-              "publication": "Curierul literar"
-            },
+            }
             {
               "author": "Alexandrov Ensemble",
               "name": "To serve Russia",
@@ -81,7 +86,7 @@ Requirements and their status:
             }
           ]
       }
-```
+````
   #####  play: playback using the native operating system application (see the Desktop class);
   
   ##### save: saves the catalog to an external file (either as a text or binary, using object serialization);
