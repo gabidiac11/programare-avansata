@@ -1,10 +1,10 @@
-package pa.lab5.compulsory;
+package pa.lab5.optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import pa.lab5.multimedia.Book;
-import pa.lab5.multimedia.Song;
 import pa.lab5.multimedia.Media;
+import pa.lab5.multimedia.Song;
 import pa.lab5.multimedia.library.Catalog;
 import pa.lab5.multimedia.library.exception.MediaException;
 
@@ -12,7 +12,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Main {
-    static Logger log = LogManager.getLogger(Main.class);
+    static Logger log = LogManager.getLogger(pa.lab5.compulsory.Main.class);
 
     private final static Map<String, Media> myTestMediaItems;
     static {
@@ -38,15 +38,6 @@ public class Main {
     public static void main(String[] args)  {
         try {
             Catalog catalog = new Catalog("src\\main\\java\\pa\\lab5\\files\\json\\Catalog.json");
-
-            catalog.add(myTestMediaItems.get("ION"));
-            catalog.add(myTestMediaItems.get("DU_MA_ACASA_MAI_TRAMVAI"));
-
-            catalog.list();
-
-            catalog.playSongByName("To serve Russia");
-
-            catalog.save();
 
             catalog.catalogHtml();
 

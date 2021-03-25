@@ -1,17 +1,14 @@
 package pa.lab5.multimedia.library;
 
+import lombok.Getter;
 import lombok.NonNull;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.Marker;
 import org.apache.logging.log4j.MarkerManager;
 import org.apache.logging.log4j.message.FormattedMessage;
-import org.apache.logging.log4j.message.Message;
-import org.apache.logging.log4j.Level;
 
-import pa.lab5.multimedia.Book;
-import pa.lab5.multimedia.Song;
-import pa.lab5.multimedia.Media;
+import pa.lab5.multimedia.*;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -23,9 +20,9 @@ import java.util.*;
 import java.util.List;
 
 import pa.lab5.files.json.JsonFileProperty;
-import pa.lab5.multimedia.MediaJson;
 import pa.lab5.multimedia.library.exception.MediaException;
 import pa.lab5.multimedia.library.exception.MediaPlayableNotFound;
+import pa.lab5.multimedia.CatalogHtmlMaker;
 
 /**
  * - receives a path to json file (see Catalog.load() for info about this)
@@ -38,7 +35,8 @@ public class Catalog {
     static Logger log = LogManager.getLogger(Catalog.class);
     private static final Marker CATALOG_MARKER = MarkerManager.getMarker("CATALOG");
 
-    List<Media> mediaList = new ArrayList<>();
+    @Getter
+    private List<Media> mediaList = new ArrayList<>();
     private final String path;
 
     public Catalog(String path) throws ParseException, IOException, MediaException {
@@ -283,6 +281,10 @@ public class Catalog {
         jo.put("songs", toJsonArray(this.getSongs()));
 
         return jo;
+    }
+
+    public void catalogHtml() throws Exception {
+        CatalogHtmlMaker catalogHtmlMaker = new CatalogHtmlMaker(this);
     }
 
     /**
