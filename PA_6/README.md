@@ -7,6 +7,6 @@ Diac P. Gabriel
 2A2
   
 ### Compusory
-Canvas in which a selected shape (circle, square, line) is drawn at mouse position click, using a random color. It can also be added a image, like in the example bellow.
+Canvas in which a selected shape (circle, square, line) is drawn at mouse position click, using a random color. It can also be added an image, like in the example bellow.
 
 [![N|Solid](https://github.com/gabidiac11/programare-avansata/blob/main/PA_6/exemplu.PNG)](https://github.com/gabidiac11/programare-avansata/blob/main/PA_6/exemplu.PNG)
