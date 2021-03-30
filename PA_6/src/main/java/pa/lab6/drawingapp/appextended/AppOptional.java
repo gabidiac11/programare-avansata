@@ -1,7 +1,10 @@
-package pa.lab6.drawingapp;
+package pa.lab6.drawingapp.appextended;
 
 import javafx.util.Pair;
+import pa.lab6.drawingapp.ShapeType;
 import pa.lab6.drawingapp.actionpanel.ActionPanel;
+import pa.lab6.drawingapp.appextended.shape.Circle;
+import pa.lab6.drawingapp.appextended.shape.Shape;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,13 +13,7 @@ import java.awt.event.MouseListener;
 import java.util.*;
 import java.util.List;
 
-/**
- * creates the frame
- * create the top panel with the 'Shape size' and 'Stroke size' text fields and uses the input from them
- * creates the canvas and listens for click events and draws shapes based on these events
- * adds the bottom action buttons list from ActionPanel class
- */
-public class App {
+public class AppOptional {
     private Frame mainFrame;
     private Canvas canvas;
     private Graphics graphics;
@@ -29,13 +26,17 @@ public class App {
 
     private ShapeType shapeTypeSelected = ShapeType.CIRCLE;
 
+    private List<Shape> drawnShapes = new ArrayList<>();
+
+    private boolean eraserActive = false;
+
     /*
         - list of buttons that if pressed selects the shape to be drawn
         - the selected one is marked different from others
      */
     private Map<ShapeType, JButton> availableShapes;
 
-    public App() {
+    public AppOptional() {
         this.initializeFrame();
     }
 
@@ -76,7 +77,13 @@ public class App {
             }
 
             @Override
-            public void mousePressed(MouseEvent e) {drawSelectedShape(e.getX(), e.getY());}
+            public void mousePressed(MouseEvent e) {
+                if(eraserActive) {
+                    eraseShapeAtLocation(e.getX(), e.getY());
+                } else {
+                    drawSelectedShape(e.getX(), e.getY());
+                }
+            }
 
             @Override
             public void mouseReleased(MouseEvent e) {}
@@ -143,71 +150,49 @@ public class App {
         return palletOfColors[new Random().nextInt(palletOfColors.length)];
     }
 
-    private void drawCircle(int x, int y) {
-        int size = getNumberFromTextField(this.sizeField);
-
-        graphics = canvas.getGraphics();
-        assignStrokeToGraphic(graphics);
-
-        try {
-            graphics.drawOval(x,y,size,size);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void drawLine(int x, int y) {
-        int size = getNumberFromTextField(this.sizeField);
-
-        graphics = canvas.getGraphics();
-        assignStrokeToGraphic(graphics);
-
-        try {
-            graphics.drawLine(x,y, x + size, y);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void drawSquare(int x, int y) {
-        int size = getNumberFromTextField(this.sizeField);
-
-        graphics = canvas.getGraphics();
-        assignStrokeToGraphic(graphics);
-
-        try {
-            graphics.drawRect(x,y,size,size);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * sets the current stroke value from input when drawing
-     * @param graphics
-     */
-    private void assignStrokeToGraphic(Graphics graphics) {
-        ((Graphics2D) graphics).setStroke(new BasicStroke(getNumberFromTextField(strokeField)));
-        graphics.setColor(generateRandomColor());
-
-    }
-
     private void drawSelectedShape(int x, int y) {
         /* center the position of the shape around the point*/
         int size = getNumberFromTextField(this.sizeField);
+        int stroke = getNumberFromTextField(this.strokeField);
+        Color color = generateRandomColor();
+
         x = x - size / 2;
         y = y - size / 2;
 
+        Shape shape = null;
         switch (this.shapeTypeSelected) {
             case CIRCLE:
-                drawCircle(x, y);
+                shape = new Circle(x, y, stroke, color, size/2);
                 break;
-            case SQUARE:
-                drawSquare(x, y);
+        }
+
+        if(shape != null) {
+            shape.drawShape(this.canvas);
+            this.drawnShapes.add(shape);
+        }
+    }
+
+    private void eraseShapeAtLocation(int x, int y) {
+        for(int i = this.drawnShapes.size() - 1; i >= 0; i--) {
+            Shape shape = drawnShapes.get(i);
+            if(shape.locationIncludedInShape(x, y)) {
+                //shape.eraseShape(canvas);
+
+                ((Circle) shape).drawShape(canvas, generateRandomColor());
+
+                /* find shape colliding with this one and redraw them */
+//                for(int ii = 0; ii < this.drawnShapes.size(); ii++) {
+//                    if(ii != i && Shape.shapesAreIntersecting(
+//                            shape,
+//                            this.drawnShapes.get(ii)
+//                    )) {
+//                        this.drawnShapes.get(ii).drawShape(canvas);
+//                    }
+//                }
+
+                //this.drawnShapes.remove(i);
                 break;
-            case LINE:
-                drawLine(x, y);
-                break;
+            }
         }
     }
 
@@ -238,6 +223,39 @@ public class App {
         return button;
     }
 
+    private JButton createEraserButton() {
+        setEraserValue(false);
+
+        JButton button = new JButton("ERASE");
+
+        button.setBounds(0, 0, 70, 50);
+
+        button.addActionListener(e -> {
+            this.setEraserValue(!this.eraserActive);
+            if(this.eraserActive) {
+                button.setBackground(Color.red);
+            } else {
+                button.setBackground(Color.white);
+            }
+        });
+
+        return button;
+    }
+
+    private void setEraserValue(boolean newValue) {
+        String pathToCursor = "";
+//        if(newValue) {
+//            pathToCursor = "src\\main\\java\\pa\\lab6\\assets\\eraser.png";
+//        } else {
+//            pathToCursor = "src\\main\\java\\pa\\lab6\\assets\\pen.png";
+//        }
+//
+//        Toolkit toolkit = Toolkit.getDefaultToolkit();
+//        Image imageCrossCursor = toolkit.getImage(pathToCursor);
+//        canvas.setCursor(toolkit.createCustomCursor(imageCrossCursor, new Point(0,0), "Some cursor"));
+        this.eraserActive = newValue;
+    }
+
     /**
      * highlights the button of the shape selected and selects the shape to drawn
      * @param shapeType
@@ -262,7 +280,7 @@ public class App {
         topPanel.setBackground(Color.gray);
 
         /** compute fields of a field **/
-        List<Pair<JTextField, JLabel>> fields = createTopPanelTextFields();
+        java.util.List<Pair<JTextField, JLabel>> fields = createTopPanelTextFields();
 
         fields.forEach(item -> {
             topPanel.add(item.getValue());
@@ -280,21 +298,7 @@ public class App {
         selectShape(this.shapeTypeSelected);
     }
 
-    private JPanel createBottomPanel() {
-        JPanel bottomPanel = new JPanel();
-        bottomPanel.setLayout(new FlowLayout());
-        bottomPanel.setBackground(Color.cyan);
-
-        this.initializeListOfShapeButtons();
-
-        this.availableShapes.entrySet().forEach(item -> {
-            bottomPanel.add(item.getValue());
-        });
-
-        return bottomPanel;
-    }
-
-    private List<Pair<JTextField, JLabel>> createTopPanelTextFields() {
+    private java.util.List<Pair<JTextField, JLabel>> createTopPanelTextFields() {
         List<Pair<JTextField, JLabel>> fields = new ArrayList<>();
 
         Pair<JTextField, JLabel> sizePair = createGenericNumberField("Shape size:", 40);
@@ -308,4 +312,21 @@ public class App {
         return fields;
     }
 
+    private JPanel createBottomPanel() {
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.setLayout(new FlowLayout());
+        bottomPanel.setBackground(Color.cyan);
+
+        this.initializeListOfShapeButtons();
+
+        this.availableShapes.entrySet().forEach(item -> {
+            bottomPanel.add(item.getValue());
+        });
+
+        //add eraser button
+        bottomPanel.add(createEraserButton());
+
+        return bottomPanel;
+    }
 }
+
