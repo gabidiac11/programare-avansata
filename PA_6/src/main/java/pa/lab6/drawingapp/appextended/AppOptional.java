@@ -4,6 +4,8 @@ import javafx.util.Pair;
 import pa.lab6.drawingapp.ShapeType;
 import pa.lab6.drawingapp.actionpanel.ActionPanel;
 import pa.lab6.drawingapp.appextended.shape.Circle;
+import pa.lab6.drawingapp.appextended.shape.DrawableShape;
+import pa.lab6.drawingapp.appextended.shape.Rectangle;
 import pa.lab6.drawingapp.appextended.shape.Shape;
 
 import javax.swing.*;
@@ -14,9 +16,10 @@ import java.util.*;
 import java.util.List;
 
 public class AppOptional {
+    private final static ShapeType[] ALLOWED_SHAPES = new ShapeType[] {ShapeType.CIRCLE, ShapeType.SQUARE, ShapeType.FREE_SHAPE};
+
     private Frame mainFrame;
     private Canvas canvas;
-    private Graphics graphics;
 
     private JPanel topPanel;
 
@@ -24,22 +27,14 @@ public class AppOptional {
     private JTextField sizeField;
     private JTextField strokeField;
 
-    private ShapeType shapeTypeSelected = ShapeType.CIRCLE;
-
-    //backup selection when selecting eraser
-    private ShapeType prevShapeTypeSelected = null;
-
-    JButton eraserButton;
-
-    private List<Shape> drawnShapes = new ArrayList<>();
-
-    private boolean eraserActive = false;
-
-    /*
-        - list of buttons that if pressed selects the shape to be drawn
-        - the selected one is marked different from others
+    /**
+     * keeps track of all shapes drawn on the canvas (in order)
+     * helps with redrawing, finding a shape based on mouse position
      */
-    private Map<ShapeType, JButton> availableShapes;
+    private final List<Shape> drawnShapes = new ArrayList<>();
+    
+    private final List<JButton> bottomPanelButtons = new ArrayList<>();
+    private int indexBottomSelected = -1; //selected button between (one of the shapes or the eraser button)
 
     public AppOptional() {
         this.initializeFrame();
@@ -62,7 +57,7 @@ public class AppOptional {
         mainFrame.add(topPanel);
         mainFrame.add(this.canvas);
         mainFrame.add(this.createBottomPanel());
-        mainFrame.add(new ActionPanel(canvas, mainFrame).getJPanel());
+        mainFrame.add(new ActionPanel(canvas, mainFrame, this.drawnShapes).getJPanel());
 
         mainFrame.setVisible(true);
     }
@@ -77,17 +72,11 @@ public class AppOptional {
         canvas.addMouseListener(new MouseListener() {
 
             @Override
-            public void mouseClicked(MouseEvent e) {
-
-            }
+            public void mouseClicked(MouseEvent e) {}
 
             @Override
             public void mousePressed(MouseEvent e) {
-                if(eraserActive) {
-                    eraseShapeAtLocation(e.getX(), e.getY());
-                } else {
-                    drawSelectedShape(e.getX(), e.getY());
-                }
+                onCanvasMousePressed(e);
             }
 
             @Override
@@ -99,6 +88,25 @@ public class AppOptional {
             @Override
             public void mouseExited(MouseEvent e) {}
         });
+
+    }
+
+    private void onCanvasMousePressed(MouseEvent e) {
+        if(this.indexBottomSelected > -1) {
+            JButton button = this.bottomPanelButtons.get(this.indexBottomSelected);
+            String action = button.getActionCommand();
+
+            if(action.equals(ActionButtonType.ERASER.name())) {
+                eraseShapeAtLocation(e.getX(), e.getY());
+            } else {
+                    for(ShapeType shapeTye : ALLOWED_SHAPES) {
+                        if(action.equals(shapeTye.name())) {
+                            drawSelectedShape(e.getX(), e.getY(), shapeTye);
+                            break;
+                        }
+                }
+            }
+        }
 
     }
 
@@ -155,16 +163,34 @@ public class AppOptional {
         return palletOfColors[new Random().nextInt(palletOfColors.length)];
     }
 
-    private void drawSelectedShape(int x, int y) {
+    /**
+     * draw a specific shape and keeps track of what has been drawn
+     * @param x
+     * @param y
+     * @param shapeTypeSelected - on of the ShapeType
+     */
+    private void drawSelectedShape(int x, int y, ShapeType shapeTypeSelected) {
         /* center the position of the shape around the point*/
         int size = getNumberFromTextField(this.sizeField);
         int stroke = getNumberFromTextField(this.strokeField);
         Color color = generateRandomColor();
 
         Shape shape = null;
-        switch (this.shapeTypeSelected) {
+        switch (shapeTypeSelected) {
             case CIRCLE:
                 shape = new Circle(x, y, stroke, color, size/2);
+                break;
+
+            case SQUARE:
+                shape = new Rectangle(x, y, stroke, color, size);
+                break;
+
+            case FREE_SHAPE:
+                shape = new DrawableShape(
+                        x, y, this.getNumberFromTextField(this.strokeField),
+                        generateRandomColor(),
+                        this.canvas
+                );
                 break;
         }
 
@@ -174,8 +200,17 @@ public class AppOptional {
         }
     }
 
-
-
+    /**
+     * 1. finds the shape pressed by the mouse clicked based on the click coords
+     * and based on the list of shape drawn (from the last drawn to the first)
+     * - each shape has methods to figure out if the location is inside
+     * - each shape has a method for erasing
+     * 2. redraws the other shapes that might be affected by the erasing (for now it draws everything)
+     *
+     * NOTE: free shape is not erasable yet
+     * @param x
+     * @param y
+     */
     private void eraseShapeAtLocation(int x, int y) {
         for(int i = this.drawnShapes.size() - 1; i >= 0; i--) {
             Shape shape = drawnShapes.get(i);
@@ -200,6 +235,12 @@ public class AppOptional {
         }
     }
 
+    /**
+     * creates a number text field for convenience (used for generating inputs for shape size, stroke size)
+     * @param label - each input has a text before it to express for it does
+     * @param defaultNumber -
+     * @return - button
+     */
     private static Pair<JTextField, JLabel> createGenericNumberField(String label, int defaultNumber) {
         JTextField sizeField = new JTextField(Integer.toString(defaultNumber));
         sizeField.setPreferredSize(new Dimension(150,20));
@@ -221,86 +262,98 @@ public class AppOptional {
 
         button.setActionCommand(shapeType.name());
         button.addActionListener(e -> {
-            selectShape(shapeType);
+            selectButton(shapeType.name());
         });
 
         return button;
     }
 
+    /**
+     * creates and attaches event for eraser button
+     * @return
+     */
     private JButton createEraserButton() {
-        setEraserValue(false);
 
-        JButton button = new JButton("ERASE");
+        JButton button = new JButton(ActionButtonType.ERASER.name());
+
+        button.setActionCommand(ActionButtonType.ERASER.name());
 
         button.setBounds(0, 0, 70, 50);
 
         button.addActionListener(e -> {
-            onClickEraser();
+            selectButton(ActionButtonType.ERASER.name());
         });
 
         return button;
     }
 
-    private void onClickEraser() {
-        JButton button = eraserButton;
+    /**
+     * marks what button from the left bottom panel (shapes + eraser buttons) is selected
+     * by selecting an index
+     * @param action
+     */
+    private void selectButton(String action) {
+        this.indexBottomSelected = -1;
 
-        this.setEraserValue(!this.eraserActive);
-        if(this.eraserActive) {
-            button.setBackground(Color.red);
-
-            /* mark the active status in the bottom panel */
-            prevShapeTypeSelected = this.shapeTypeSelected;
-            selectShape(null);
-        } else {
-            button.setBackground(Color.white);
-            selectShape(this.prevShapeTypeSelected);
+        for(int i = 0; i < this.bottomPanelButtons.size(); i++) {
+            JButton item = this.bottomPanelButtons.get(i);
+            if(item.getActionCommand().equals(action)) {
+                item.setBackground(Color.orange);
+                this.indexBottomSelected = i;
+            } else {
+                item.setBackground(Color.WHITE);
+            }
         }
+
+        this.setCursorBasedOnIndex(this.indexBottomSelected);
     }
 
-    private void setEraserValue(boolean newValue) {
-        String pathToCursor = "";
-//        if(newValue) {
-//            pathToCursor = "src\\main\\java\\pa\\lab6\\assets\\eraser.png";
-//        } else {
-//            pathToCursor = "src\\main\\java\\pa\\lab6\\assets\\pen.png";
-//        }
-//
-//        Toolkit toolkit = Toolkit.getDefaultToolkit();
-//        Image imageCrossCursor = toolkit.getImage(pathToCursor);
-//        canvas.setCursor(toolkit.createCustomCursor(imageCrossCursor, new Point(0,0), "Some cursor"));
-        this.eraserActive = newValue;
-    }
 
     /**
-     * highlights the button of the shape selected and selects the shape to drawn
-     * @param shapeType
+     * sets the cursor based on the left bottom panel selection buttons (shapes + eraser)
+     * - eraser cursor png
+     * - pen - pen png (for 'free drawing')
+     * - default - otherwise
+     * @param index
      */
-    private void selectShape(ShapeType shapeType) {
+    private void setCursorBasedOnIndex(int index) {
+        if(index > -1) {
+            String action = this.bottomPanelButtons.get(index).getActionCommand();
 
-        this.shapeTypeSelected = shapeType;
+            String pathToCursor = null;
 
-        this.availableShapes.entrySet().forEach(item -> {
-            if(item.getKey() == shapeType) {
-                item.getValue().setBackground(Color.orange);
-            } else {
-                item.getValue().setBackground(Color.WHITE);
+            if(action.equals(ActionButtonType.ERASER.name())) {
+                pathToCursor = "src\\main\\java\\pa\\lab6\\assets\\eraser.png";
+            } else if(action.equals(ShapeType.FREE_SHAPE.name())) {
+                pathToCursor = "src\\main\\java\\pa\\lab6\\assets\\pen.png";
             }
-        });
 
-        /* deactivate eraser when a shape is clicked  */
-        if(shapeType != null && eraserActive) {
-            onClickEraser();
+            if(pathToCursor != null) {
+                Toolkit toolkit = Toolkit.getDefaultToolkit();
+                Image imageCrossCursor = toolkit.getImage(pathToCursor);
+                canvas.setCursor(toolkit.createCustomCursor(imageCrossCursor, new Point(0,0), "Some cursor"));
+
+                return;
+            }
         }
 
+        /*
+         * set the default if no custom one was set in the lines above
+         */
+        canvas.setCursor(Cursor.getDefaultCursor());
     }
 
+
+    /**
+     * creates the panel with those 2 inputs (size, stroke)
+     */
     private void initializeTopPanel() {
-        /** assign panel and its fields **/
+        /* assign panel and its fields **/
         topPanel = new JPanel();
         topPanel.setLayout(new FlowLayout());
         topPanel.setBackground(Color.gray);
 
-        /** compute fields of a field **/
+        /* compute fields of a field **/
         java.util.List<Pair<JTextField, JLabel>> fields = createTopPanelTextFields();
 
         fields.forEach(item -> {
@@ -309,16 +362,9 @@ public class AppOptional {
         });
     }
 
-    private void initializeListOfShapeButtons() {
-        this.availableShapes = new HashMap<>();
-        Arrays.stream(ShapeType.values()).forEach(item -> {
-            availableShapes.put(item, createShapeButton(item));
-        });
-
-        /* mark the one selected by default */
-        selectShape(this.shapeTypeSelected);
-    }
-
+    /**
+     * creates those 2 inputs (size, stroke) to be displayed inside the top panel
+     */
     private java.util.List<Pair<JTextField, JLabel>> createTopPanelTextFields() {
         List<Pair<JTextField, JLabel>> fields = new ArrayList<>();
 
@@ -333,20 +379,29 @@ public class AppOptional {
         return fields;
     }
 
+    /**
+     * creates the panel that has:
+     * 1. a left section with the shape selector + eraser
+     * 2. a right section with the saving/load/exit/reset options
+     * @return
+     */
     private JPanel createBottomPanel() {
         JPanel bottomPanel = new JPanel();
         bottomPanel.setLayout(new FlowLayout());
         bottomPanel.setBackground(Color.cyan);
 
-        this.initializeListOfShapeButtons();
-
-        this.availableShapes.entrySet().forEach(item -> {
-            bottomPanel.add(item.getValue());
+        /* initialize shape selector buttons */
+        Arrays.stream(ALLOWED_SHAPES).forEach((item) -> {
+            this.bottomPanelButtons.add(createShapeButton(item));
         });
 
-        //add eraser button
-        eraserButton = createEraserButton();
-        bottomPanel.add(eraserButton);
+        /* initialize eraser selector */
+        this.bottomPanelButtons.add(createEraserButton());
+
+        this.bottomPanelButtons.forEach(bottomPanel::add);
+
+        /* preselect the first button */
+        this.bottomPanelButtons.get(0).doClick();
 
         return bottomPanel;
     }

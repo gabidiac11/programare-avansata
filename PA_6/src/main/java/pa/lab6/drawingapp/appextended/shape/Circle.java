@@ -2,6 +2,9 @@ package pa.lab6.drawingapp.appextended.shape;
 
 import java.awt.*;
 
+/**
+ * this class implements what a Shape class should offer -> please see Shape class wiki comments
+ */
 public class Circle extends Shape {
 
     private int ray;
@@ -34,19 +37,17 @@ public class Circle extends Shape {
 
     @Override
     public void drawShape(Canvas canvas) {
-        Graphics graphics = canvas.getGraphics();
-        ((Graphics2D) graphics).setStroke(new BasicStroke(this.stroke));
-        graphics.setColor(this.color);
-
-        try {
-            graphics.fillOval(shapeX - ray, shapeY - ray, ray*2, ray*2);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
+        this.draw(canvas, this.color);
     }
 
-    public void drawShape(Canvas canvas, Color color) {
+    /**
+     * this methods draws a circle making sure the middle point is where the cursor was when was clicked
+     * @param canvas
+     * @param color
+     */
+    public void draw(Canvas canvas, Color color) {
         Graphics graphics = canvas.getGraphics();
+        ((Graphics2D) graphics).setStroke(new BasicStroke(this.stroke));
         graphics.setColor(color);
 
         try {
@@ -58,15 +59,7 @@ public class Circle extends Shape {
 
     @Override
     public void eraseShape(Canvas canvas) {
-        Graphics graphics = canvas.getGraphics();
-        ((Graphics2D) graphics).setStroke(new BasicStroke(this.stroke));
-        graphics.setColor(Color.white);
-
-        try {
-            graphics.fillOval(shapeX - ray, shapeY - ray, ray*2, ray*2);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
+        this.draw(canvas, Color.white);
     }
 
     /**

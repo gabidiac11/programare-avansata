@@ -4,7 +4,7 @@ package pa.lab6.drawingapp;
  * helps working with list of buttons responsible with selected the shape that is drawn at click
  */
 public enum ShapeType {
-    CIRCLE("Circle"), SQUARE("Square"), LINE("Line");
+    CIRCLE("Circle"), SQUARE("Square"), LINE("Line"), FREE_SHAPE("Free shape");
 
     private final String name;
 
