@@ -28,7 +28,7 @@ The configuration panel must adapt according to the type of the selected shape. 
  
  I added custom cursors also to mark the eraser better. (a screen shot did not show my cursor so I snap a photo of it instead)
 
-[![N|Solid](https://plati-taxe.uaic.ro/img/logo-retina1.png)](https://github.com/gabidiac11/programare-avansata/blob/main/PA_6/IMG_20210401_011011.jpg)
+[![N|Solid](https://plati-taxe.uaic.ro/img/logo-retina1.png)](https://github.com/gabidiac11/programare-avansata/blob/main/PA_6/IMG_20210401_011011.jpg)]
 
 
 
