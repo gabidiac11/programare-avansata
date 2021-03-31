@@ -1,10 +1,12 @@
 
-# Lab 4
+# Lab 6
 ## _Advanced Programming 2021_
 [![N|Solid](https://plati-taxe.uaic.ro/img/logo-retina1.png)](https://www.info.uaic.ro/)
 
 Diac P. Gabriel
 2A2
+
+- completed (~✔️), partially completed (⏰) or are not started (❌)
   
 ### Compusory
 Canvas in which a selected shape (circle, square, line) is drawn at mouse position click, using a random color. It can also be added an image, like in the example bellow.
@@ -12,23 +14,8 @@ Canvas in which a selected shape (circle, square, line) is drawn at mouse positi
 [![N|Solid](https://github.com/gabidiac11/programare-avansata/blob/main/PA_6/exemplu.PNG)](https://github.com/gabidiac11/programare-avansata/blob/main/PA_6/exemplu.PNG)
 
 
-
-
-# Lab 4
-## _Advanced Programming 2021_
-[![N|Solid](https://plati-taxe.uaic.ro/img/logo-retina1.png)](https://www.info.uaic.ro/)
-
-Diac P. Gabriel
-2A2
-
-This piece is aiming at offering a better understanding concerning the following aspects of the source code:
-
-- problem-solving strategies that were used
-- justification for choices made regarding object modeling 
-- what exactly are the exercises that I assume are completed (~✔️), partially completed (⏰) or are not started (❌)
-
 ## Addressed exercises 
-### Compulsory (1p) 
+### Optional (2p) 
 
 Requirements and their status:
 
