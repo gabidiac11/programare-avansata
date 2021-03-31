@@ -27,7 +27,7 @@ public class ActionPanel {
     List<Shape> drawnShapes;
 
     /**
-     * constructor for COMPULSORY - no shape history provided 
+     * constructor for COMPULSORY - no shape history provided
      * @param canvas
      * @param frame
      */
