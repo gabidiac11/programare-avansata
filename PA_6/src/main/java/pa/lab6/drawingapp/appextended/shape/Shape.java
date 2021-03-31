@@ -3,10 +3,12 @@ package pa.lab6.drawingapp.appextended.shape;
 import lombok.AllArgsConstructor;
 
 import java.awt.*;
+import java.util.List;
+
 @AllArgsConstructor
 public abstract class Shape {
-    protected int centerPointX;
-    protected int centerPointY;
+    protected int shapeX;
+    protected int shapeY;
     protected int stroke;
     protected Color color;
 

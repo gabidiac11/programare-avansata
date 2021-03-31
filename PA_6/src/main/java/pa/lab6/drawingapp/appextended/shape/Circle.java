@@ -6,8 +6,9 @@ public class Circle extends Shape {
 
     private int ray;
 
-    public Circle(int centerPointX, int centerPointY, int stroke, Color color, int ray) {
-        super(centerPointX, centerPointY, stroke, color);
+
+    public Circle(int shapeX, int shapeY, int stroke, Color color, int ray) {
+        super(shapeX, shapeY, stroke, color);
         this.ray = ray;
     }
 
@@ -22,12 +23,14 @@ public class Circle extends Shape {
     public boolean locationIncludedInShape(int x, int y) {
         // Compare radius of circle with distance
         // of its center from given point
-        if ((x - centerPointX) * (x - centerPointX) +
-                (y - centerPointY) * (y - centerPointY) <= ray * ray)
+        if ((x - shapeX) * (x - shapeX) +
+                (y - shapeY) * (y - shapeY) <= ray * ray)
             return true;
         else
             return false;
     }
+
+
 
     @Override
     public void drawShape(Canvas canvas) {
@@ -36,7 +39,7 @@ public class Circle extends Shape {
         graphics.setColor(this.color);
 
         try {
-            graphics.fillOval(centerPointX, centerPointY, ray*2, ray*2);
+            graphics.fillOval(shapeX - ray, shapeY - ray, ray*2, ray*2);
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
@@ -47,7 +50,7 @@ public class Circle extends Shape {
         graphics.setColor(color);
 
         try {
-            graphics.fillOval(centerPointX, centerPointY, ray*2, ray*2);
+            graphics.fillOval(shapeX - ray, shapeY - ray, ray*2, ray*2);
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
@@ -60,7 +63,7 @@ public class Circle extends Shape {
         graphics.setColor(Color.white);
 
         try {
-            graphics.fillOval(centerPointX, centerPointY, ray, ray);
+            graphics.fillOval(shapeX - ray, shapeY - ray, ray*2, ray*2);
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
@@ -73,12 +76,12 @@ public class Circle extends Shape {
      */
     @Override
     public boolean intersects(Shape shape) {
-        int x1 = shape.centerPointX;
-        int y1 = shape.centerPointY;
+        int x1 = shape.shapeX;
+        int y1 = shape.shapeY;
         int r1 = ((Circle) shape).ray;
 
-        int x2 = this.centerPointX;
-        int y2 = this.centerPointY;
+        int x2 = this.shapeX;
+        int y2 = this.shapeY;
         int r2 = this.ray;
 
         /**

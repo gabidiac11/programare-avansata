@@ -26,6 +26,11 @@ public class AppOptional {
 
     private ShapeType shapeTypeSelected = ShapeType.CIRCLE;
 
+    //backup selection when selecting eraser
+    private ShapeType prevShapeTypeSelected = null;
+
+    JButton eraserButton;
+
     private List<Shape> drawnShapes = new ArrayList<>();
 
     private boolean eraserActive = false;
@@ -156,9 +161,6 @@ public class AppOptional {
         int stroke = getNumberFromTextField(this.strokeField);
         Color color = generateRandomColor();
 
-        x = x - size / 2;
-        y = y - size / 2;
-
         Shape shape = null;
         switch (this.shapeTypeSelected) {
             case CIRCLE:
@@ -172,25 +174,27 @@ public class AppOptional {
         }
     }
 
+
+
     private void eraseShapeAtLocation(int x, int y) {
         for(int i = this.drawnShapes.size() - 1; i >= 0; i--) {
             Shape shape = drawnShapes.get(i);
             if(shape.locationIncludedInShape(x, y)) {
-                //shape.eraseShape(canvas);
+                shape.eraseShape(canvas);
 
-                ((Circle) shape).drawShape(canvas, generateRandomColor());
+                /*
+                 Ideally a option is to find shape colliding with this one and redraw them
+                 but re-drawing the colliding ones means drawing over other shapes colliding with that one
 
-                /* find shape colliding with this one and redraw them */
-//                for(int ii = 0; ii < this.drawnShapes.size(); ii++) {
-//                    if(ii != i && Shape.shapesAreIntersecting(
-//                            shape,
-//                            this.drawnShapes.get(ii)
-//                    )) {
-//                        this.drawnShapes.get(ii).drawShape(canvas);
-//                    }
-//                }
+                 for now its re-drawing everything..
+                * */
+                for(int ii = 0; ii < this.drawnShapes.size(); ii++) {
+                    if(ii != i) {
+                        this.drawnShapes.get(ii).drawShape(canvas);
+                    }
+                }
 
-                //this.drawnShapes.remove(i);
+                this.drawnShapes.remove(i);
                 break;
             }
         }
@@ -206,7 +210,7 @@ public class AppOptional {
     }
 
     /**
-     * creates one of the buttons responsable with selecting the shape
+     * creates one of the buttons responsible with selecting the shape
      * @param shapeType
      * @return
      */
@@ -231,15 +235,26 @@ public class AppOptional {
         button.setBounds(0, 0, 70, 50);
 
         button.addActionListener(e -> {
-            this.setEraserValue(!this.eraserActive);
-            if(this.eraserActive) {
-                button.setBackground(Color.red);
-            } else {
-                button.setBackground(Color.white);
-            }
+            onClickEraser();
         });
 
         return button;
+    }
+
+    private void onClickEraser() {
+        JButton button = eraserButton;
+
+        this.setEraserValue(!this.eraserActive);
+        if(this.eraserActive) {
+            button.setBackground(Color.red);
+
+            /* mark the active status in the bottom panel */
+            prevShapeTypeSelected = this.shapeTypeSelected;
+            selectShape(null);
+        } else {
+            button.setBackground(Color.white);
+            selectShape(this.prevShapeTypeSelected);
+        }
     }
 
     private void setEraserValue(boolean newValue) {
@@ -271,6 +286,12 @@ public class AppOptional {
                 item.getValue().setBackground(Color.WHITE);
             }
         });
+
+        /* deactivate eraser when a shape is clicked  */
+        if(shapeType != null && eraserActive) {
+            onClickEraser();
+        }
+
     }
 
     private void initializeTopPanel() {
@@ -324,7 +345,8 @@ public class AppOptional {
         });
 
         //add eraser button
-        bottomPanel.add(createEraserButton());
+        eraserButton = createEraserButton();
+        bottomPanel.add(eraserButton);
 
         return bottomPanel;
     }
