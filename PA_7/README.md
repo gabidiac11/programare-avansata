@@ -17,7 +17,7 @@ Diac P. Gabriel
   `Board`, `Player` and `Tokens`. Board has a list of tokens of this form: t1=(i1,i2), t2=(i2,i3),...,tk=(ik,i1), where the number of such groups is given in the constructor. A Token instance is composed of start and end properties. 
 
 
- Player has a its list of tokens that is empty at start and a random name. Player and Board comunicates using the synchronized method Board.giveTokens(List<Token> playerTokens) that extracts tokens from board and returns it to the player in the Player.run() method.
+ Player has a its list of tokens that is empty at start and a random name. Player and Board comunicate using the synchronized method Board.giveTokens(List<Token> playerTokens) that extracts tokens from board and returns it to the player in the Player.run() method.
       
       
   `Game`, has a method `playGameGenericSetup`, that creates board and player, and starts the game.
