@@ -2,6 +2,9 @@ package pa.lab7.game;
 
 import java.util.List;
 
+/**
+ * offer way to instantiate a game (creates board and players and starts the game)
+ */
 public class Game {
     public static void playGameGenericSetup() {
         Board board = new Board(30);

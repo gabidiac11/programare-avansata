@@ -8,72 +8,50 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+/**
+ * generates token of form - t1=(i1,i2), t2=(i2,i3),...,tk=(ik,i1)
+ * gives a Player instance thread from its tokens
+ */
 public class Board {
     static Logger logger = Logger.getLogger(String.valueOf(Board.class));
 
     private List<Token> tokens;
-    private final int count;
-
-    private String packet;
-
-    // True if receiver should wait
-    // False if sender should wait
-    private boolean transfer = false;
 
     public Board(int count) {
         this.tokens = generateTokens(count);
-        this.count = count;
     }
 
+    /**
+     * generate consecutive groups of tokens
+     * @param count - number desired of tokens
+     * @return -
+     */
     private static List<Token> generateTokens(int count) {
         List<Token> tokens = new Vector<>();
         for(int i = 0; i < count; i++) {
             tokens.add(new Token(i, i + 1));
         }
-
         return Collections.synchronizedList(tokens);
     }
 
-    public synchronized void send(String packet) {
-        while (!transfer) {
-            try {
-                wait();
-            } catch (InterruptedException e)  {
-                Thread.currentThread().interrupt();
-                logger.log(Level.SEVERE, "Thread interrupted", e);
-            }
-        }
-        transfer = false;
-
-        this.packet = packet;
-        notifyAll();
-    }
-
+    /**
+     * indicates to the outside classed that board has wasted all tokens
+     * @return
+     */
     public boolean noMoreTokensLeft() {
         return this.tokens.size() == 0;
     }
 
-    public synchronized String receive() {
-        while (transfer) {
-            try {
-                wait();
-            } catch (InterruptedException e)  {
-                Thread.currentThread().interrupt();
-                logger.log(Level.SEVERE, "Thread interrupted", e);
-            }
-        }
-        transfer = true;
-
-        notifyAll();
-        return packet;
-    }
-
     /**
-     * find consecutive
-     * @param playerTokens
+     * match a sub-list of tokens from the board using the list of tokens the player already has
+     *
+     * this method tries to find the next or previous token of each token that a player has
+     * or else return a random token
+     *
+     * @param playerTokens - list of tokens the player already has
      * @return -> pair consisting of
      * 1. tokens found
-     * 2. list of indexes corresponding to the tokens found
+     * 2. list of indexes corresponding to the tokens found - used for ulterior deletion of the extracted items
      */
     private Pair<List<Token>, List<Integer>> getComboTokens(List<Token> playerTokens) {
         List<Token> tokensFound = new Vector<>();
@@ -81,8 +59,8 @@ public class Board {
 
         for(Token token : playerTokens) {
             for(int i = 0; i < this.tokens.size(); i++) {
-                if(Board.tokenAreAjacent(token, this.tokens.get(i))) {
-                    tokensFound.add(token);
+                if(Board.tokenAreAdjacent(token, this.tokens.get(i))) {
+                    tokensFound.add(this.tokens.get(i));
                     indexes.add(i);
                 }
             }
@@ -97,6 +75,10 @@ public class Board {
         return new Pair<>(tokensFound, indexes);
     }
 
+    /**
+     * returns a random token and the index corresponding to its place in the list
+     * @return
+     */
     private Pair<Token, Integer> getOneSingleToken() {
         int index = new Random().nextInt(this.tokens.size());
         Token token = this.tokens.get(index);
@@ -104,6 +86,11 @@ public class Board {
         return new Pair<>(token, index);
     }
 
+    /**
+     * gets tokens from board, removes them from it, but returns what has been removed to the player
+     * @param playerTokens - list of tokens the player already has - used for processing what tokens to give
+     * @return - tokens extracted
+     */
     private List<Token> gatherTokensForPlayer(List<Token> playerTokens) {
 
         if(tokens.size() == 0) {
@@ -121,17 +108,37 @@ public class Board {
         return comboResult.getKey();
     }
 
-    public synchronized List<Token> giveTokens(List<Token> playerTokens, String playerName) {
+    /**
+     * gives tokens to player
+     * prints when game have finished -> no tokens left
+     * @param playerTokens - list of tokens the player already has - used for processing what tokens to give
+     * @return - tokens extracted
+     */
+    public synchronized List<Token> giveTokens(List<Token> playerTokens) {
+        List<Token> tokens = this.gatherTokensForPlayer(playerTokens);
 
+        if(noMoreTokensLeft()) {
+            this.onNoMoreLeft();
+        }
 
-        List<Token> newTokens = this.gatherTokensForPlayer(playerTokens);
-
-        System.out.printf("\n\najung aicisa %s -- %s,---- %d", Boolean.toString(this.transfer), playerName, this.tokens.size());
-
-        return newTokens;
+        return tokens;
     }
 
-    private static boolean tokenAreAjacent(Token token1, Token token2) {
+    /**
+     * prints when game have finished -> no tokens left
+     */
+    private void onNoMoreLeft() {
+        String message = "\n=========--------================GAME-FINISHED================--------=========\n";
+
+        logger.log(Level.INFO, message);
+    }
+
+    /**
+     * @param token1
+     * @param token2
+     * @return - true if tokens are consecutive, false otherwise
+     */
+    private static boolean tokenAreAdjacent(Token token1, Token token2) {
         return token1.getEnd() == token2.getStart() ||
                token1.getStart() == token2.getEnd();
     }
