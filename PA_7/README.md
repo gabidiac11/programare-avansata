@@ -14,19 +14,19 @@ Diac P. Gabriel
 #### - Pay attention to the synchronization of the threads when extracting tokens from the board.
 
    An exemple is used in `pa.lab7.compulsory.Main`. The code has a package `pa.lab7.game`, where there are the following classes: 
-      - `Board`, `Player` and `Tokens`. Board has a list of tokens of this form: t1=(i1,i2), t2=(i2,i3),...,tk=(ik,i1), where the number of such groups is given in the constructor. A Token instance is composed of start and end properties. 
+  `Board`, `Player` and `Tokens`. Board has a list of tokens of this form: t1=(i1,i2), t2=(i2,i3),...,tk=(ik,i1), where the number of such groups is given in the constructor. A Token instance is composed of start and end properties. 
 
 
-      Player has a its list of tokens that is empty at start and a random name. Player and Board comunicates using the synchronized method Board.giveTokens(List<Token> playerTokens) that extracts tokens from board and returns it to the player in the Player.run() method.
+ Player has a its list of tokens that is empty at start and a random name. Player and Board comunicates using the synchronized method Board.giveTokens(List<Token> playerTokens) that extracts tokens from board and returns it to the player in the Player.run() method.
       
       
-      - `Game`, has a method `playGameGenericSetup`, that creates board and player, and starts the game.
+  `Game`, has a method `playGameGenericSetup`, that creates board and player, and starts the game.
   
   A random thread sleep occurs for each player after it has received tokens.
   
    The results are printed as the players get token, and when the game is finshed (using `java.util.logging.Logger`):
    
-   ````
+````
    Apr 10, 2021 8:57:26 PM pa.lab7.game.Player printPlayerGotTokens
 INFO: 
 
