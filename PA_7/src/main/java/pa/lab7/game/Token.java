@@ -1,13 +1,13 @@
 package pa.lab7.game;
 
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
+import java.awt.*;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
-@AllArgsConstructor
 @EqualsAndHashCode
 public class Token {
     @Getter
@@ -15,6 +15,11 @@ public class Token {
     @Getter
     private final int end;
 
+    public Token(int start, int end) {
+        this.start = start;
+        this.end = end;
+
+    }
 
     public static int compare(Token o1, Token o2) {
         return Integer.compare(o1.start, o2.start);

@@ -15,4 +15,14 @@ public class Game {
             thread.start();
         }
     }
+    public static void playGameSetup() {
+        Board board = new Board(30);
+
+        List<Thread> playerList = Player.generatePlayers(board, 2);
+
+        for (Thread thread : playerList) {
+            thread.start();
+        }
+    }
+
 }
