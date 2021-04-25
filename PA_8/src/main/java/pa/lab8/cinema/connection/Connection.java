@@ -24,7 +24,7 @@ public class Connection {
 
     private static Connection instance = null;
 
-    public static synchronized Connection getInstance() {
+    public static Connection getInstance() {
         if(instance == null) {
             instance = new Connection();
         }
