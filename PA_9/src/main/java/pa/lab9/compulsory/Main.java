@@ -1,9 +1,7 @@
 package pa.lab9.compulsory;
 
-import pa.lab9.factory.AbstractFactory;
-import pa.lab9.jpa.entities.MovieEntity;
-import pa.lab9.jpa.factory.FactoryJpa;
-import pa.lab9.jpa.repository.MovieRepository;
+import pa.lab9.cinema.jpa.entities.MovieEntity;
+import pa.lab9.cinema.jpa.repository.MovieRepository;
 
 import java.util.Date;
 import java.util.List;

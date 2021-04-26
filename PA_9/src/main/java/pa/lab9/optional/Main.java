@@ -1,10 +1,10 @@
 package pa.lab9.optional;
 
-import pa.lab9.factory.AbstractFactory;
-import pa.lab9.factory.FactoryProvider;
-import pa.lab9.jpa.entities.GenreEntity;
-import pa.lab9.jpa.entities.MovieEntity;
-import pa.lab9.repository.Repository;
+import pa.lab9.cinema.factory.AbstractFactory;
+import pa.lab9.cinema.factory.FactoryProvider;
+import pa.lab9.cinema.jpa.entities.GenreEntity;
+import pa.lab9.cinema.jpa.entities.MovieEntity;
+import pa.lab9.cinema.repository.Repository;
 
 import java.util.Date;
 import java.util.List;

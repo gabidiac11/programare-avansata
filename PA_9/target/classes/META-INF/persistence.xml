@@ -6,8 +6,8 @@
   <persistence-unit name="default" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-    <class>pa.lab9.jpa.entities.GenreEntity</class>
-    <class>pa.lab9.jpa.entities.MovieEntity</class>
+    <class>pa.lab9.cinema.jpa.entities.GenreEntity</class>
+    <class>pa.lab9.cinema.jpa.entities.MovieEntity</class>
 
     <properties>
       <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/pa_database"/>
