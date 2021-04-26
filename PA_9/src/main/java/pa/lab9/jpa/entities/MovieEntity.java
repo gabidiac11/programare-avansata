@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
                 query = "SELECT movie from MovieEntity movie JOIN movie.genreEntities where movie.title = :title"
         )
 })
-@Table(name = "movie", schema = "pa_database", catalog = "")
+@Table(name = "movie", schema = "pa_database")
 public class MovieEntity {
     private String title;
     private String releaseDate;

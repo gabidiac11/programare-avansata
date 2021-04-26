@@ -1,114 +1,106 @@
 package pa.lab9.jdbc.dao;
 
 import pa.lab9.jdbc.connection.Connection;
-import pa.lab9.jdbc.models.GenreModel;
-import pa.lab9.jdbc.models.MovieModel;
+import pa.lab9.jpa.entities.GenreEntity;
+import pa.lab9.jpa.entities.MovieEntity;
+import pa.lab9.repository.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-public class MovieDao {
-    private static java.sql.Connection con = Connection.getInstance().getCon();
+public class MovieDao implements Repository<MovieEntity> {
+    private static final java.sql.Connection con = Connection.getInstance().getCon();
 
-    public static MovieModel findById(String id) throws SQLException {
-        ResultSet rs = con.createStatement()
-                .executeQuery(String.format("SELECT * FROM movie where movie_id = '%s'", id));
+    public MovieEntity findById(String id)  {
+        try {
+            ResultSet rs = con.createStatement()
+                    .executeQuery(String.format("SELECT * FROM movie where movie_id = '%s'", id));
 
-        /* if next() return false it means ResultSet is empty */
-        if(rs.next()) {
-            return new MovieModel(
-                    id,
-                    rs.getString("title"),
-                    rs.getString("release_date"),
-                    Integer.parseInt(rs.getString("duration")),
-                    Integer.parseInt(rs.getString("score")),
-                    getGenreListOfMovieById(id)
-            );
+            /* if next() return false it means ResultSet is empty */
+            if(rs.next()) {
+                MovieEntity movieEntity = new MovieEntity();
+                movieEntity.setMovieId(id);
+                movieEntity.setTitle(rs.getString("title"));
+                movieEntity.setReleaseDate(rs.getString("release_date"));
+                movieEntity.setDuration(Integer.parseInt(rs.getString("duration")));
+                movieEntity.setScore(Integer.parseInt(rs.getString("score")));
+                movieEntity.setGenreEntities(getGenreListOfMovieById(id));
+
+                return movieEntity;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
 
         return null;
     }
 
-    public static List<MovieModel> findByName(int name) throws SQLException {
-        List<MovieModel> movieList = new ArrayList<>();
+    public List<MovieEntity> findByName(String name) {
+        List<MovieEntity> movieList = new ArrayList<>();
+        try {
+            ResultSet rs = con.createStatement()
+                    .executeQuery(String.format("SELECT * FROM movie where title='%s'", name));
 
-        ResultSet rs = con.createStatement()
-                .executeQuery(String.format("SELECT * FROM movie where title='%s'", name));
+            while (rs.next()) {
+                final String movieId = rs.getString("movie_id");
 
-        while (rs.next()) {
-            final String ID = rs.getString("movie_id");
+                MovieEntity movieEntity = new MovieEntity();
+                movieEntity.setMovieId(movieId);
+                movieEntity.setTitle(rs.getString("title"));
+                movieEntity.setReleaseDate(rs.getString("release_date"));
+                movieEntity.setDuration(Integer.parseInt(rs.getString("duration")));
+                movieEntity.setScore(Integer.parseInt(rs.getString("score")));
+                movieEntity.setGenreEntities(getGenreListOfMovieById(movieId));
 
-            movieList.add(new MovieModel(
-                    ID,
-                    rs.getString("title"),
-                    rs.getString("releaseDate"),
-                    Integer.parseInt(rs.getString("duration")),
-                    Integer.parseInt(rs.getString("score")),
-                    getGenreListOfMovieById(ID)
-            ));
+                movieList.add(movieEntity);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
 
         return movieList;
     }
 
-
-    /**
-     * creates a db record of a movie
-     *
-     * @param title
-     * @param releaseDate
-     * @param duration
-     * @param score
-     * @throws SQLException
-     */
-    public static MovieModel createMovie(String id, String title, String releaseDate, int duration, int score, List<GenreModel> genreList) throws SQLException {
-        insertMovie(id, title, releaseDate, duration, score);
-        associateGenreList(id, genreList);
-
-        return findById(id);
+    public void create(MovieEntity movieEntity) {
+        try {
+            insertMovie(movieEntity);
+            associateGenreList(movieEntity.getMovieId(), movieEntity.getGenreEntities());
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
-
-    public static void insertMovie(
-            String id, String title, String releaseDate, int duration, int score
-    ) throws SQLException {
+    //====================================================================
+    private static void insertMovie(MovieEntity movieEntity) throws SQLException {
         PreparedStatement preparedStmt = con.prepareStatement(
                 String.format("INSERT INTO movie(movie_id, title, release_date, duration, score) VALUES ('%s', '%s', '%s', %d, %d)",
-                        id,
-                        title,
-                        releaseDate,
-                        duration,
-                        score
+                        movieEntity.getMovieId(),
+                        movieEntity.getTitle(),
+                        movieEntity.getReleaseDate(),
+                        movieEntity.getDuration(),
+                        movieEntity.getScore()
 
                 ), Statement.RETURN_GENERATED_KEYS);
 
         preparedStmt.executeUpdate();
     }
 
-    public static MovieModel createMovie(
-            String id, String title, String releaseDate, int duration, int score,
-            GenreModel genre
-    ) throws SQLException {
-        insertMovie(id, title, releaseDate, duration, score);
-        associateGenreById(id, genre.getId());
-
-        return findById(id);
-    }
-
-    private static void associateGenreList(String movieId, List<GenreModel> genreList) throws SQLException {
-        for(GenreModel genre : genreList) {
-            associateGenreById(movieId, genre.getId());
+    private static void associateGenreList(String movieId, Set<GenreEntity> genreList) throws SQLException {
+        for(GenreEntity genre : genreList) {
+            associateGenreById(movieId, genre.getGenreId());
         }
     }
 
     private static void associateGenreById(String movieId, int genreId) throws SQLException {
         PreparedStatement preparedStmt  = con.prepareStatement(
                 String.format(
-                        "INSERT INTO movie_genre(movie_id, genre_id) VALUES ('%s', '%d')",
+                        "INSERT INTO movie_genre(MovieEntity_movie_id, genreEntities_genre_id ) VALUES ('%s', '%d')",
                         movieId,
                         genreId
                 ), Statement.RETURN_GENERATED_KEYS);
@@ -116,27 +108,32 @@ public class MovieDao {
         preparedStmt.executeUpdate();
     }
 
-    public static List<GenreModel> getGenreListOfMovieById(String movieId) throws SQLException {
-        List<GenreModel> genreList = new ArrayList<>();
+    /**
+     * retrieve genres of a movie
+     * @param movieId
+     * @return
+     * @throws SQLException
+     */
+    private static Set<GenreEntity> getGenreListOfMovieById(String movieId) throws SQLException {
+        Set<GenreEntity> genreList = new HashSet<>();
 
         ResultSet rs = con.createStatement()
                 .executeQuery(String.format(
                         "SELECT " +
-                                "movie_genre.*, " +
-                                "genre.name " +
+                                "genre.name, genre.genre_id " +
                                 "FROM movie_genre " +
                                 "INNER JOIN genre " +
-                                "ON genre.genre_id = movie_genre.genre_id " +
-
-                                "where movie_genre.movie_id = '%s'",
+                                "ON genre.genre_id = movie_genre.genreEntities_genre_id " +
+                                "where movie_genre.MovieEntity_movie_id = '%s'",
 
                         movieId));
 
         while (rs.next()) {
-            genreList.add(new GenreModel(
-                    Integer.parseInt(rs.getString("genre_id")),
-                    rs.getString("name"))
-            );
+            GenreEntity genreEntity = new GenreEntity();
+            genreEntity.setGenreId(Integer.parseInt(rs.getString("genre_id")));
+            genreEntity.setName(rs.getString("name"));
+
+            genreList.add(genreEntity);
         }
 
         return genreList;

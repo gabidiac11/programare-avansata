@@ -1,6 +1,7 @@
 package pa.lab9.jpa.repository;
 
 import pa.lab9.jpa.entities.GenreEntity;
+import pa.lab9.repository.Repository;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
