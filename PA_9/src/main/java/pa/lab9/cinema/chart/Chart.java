@@ -68,14 +68,11 @@ public class Chart {
         Writer consoleWriter = new OutputStreamWriter(System.out);
         template.process(input, consoleWriter);
         String outputPath = String.format("chart-%s.html", chartType.signature);
-        Writer fileWriter = new FileWriter(outputPath);
 
-        try {
+        try (Writer fileWriter = new FileWriter(outputPath)) {
             template.process(input, fileWriter);
             File file = new File(outputPath);
             Desktop.getDesktop().open(file);
-        } finally {
-            fileWriter.close();
         }
     }
 }
