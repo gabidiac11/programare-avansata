@@ -90,9 +90,10 @@ public class Main {
         logger.setLevel(Level.INFO);
 
 //        //testInsertMovie();
-//        testSelectMovieById();
-//        testSelectMovieByName();
 
-        createCharByRating();
+        testSelectMovieById();
+        testSelectMovieByName();
+
+//        createCharByRating();
     }
 }

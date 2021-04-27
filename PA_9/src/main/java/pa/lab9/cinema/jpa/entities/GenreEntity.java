@@ -6,7 +6,6 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "genre", schema = "pa_database")
 @NamedQueries({
         @NamedQuery(
                 name = "Genre_findById",
@@ -17,6 +16,7 @@ import java.util.Set;
                 query = "SELECT genre from GenreEntity genre where genre.name = :name"
         )
 })
+@Table(name = "genre", schema = "pa_database")
 public class GenreEntity {
     private String name;
     private int genreId;

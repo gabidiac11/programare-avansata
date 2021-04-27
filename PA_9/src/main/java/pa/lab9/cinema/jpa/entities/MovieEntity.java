@@ -1,6 +1,7 @@
 package pa.lab9.cinema.jpa.entities;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -21,19 +22,19 @@ import java.util.stream.Collectors;
 @NamedQueries({
         @NamedQuery(
                 name = "Movie_findById",
-                query = "SELECT movie from MovieEntity movie LEFT JOIN movie.genreEntities where movie.movieId = :movieId"
+                query = "SELECT movie from MovieEntity movie where movie.movieId = :movieId"
         ),
         @NamedQuery(
                 name = "Movie_findByName",
-                query = "SELECT movie from MovieEntity movie JOIN movie.genreEntities where movie.title = :title"
+                query = "SELECT movie from MovieEntity movie where movie.title = :title"
         ),
         @NamedQuery(
                 name = "Movie_fetchByReleaseDate",
-                query = "SELECT movie from MovieEntity movie JOIN movie.genreEntities  ORDER BY movie.releaseDate"
+                query = "SELECT movie from MovieEntity movie ORDER BY movie.releaseDate"
         ),
         @NamedQuery(
                 name = "Movie_fetchByRating",
-                query = "SELECT movie from MovieEntity movie JOIN movie.genreEntities  ORDER BY movie.score"
+                query = "SELECT movie from MovieEntity movie ORDER BY movie.score"
         )
 })
 @Table(name = "movie", schema = "pa_database")
@@ -48,9 +49,15 @@ public class MovieEntity {
     @ManyToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.PERSIST)
     @JoinTable(name = "movie_genre",
-            joinColumns = @JoinColumn(foreignKey = @ForeignKey(name = "fk_movie_id"), name = "movie_id", referencedColumnName = "movie_id" ),
-            inverseJoinColumns = @JoinColumn(foreignKey = @ForeignKey(name = "fk_genre_id"), name = "genre_id", referencedColumnName = "genre_id"))
+            joinColumns = @JoinColumn(referencedColumnName = "movie_id" ),
+            inverseJoinColumns = @JoinColumn(referencedColumnName = "genre_id"))
     private Set<GenreEntity> genreEntities;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "director",
+            joinColumns = @JoinColumn(name="imdb_title_id", referencedColumnName = "movie_id"), // from 'director' to 'movie' table
+            inverseJoinColumns = @JoinColumn(name="imdb_name_id"))//from 'director' to 'person' table
+    private Collection<PersonsEntity> persons;
 
 
     @Basic
@@ -103,9 +110,12 @@ public class MovieEntity {
         this.genreEntities = genreEntities;
     }
 
-    @ElementCollection
     public Set<GenreEntity> getGenreEntities() {
         return genreEntities;
+    }
+
+    public Collection<PersonsEntity> getPersons() {
+        return persons;
     }
 
     public void setMovieId(String movieId) {
@@ -135,6 +145,7 @@ public class MovieEntity {
                 ", score=" + score +
                 ", movieId='" + movieId + '\'' +
                 ", genreEntities=" + (genreEntities != null ? genreEntities.stream().map(GenreEntity::getName).collect(Collectors.toList()) : "null")  +
+                ", directorEntities=" + (persons != null ? persons.stream().map(PersonsEntity::getName).collect(Collectors.toList()) : "null")  +
                 '}';
     }
 }
