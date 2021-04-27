@@ -1,11 +1,16 @@
 package pa.lab9.optional;
 
+import freemarker.template.TemplateException;
+import pa.lab9.cinema.chart.Chart;
+import pa.lab9.cinema.chart.ChartType;
 import pa.lab9.cinema.factory.AbstractFactory;
 import pa.lab9.cinema.factory.FactoryProvider;
 import pa.lab9.cinema.jpa.entities.GenreEntity;
 import pa.lab9.cinema.jpa.entities.MovieEntity;
 import pa.lab9.cinema.repository.Repository;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -68,11 +73,26 @@ public class Main {
         }
     }
 
+    /**
+     * fetches a list of movies ordered by rating than creates a html page output
+     * @throws Exception
+     */
+    private static void createCharByRating() {
+        try {
+            Chart chart = new Chart(ChartType.BY_RATING);
+            chart.chartToHtml();
+        } catch (Exception e) {
+            logger.log(Level.INFO, e.getMessage());
+        }
+    }
+
     public static void main(String[] args) {
         logger.setLevel(Level.INFO);
 
-        //testInsertMovie();
-        testSelectMovieById();
-        testSelectMovieByName();
+//        //testInsertMovie();
+//        testSelectMovieById();
+//        testSelectMovieByName();
+
+        createCharByRating();
     }
 }

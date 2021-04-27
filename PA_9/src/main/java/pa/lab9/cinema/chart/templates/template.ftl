@@ -10,73 +10,29 @@
 </head>
 <body>
 <div class="container-fluid">
+    <header>${chartTitle}</header>
     <#list movieList as movie>
         </br>
         </br>
 
         <div class="container">
             <div class="list-group-item justify-content-between">
-                MOVIE: <b>${movie.title}' | ID: ${movie.id} </b>
+                MOVIE: <b>${movie.title}' | ID: ${movie.movieId} </b>
             </div>
             <div class="list-group-item justify-content-between">
                 Genres:
                 <div class="col-md-1">
-                    <#list movie.genreList as genre>
+                    <#list movie.genreEntities as genre>
                         <span class="badge badge-default badge-pill">${genre.name}</span>
                     </#list >
                 </div>
             </div>
-
             <div class="list-group-item justify-content-between">
-                Directors
-                <span class="badge badge-default badge-pill">${movie.directorList?size}</span>
+                Rating: <b>${movie.score} </b>
             </div>
-            <#list movie.directorList as director>
-                <div class="accordion" id="accordionExample-dir-${director.id}">
-                    <div class="card">
-                        <div class="card-header" id="headingOne-dir-${director.id}">
-                            <h5 class="mb-0">
-                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOne-dir-${director.id}" aria-expanded="false" aria-controls="collapseOne-dir-${director.id}">
-                                    ${director.name} | ${director.id}
-                                </button>
-                            </h5>
-                        </div>
-
-                        <div id="collapseOne-dir-${director.id}" class="collapse" aria-labelledby="headingOne-dir-${director.id}" data-parent="#accordionExample-dir-${director.id}">
-                            <div class="card-body">
-                                <p> Birth: ${director.birthDetails} </p>
-                                <p> Details: ${director.deathDetails} </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </#list>
-
             <div class="list-group-item justify-content-between">
-                Actors
-                <span class="badge badge-default badge-pill">${movie.actorList?size}</span>
+                Release date: <b>${movie.releaseDate} </b>
             </div>
-            <#list movie.actorList as director>
-                <div class="accordion" id="accordionExample-${director.id}">
-                    <div class="card">
-                        <div class="card-header" id="headingOne-${director.id}">
-                            <h5 class="mb-0">
-                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOne-${director.id}" aria-expanded="false" aria-controls="collapseOne-${director.id}">
-                                    ${director.name} | ${director.id}
-                                </button>
-                            </h5>
-                        </div>
-
-                        <div id="collapseOne-${director.id}" class="collapse" aria-labelledby="headingOne-${director.id}" data-parent="#accordionExample-${director.id}">
-                            <div class="card-body">
-                                <p> ${director.birthDetails} </p>
-                                <p> Date of birth: ${director.dateOfBirth} </p>
-                                <p> Details: ${director.deathDetails} </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </#list>
         </div>
 
     </#list>

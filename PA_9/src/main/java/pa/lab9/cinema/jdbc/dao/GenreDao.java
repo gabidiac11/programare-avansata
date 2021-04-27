@@ -1,5 +1,6 @@
 package pa.lab9.cinema.jdbc.dao;
 
+import pa.lab9.cinema.chart.ChartType;
 import pa.lab9.cinema.jdbc.connection.Connection;
 import pa.lab9.cinema.jpa.entities.GenreEntity;
 import pa.lab9.cinema.repository.Repository;
@@ -53,6 +54,8 @@ public class GenreDao implements Repository<GenreEntity> {
         return genreList;
     }
 
+
+
     public void create(GenreEntity genreEntity) {
         try {
             PreparedStatement preparedStmt  = con.prepareStatement(String.format("INSERT INTO genre(name) VALUES('%s')", genreEntity.getName()), Statement.RETURN_GENERATED_KEYS);
@@ -65,5 +68,15 @@ public class GenreDao implements Repository<GenreEntity> {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    /**
+     * to be implemented -
+     * @param chartType
+     * @return
+     */
+    @Override
+    public List<GenreEntity> fetchOrderedBy(ChartType chartType) {
+        return new ArrayList<>();
     }
 }

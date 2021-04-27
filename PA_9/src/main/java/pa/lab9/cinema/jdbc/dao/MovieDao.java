@@ -1,5 +1,6 @@
 package pa.lab9.cinema.jdbc.dao;
 
+import pa.lab9.cinema.chart.ChartType;
 import pa.lab9.cinema.jdbc.connection.Connection;
 import pa.lab9.cinema.jpa.entities.GenreEntity;
 import pa.lab9.cinema.jpa.entities.MovieEntity;
@@ -24,15 +25,7 @@ public class MovieDao implements Repository<MovieEntity> {
 
             /* if next() return false it means ResultSet is empty */
             if(rs.next()) {
-                MovieEntity movieEntity = new MovieEntity();
-                movieEntity.setMovieId(id);
-                movieEntity.setTitle(rs.getString("title"));
-                movieEntity.setReleaseDate(rs.getString("release_date"));
-                movieEntity.setDuration(Integer.parseInt(rs.getString("duration")));
-                movieEntity.setScore(Integer.parseInt(rs.getString("score")));
-                movieEntity.setGenreEntities(getGenreListOfMovieById(id));
-
-                return movieEntity;
+                return createMovieEntityFromResult(rs);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -48,17 +41,7 @@ public class MovieDao implements Repository<MovieEntity> {
                     .executeQuery(String.format("SELECT * FROM movie where title='%s'", name));
 
             while (rs.next()) {
-                final String movieId = rs.getString("movie_id");
-
-                MovieEntity movieEntity = new MovieEntity();
-                movieEntity.setMovieId(movieId);
-                movieEntity.setTitle(rs.getString("title"));
-                movieEntity.setReleaseDate(rs.getString("release_date"));
-                movieEntity.setDuration(Integer.parseInt(rs.getString("duration")));
-                movieEntity.setScore(Integer.parseInt(rs.getString("score")));
-                movieEntity.setGenreEntities(getGenreListOfMovieById(movieId));
-
-                movieList.add(movieEntity);
+                movieList.add(createMovieEntityFromResult(rs));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -137,5 +120,48 @@ public class MovieDao implements Repository<MovieEntity> {
         }
 
         return genreList;
+    }
+
+    private static MovieEntity createMovieEntityFromResult(ResultSet rs) throws SQLException {
+        final String movieId = rs.getString("movie_id");
+
+        MovieEntity movieEntity = new MovieEntity();
+        movieEntity.setMovieId(movieId);
+        movieEntity.setTitle(rs.getString("title"));
+        movieEntity.setReleaseDate(rs.getString("release_date"));
+        movieEntity.setDuration(Integer.parseInt(rs.getString("duration")));
+        movieEntity.setScore(Integer.parseInt(rs.getString("score")));
+        movieEntity.setGenreEntities(getGenreListOfMovieById(movieId));
+
+        return movieEntity;
+    }
+
+    private static String orderByBasedOnChartType(ChartType chartType) {
+        switch (chartType) {
+            case BY_RATING:
+                return "score";
+            case BY_RELEASE_DATE:
+                return "release_date";
+
+            default:
+                return "movie_id";
+        }
+    }
+
+    @Override
+    public List<MovieEntity> fetchOrderedBy(ChartType chartType) {
+        List<MovieEntity> movieList = new ArrayList<>();
+        try {
+            ResultSet rs = con.createStatement()
+                    .executeQuery(String.format("SELECT * FROM movie ORDER BY %s LIMIT 100", orderByBasedOnChartType(chartType)));
+
+            while (rs.next()) {
+                movieList.add(createMovieEntityFromResult(rs));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return movieList;
     }
 }

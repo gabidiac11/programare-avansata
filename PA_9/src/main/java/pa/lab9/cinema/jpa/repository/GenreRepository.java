@@ -1,8 +1,10 @@
 package pa.lab9.cinema.jpa.repository;
 
+import pa.lab9.cinema.chart.ChartType;
 import pa.lab9.cinema.jpa.entities.GenreEntity;
 
 import javax.persistence.TypedQuery;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,5 +28,10 @@ public class GenreRepository extends AbstractRepository<GenreEntity> {
                 GenreEntity.class);
         query.setParameter("name", name);
         return query.getResultList();
+    }
+
+    @Override
+    public List<GenreEntity> fetchOrderedBy(ChartType chartType) {
+        return new ArrayList<>();
     }
 }

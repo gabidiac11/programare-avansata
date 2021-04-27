@@ -26,6 +26,14 @@ import java.util.stream.Collectors;
         @NamedQuery(
                 name = "Movie_findByName",
                 query = "SELECT movie from MovieEntity movie JOIN movie.genreEntities where movie.title = :title"
+        ),
+        @NamedQuery(
+                name = "Movie_fetchByReleaseDate",
+                query = "SELECT movie from MovieEntity movie JOIN movie.genreEntities  ORDER BY movie.releaseDate"
+        ),
+        @NamedQuery(
+                name = "Movie_fetchByRating",
+                query = "SELECT movie from MovieEntity movie JOIN movie.genreEntities  ORDER BY movie.score"
         )
 })
 @Table(name = "movie", schema = "pa_database")
