@@ -1,7 +1,7 @@
 package pa.lab9.cinema.jpa.entities;
 
 import javax.persistence.*;
-import java.util.Collection;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -51,19 +51,23 @@ public class MovieEntity {
     @JoinTable(name = "movie_genre",
             joinColumns = @JoinColumn(referencedColumnName = "movie_id" ),
             inverseJoinColumns = @JoinColumn(referencedColumnName = "genre_id"))
-    private Set<GenreEntity> genreEntities;
+    private Set<GenreEntity> genreEntities = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "director",
-            joinColumns = @JoinColumn(name="imdb_title_id", referencedColumnName = "movie_id"), // from 'director' to 'movie' table
-            inverseJoinColumns = @JoinColumn(name="imdb_name_id"))//from 'director' to 'person' table
-    private Collection<PersonsEntity> persons;
+    @JoinTable(name = "movie_persons",
+            joinColumns = @JoinColumn(name = "MovieEntity_movie_id", referencedColumnName = "movie_id"), // from 'director' to 'movie' table
+            inverseJoinColumns = @JoinColumn(name="personId", referencedColumnName = "imdb_name_id"))//from 'director' to 'person' table
+    private Set<PersonsEntity> persons;
 
 
     @Basic
     @Column(name = "title", nullable = false, length = 255)
     public String getTitle() {
         return title;
+    }
+
+    public void setPersons(Set<PersonsEntity> persons) {
+        this.persons = persons;
     }
 
     public void setTitle(String title) {
@@ -110,11 +114,13 @@ public class MovieEntity {
         this.genreEntities = genreEntities;
     }
 
+    @ElementCollection
     public Set<GenreEntity> getGenreEntities() {
         return genreEntities;
     }
 
-    public Collection<PersonsEntity> getPersons() {
+    @ElementCollection
+    public Set<PersonsEntity> getPersons() {
         return persons;
     }
 

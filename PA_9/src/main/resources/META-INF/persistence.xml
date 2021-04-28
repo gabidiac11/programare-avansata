@@ -5,7 +5,6 @@
              version="2.2">
   <persistence-unit name="default" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-      <mapping-file>PersonsEntity.xml</mapping-file>
 
       <class>pa.lab9.cinema.jpa.entities.GenreEntity</class>
     <class>pa.lab9.cinema.jpa.entities.MovieEntity</class>
