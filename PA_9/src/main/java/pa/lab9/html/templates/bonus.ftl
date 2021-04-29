@@ -10,49 +10,60 @@
 </head>
 <body>
 <div class="container-fluid">
-    <header>Movie playlist</header>
-
-    <div class="container">
-        <p>Graph representing each connection movies have with themselves (share at least one director)</p>
-        <img style="width: 100%" src="matched-initial.png">
-    </div>
-    <div class="container">
-        <p>Graph of which each edge corresponds to a day when you can watch 2 movies with the same director (and no other day shares that director)</p>
-        <img style="width: 100%" src="matched-after.png">
+    <nav class="navbar navbar-light bg-light">
+        <span class="navbar-brand mb-0 h1">Movie playlist</span>
+    </nav>
+    <div style="display: flex; justify-content: space-between; width: 100%;">
+        <div class="card" style="flex: 1">
+            <img class="card-img-top" src="matched-initial.png" alt="Card image cap">
+            <div class="card-body">
+                <p class="card-text">Graph representing each connection movies have with themselves (share at least one director)</p>
+            </div>
+        </div>
+        <div class="card" style="flex: 1">
+            <img class="card-img-top" src="matched-after.png" alt="Card image cap">
+            <div class="card-body">
+                <p class="card-text">Graph of which each edge corresponds to a day when you can watch 2 movies with the same director (and no other day shares that director)</p>
+            </div>
+        </div>
     </div>
 
     <#list 0..moviePairList?size-1 as i>
-        <p style="padding-top: 30px"> Day #${i+1} </p>
-        <div style="display: flex; justify-content: space-between; width: 100%;">
-            <#list moviePairList[i] as movie >
-                <div class="container" style="flex: 1">
-                    <div class="list-group-item justify-content-between">
-                        MOVIE: <b>${movie.title}' | ID: ${movie.movieId} </b>
-                    </div>
-                    <div class="list-group-item justify-content-between">
-                        Genres:
-                        <div class="col-md-1">
-                            <#list movie.genreEntities as genre>
-                                <span class="badge badge-default badge-pill">${genre.name}</span>
-                            </#list >
+        <div class="card" style="margin-top: 20px;">
+            <h5 class="card-header">Day #${i+1}</h5>
+            <div class="card-body">
+                <div style="display: flex; justify-content: space-between; width: 100%;">
+                    <#list moviePairList[i] as movie >
+                        <div class="container" style="flex: 1">
+                            <div class="list-group-item justify-content-between">
+                                MOVIE: <b>${movie.title}' | ID: ${movie.movieId} </b>
+                            </div>
+                            <div class="list-group-item justify-content-between">
+                                Genres:
+                                <div class="col-md-1">
+                                    <#list movie.genreEntities as genre>
+                                        <span class="badge badge-default badge-pill">${genre.name}</span>
+                                    </#list >
+                                </div>
+                            </div>
+                            <div class="list-group-item justify-content-between">
+                                Directors:
+                                <div class="col-md-1">
+                                    <#list movie.persons as person>
+                                        <span class="badge badge-default badge-pill">${person.name}</span>
+                                    </#list >
+                                </div>
+                            </div>
+                            <div class="list-group-item justify-content-between">
+                                Rating: <b>${movie.score} </b>
+                            </div>
+                            <div class="list-group-item justify-content-between">
+                                Release date: <b>${movie.releaseDate} </b>
+                            </div>
                         </div>
-                    </div>
-                    <div class="list-group-item justify-content-between">
-                        Directors:
-                        <div class="col-md-1">
-                            <#list movie.persons as person>
-                                <span class="badge badge-default badge-pill">${person.name}</span>
-                            </#list >
-                        </div>
-                    </div>
-                    <div class="list-group-item justify-content-between">
-                        Rating: <b>${movie.score} </b>
-                    </div>
-                    <div class="list-group-item justify-content-between">
-                        Release date: <b>${movie.releaseDate} </b>
-                    </div>
+                    </#list>
                 </div>
-            </#list>
+            </div>
         </div>
     </#list>
 </div>

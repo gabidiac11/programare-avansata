@@ -10,7 +10,9 @@
 </head>
 <body>
 <div class="container-fluid">
-    <header>${chartTitle}</header>
+    <nav class="navbar navbar-light bg-light">
+        <span class="navbar-brand mb-0 h1">${chartTitle}</span>
+    </nav>
     <#list movieList as movie>
         </br>
         </br>

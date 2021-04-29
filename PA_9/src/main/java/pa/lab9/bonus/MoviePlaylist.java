@@ -3,9 +3,6 @@ package pa.lab9.bonus;
 import com.mxgraph.layout.mxCircleLayout;
 import com.mxgraph.layout.mxIGraphLayout;
 import com.mxgraph.util.mxCellRenderer;
-import freemarker.cache.FileTemplateLoader;
-import freemarker.cache.MultiTemplateLoader;
-import freemarker.cache.TemplateLoader;
 import freemarker.template.*;
 import org.jgrapht.Graph;
 import org.jgrapht.alg.interfaces.MatchingAlgorithm;
@@ -29,8 +26,7 @@ import java.util.List;
 
 public class MoviePlaylist
 {
-    private List<MovieEntity> movieEntityList;
-    private Graph<Integer, DefaultEdge> graph;
+    private final List<MovieEntity> movieEntityList;
     List<List<MovieEntity>> moviePairs;
 
     public MoviePlaylist() throws Exception {
@@ -70,7 +66,7 @@ public class MoviePlaylist
     }
 
     private void createPlayList() throws Exception {
-        graph = generateGraph();
+        Graph<Integer, DefaultEdge> graph = generateGraph();
 
        MatchingAlgorithm<Integer, DefaultEdge> matchCardinal = new DenseEdmondsMaximumCardinalityMatching<>(graph);
        MatchingAlgorithm.Matching<Integer, DefaultEdge> match =  matchCardinal.getMatching();
@@ -103,16 +99,30 @@ public class MoviePlaylist
                         graph.getEdge(vertexes.get(i), vertexes.get(ii)),
                         graph.getEdge(vertexes.get(ii), vertexes.get(i))
                 }) {
-                    if(edge != null) {
-                        moviePairs.add(Arrays.asList(
-                                movieEntityList.get(vertexes.get(i)),
-                                movieEntityList.get(vertexes.get(ii))));
+                    MovieEntity movieEntity1 = movieEntityList.get(vertexes.get(i));
+                    MovieEntity movieEntity2 = movieEntityList.get(vertexes.get(ii));
+
+                    if(graph.edgeSet().contains(edge) && this.noCommonDirector(movieEntity1, movieEntity2)) {
+                        moviePairs.add(Arrays.asList(movieEntity1, movieEntity2));
+                        break;
                     }
                 }
             }
         }
 
         graphToPng(graph, "matched-after.png");
+    }
+
+    private boolean noCommonDirector(MovieEntity movieEntity, MovieEntity movieEntity2) {
+        for(List<MovieEntity> moviePair : this.moviePairs) {
+            for(MovieEntity movieEntityTest : moviePair) {
+                if(getCommonDirector(movieEntityTest, movieEntity) != null || getCommonDirector(movieEntityTest, movieEntity2) != null) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 
     private void graphToPng(Graph graph, String fileName) throws IOException {
