@@ -4,6 +4,7 @@ import pa.lab9.cinema.chart.ChartType;
 import pa.lab9.cinema.jdbc.connection.Connection;
 import pa.lab9.cinema.jpa.entities.GenreEntity;
 import pa.lab9.cinema.jpa.entities.MovieEntity;
+import pa.lab9.cinema.jpa.entities.PersonsEntity;
 import pa.lab9.cinema.repository.Repository;
 
 import java.sql.PreparedStatement;
@@ -103,12 +104,11 @@ public class MovieDao implements Repository<MovieEntity> {
         ResultSet rs = con.createStatement()
                 .executeQuery(String.format(
                         "SELECT " +
-                                "genre.name, genre.genre_id " +
-                                "FROM movie_genre " +
-                                "INNER JOIN genre " +
-                                "ON genre.genre_id = movie_genre.genreEntities_genre_id " +
+                                "persons.*" +
+                                "FROM movie_persons " +
+                                "INNER JOIN persons " +
+                                "ON movie_persons.persons_imdb_name_id = persons.imdb_name_id " +
                                 "where movie_genre.MovieEntity_movie_id = '%s'",
-
                         movieId));
 
         while (rs.next()) {
@@ -122,6 +122,40 @@ public class MovieDao implements Repository<MovieEntity> {
         return genreList;
     }
 
+    private static Set<PersonsEntity> getPersonListOfMovieById(String movieId) throws SQLException {
+        Set<PersonsEntity> personsEntities = new HashSet<>();
+
+        ResultSet rs = con.createStatement()
+                .executeQuery(String.format(
+                        "SELECT " +
+                                "genre.name, genre.genre_id " +
+                                "FROM movie_genre " +
+                                "INNER JOIN genre " +
+                                "ON genre.genre_id = movie_genre.genreEntities_genre_id " +
+                                "where movie_genre.MovieEntity_movie_id = '%s'",
+
+                        movieId));
+
+        while (rs.next()) {
+            personsEntities.add(personEntityFromResult(rs));
+        }
+
+        return personsEntities;
+    }
+
+    private static PersonsEntity personEntityFromResult(ResultSet rs) throws SQLException {
+        PersonsEntity personsEntity = new PersonsEntity();
+        personsEntity.setImdbNameId(rs.getString("imdb_name_id"));
+        personsEntity.setName(rs.getString("name"));
+        personsEntity.setBirthDetails(rs.getString("birth_details"));
+        personsEntity.setDateOfBirth(rs.getString("date_of_birth"));
+        personsEntity.setDeathDetails(rs.getString("death_details"));
+
+        return personsEntity;
+    }
+
+
+
     private static MovieEntity createMovieEntityFromResult(ResultSet rs) throws SQLException {
         final String movieId = rs.getString("movie_id");
 
@@ -132,6 +166,7 @@ public class MovieDao implements Repository<MovieEntity> {
         movieEntity.setDuration(Integer.parseInt(rs.getString("duration")));
         movieEntity.setScore(Integer.parseInt(rs.getString("score")));
         movieEntity.setGenreEntities(getGenreListOfMovieById(movieId));
+        movieEntity.setPersons(getPersonListOfMovieById(movieId));
 
         return movieEntity;
     }

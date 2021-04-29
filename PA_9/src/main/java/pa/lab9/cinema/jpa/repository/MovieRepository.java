@@ -40,6 +40,7 @@ public class MovieRepository extends AbstractRepository<MovieEntity> {
     @Override
     public List<MovieEntity> fetchOrderedBy(ChartType chartType) {
         TypedQuery<MovieEntity> query = session.createNamedQuery(charTypeQuery(chartType), MovieEntity.class);
+//        query.setMaxResults(100);
         query.setMaxResults(100);
 
         return query.getResultList();

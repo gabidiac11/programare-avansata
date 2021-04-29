@@ -1,0 +1,3458 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title> Pa Database </title>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container-fluid">
+    <header>Movie playlist</header>
+
+    <div class="container">
+        <p>Graph representing each connection movies have with themselves (share at least one director)</p>
+        <img style="width: 100%" src="matched-initial.png">
+    </div>
+    <div class="container">
+        <p>Graph of which each edge corresponds to a day when you can watch 2 movies with the same director (and no other day shares that director)</p>
+        <img style="width: 100%" src="matched-after.png">
+    </div>
+
+            <p style="padding-top: 30px"> Day #1 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Gli ultimi giorni di Pompei' | ID: tt0003489 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Adventure, Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Mario Caserini</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>88 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1913-08-24 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Ma l-amor mio non muore...' | ID: tt0003102 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Mario Caserini</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>90 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1914-01-01 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #2 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Gli ultimi giorni di Pompei' | ID: tt0003489 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Adventure, Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Mario Caserini</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>88 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1913-08-24 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Ma l-amor mio non muore...' | ID: tt0003102 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Mario Caserini</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>90 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1914-01-01 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #3 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>The Squaw Man' | ID: tt0004635 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Action, Drama, Romance</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                                <span class="badge badge-default badge-pill">Oscar Apfel</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>74 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1914-02-15 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Ravished Armenia' | ID: tt0009892 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama, History, Romance</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Oscar Apfel</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>80 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1919-01-19 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #4 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>The Squaw Man' | ID: tt0004635 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Action, Drama, Romance</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                                <span class="badge badge-default badge-pill">Oscar Apfel</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>74 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1914-02-15 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Ravished Armenia' | ID: tt0009892 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama, History, Romance</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Oscar Apfel</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>80 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1919-01-19 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #5 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Judith of Bethulia' | ID: tt0004181 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">D.W. Griffith</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>61 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1914-03-08 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Amore di madre' | ID: tt0003167 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">D.W. Griffith</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>55 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1914-05-17 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #6 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Judith of Bethulia' | ID: tt0004181 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">D.W. Griffith</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>61 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1914-03-08 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Amore di madre' | ID: tt0003167 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">D.W. Griffith</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>55 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1914-05-17 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #7 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>The Wrath of the Gods' | ID: tt0004838 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama, Romance</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Reginald Barker</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>56 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1914-06-08 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>The Bargain' | ID: tt0003657 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Western</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Reginald Barker</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>70 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1914-12-03 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #8 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>The Wrath of the Gods' | ID: tt0004838 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama, Romance</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Reginald Barker</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>56 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1914-06-08 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>The Bargain' | ID: tt0003657 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Western</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Reginald Barker</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>70 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1914-12-03 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #9 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>The Avenging Conscience: or -Thou Shalt Not Kill-' | ID: tt0003643 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Crime, Drama, Horror</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">D.W. Griffith</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>78 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1914-08-24 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Nascita di una nazione' | ID: tt0004972 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama, History, War</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">D.W. Griffith</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>195 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1915-03-21 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #10 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>The Avenging Conscience: or -Thou Shalt Not Kill-' | ID: tt0003643 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Crime, Drama, Horror</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">D.W. Griffith</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>78 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1914-08-24 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Nascita di una nazione' | ID: tt0004972 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama, History, War</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">D.W. Griffith</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>195 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1915-03-21 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #11 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>The Virginian' | ID: tt0004766 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Western</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>55 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1914-09-07 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Manslaughter' | ID: tt0013372 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>100 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1922-09-24 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #12 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>The Virginian' | ID: tt0004766 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Western</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>55 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1914-09-07 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Manslaughter' | ID: tt0013372 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>100 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1922-09-24 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #13 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>The Italian' | ID: tt0005557 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Reginald Barker</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>72 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1915-01-01 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>The Coward' | ID: tt0005149 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama, History, War</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Reginald Barker</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>77 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1915-11-14 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #14 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>The Italian' | ID: tt0005557 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Reginald Barker</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>72 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1915-01-01 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>The Coward' | ID: tt0005149 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama, History, War</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Reginald Barker</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>77 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1915-11-14 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #15 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>A tolonc' | ID: tt0004712 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Michael Curtiz</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>67 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1915-03-20 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Sodom und Gomorrha' | ID: tt0013619 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Michael Curtiz</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>150 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1922-10-13 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #16 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>A tolonc' | ID: tt0004712 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Michael Curtiz</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>67 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1915-03-20 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Sodom und Gomorrha' | ID: tt0013619 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Michael Curtiz</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>150 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1922-10-13 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #17 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Carmen' | ID: tt0005060 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>59 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1915-10-31 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>The Cheat' | ID: tt0005078 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama, Romance</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>59 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1915-12-13 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #18 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Carmen' | ID: tt0005060 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>59 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1915-10-31 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>The Cheat' | ID: tt0005078 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama, Romance</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>59 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1915-12-13 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #19 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Martyrs of the Alamo' | ID: tt0005719 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama, History, War</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Christy Cabanne</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>71 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1915-11-21 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Reggie Mixes In' | ID: tt0007257 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Action, Comedy, Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Christy Cabanne</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>50 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1916-06-11 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #20 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Martyrs of the Alamo' | ID: tt0005719 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama, History, War</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Christy Cabanne</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>71 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1915-11-21 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Reggie Mixes In' | ID: tt0007257 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Action, Comedy, Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Christy Cabanne</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>50 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1916-06-11 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #21 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>The Golden Chance' | ID: tt0005402 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>74 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1915-12-30 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Joan the Woman' | ID: tt0008150 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Adventure, Drama, History</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>138 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1916-12-25 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #22 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>The Golden Chance' | ID: tt0005402 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>74 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1915-12-30 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Joan the Woman' | ID: tt0008150 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Adventure, Drama, History</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>138 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1916-12-25 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #23 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>A Romance of the Redwoods' | ID: tt0008519 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Adventure, Comedy, Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>91 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1917-05-14 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>The Little American' | ID: tt0008188 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama, Romance, War</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>80 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1917-07-12 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #24 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>A Romance of the Redwoods' | ID: tt0008519 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Adventure, Comedy, Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>91 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1917-05-14 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>The Little American' | ID: tt0008188 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama, Romance, War</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>80 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1917-07-12 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #25 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Straight Shooting' | ID: tt0008634 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Western</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">John Ford</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>57 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1917-08-27 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Bucking Broadway' | ID: tt0007755 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Western</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">John Ford</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>53 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1917-12-24 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #26 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Straight Shooting' | ID: tt0008634 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Western</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">John Ford</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>57 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1917-08-27 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Bucking Broadway' | ID: tt0007755 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Western</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">John Ford</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>53 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1917-12-24 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #27 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Intolerance' | ID: tt0006864 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama, History</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">D.W. Griffith</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>163 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1918-02-24 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Cuori del mondo' | ID: tt0009150 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama, War</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">D.W. Griffith</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>117 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1918-06-01 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #28 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Intolerance' | ID: tt0006864 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama, History</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">D.W. Griffith</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>163 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1918-02-24 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Cuori del mondo' | ID: tt0009150 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama, War</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">D.W. Griffith</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>117 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1918-06-01 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #29 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>The Whispering Chorus' | ID: tt0009796 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>86 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1918-03-28 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Old Wives for New' | ID: tt0009440 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>60 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1918-05-19 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #30 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>The Whispering Chorus' | ID: tt0009796 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>86 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1918-03-28 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Old Wives for New' | ID: tt0009440 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>60 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1918-05-19 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #31 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Indemoniato' | ID: tt0009153 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Western</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">John Ford</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>50 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1918-07-06 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Just Pals' | ID: tt0011358 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Comedy, Drama, Western</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">John Ford</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>50 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1920-11-18 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #32 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Indemoniato' | ID: tt0009153 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Western</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">John Ford</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>50 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1918-07-06 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Just Pals' | ID: tt0011358 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Comedy, Drama, Western</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">John Ford</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>50 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1920-11-18 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #33 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>A Romance of Happy Valley' | ID: tt0009559 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama, Romance</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">D.W. Griffith</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>76 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1919-01-26 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Amore sulle labbra' | ID: tt0010806 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Comedy, Drama, Romance</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">D.W. Griffith</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>87 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1919-06-01 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #34 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>A Romance of Happy Valley' | ID: tt0009559 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama, Romance</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">D.W. Griffith</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>76 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1919-01-26 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Amore sulle labbra' | ID: tt0010806 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Comedy, Drama, Romance</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">D.W. Griffith</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>87 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1919-06-01 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #35 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Don-t Change Your Husband' | ID: tt0010071 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Comedy</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>71 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1919-01-26 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>For Better, for Worse' | ID: tt0010137 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>70 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1919-04-27 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #36 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Don-t Change Your Husband' | ID: tt0010071 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Comedy</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>71 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1919-01-26 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>For Better, for Worse' | ID: tt0010137 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>70 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1919-04-27 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #37 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>The Wicked Darling' | ID: tt0010890 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama, Crime</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Tod Browning</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>59 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1919-02-24 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Outside the Law' | ID: tt0012538 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Crime, Romance, Thriller</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Tod Browning</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>75 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1921-01-06 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #38 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>The Wicked Darling' | ID: tt0010890 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama, Crime</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Tod Browning</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>59 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1919-02-24 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Outside the Law' | ID: tt0012538 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Crime, Romance, Thriller</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Tod Browning</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>75 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1921-01-06 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #39 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>The Mother and the Law' | ID: tt0010484 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">D.W. Griffith</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>95 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1919-08-18 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Scarlet Days' | ID: tt0010662 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Adventure, Romance, Western</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">D.W. Griffith</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>77 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1919-11-09 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #40 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>The Mother and the Law' | ID: tt0010484 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">D.W. Griffith</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>95 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1919-08-18 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Scarlet Days' | ID: tt0010662 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Adventure, Romance, Western</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">D.W. Griffith</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>77 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1919-11-09 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #41 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Male and Female' | ID: tt0010418 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Adventure, Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>116 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1919-11-23 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Something to Think About' | ID: tt0011716 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>78 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1920-10-17 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #42 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Male and Female' | ID: tt0010418 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Adventure, Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>116 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1919-11-23 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Something to Think About' | ID: tt0011716 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>78 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1920-10-17 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #43 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>The Greatest Question' | ID: tt0010193 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">D.W. Griffith</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>80 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1919-12-28 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>The Love Flower' | ID: tt0011415 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">D.W. Griffith</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>70 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1920-08-22 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #44 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>The Greatest Question' | ID: tt0010193 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">D.W. Griffith</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>80 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1919-12-28 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>The Love Flower' | ID: tt0011415 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">D.W. Griffith</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>70 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1920-08-22 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #45 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Die Spinnen, 2. Teil - Das Brillantenschiff' | ID: tt0011723 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Adventure</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Fritz Lang</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>104 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1920-02-02 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Harakiri' | ID: tt0010208 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Fritz Lang</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>80 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1920-12-06 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #46 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Die Spinnen, 2. Teil - Das Brillantenschiff' | ID: tt0011723 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Adventure</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Fritz Lang</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>104 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1920-02-02 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Harakiri' | ID: tt0010208 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Fritz Lang</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>80 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1920-12-06 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #47 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Præsidenten' | ID: tt0010598 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Carl Theodor Dreyer</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>75 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1920-02-09 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>La vedova del pastore' | ID: tt0011607 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Comedy, Drama, Horror</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Carl Theodor Dreyer</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>94 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1920-10-04 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #48 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Præsidenten' | ID: tt0010598 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Carl Theodor Dreyer</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>75 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1920-02-09 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>La vedova del pastore' | ID: tt0011607 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Comedy, Drama, Horror</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Carl Theodor Dreyer</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>94 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1920-10-04 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #49 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Forbidden Fruit' | ID: tt0012187 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>87 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1921-01-23 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Why Change Your Wife?' | ID: tt0011865 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Comedy, Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>90 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1921-04-11 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #50 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Forbidden Fruit' | ID: tt0012187 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>87 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1921-01-23 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Why Change Your Wife?' | ID: tt0011865 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Comedy, Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>90 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1921-04-11 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #51 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Pagine dal libro di Satana' | ID: tt0011000 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Carl Theodor Dreyer</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>167 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1921-01-24 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Gli stigmatizzati' | ID: tt0013169 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Carl Theodor Dreyer</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>105 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1922-02-07 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #52 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Pagine dal libro di Satana' | ID: tt0011000 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Carl Theodor Dreyer</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>167 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1921-01-24 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Gli stigmatizzati' | ID: tt0013169 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Carl Theodor Dreyer</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>105 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1922-02-07 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #53 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Vier um die Frau' | ID: tt0012806 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Fritz Lang</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>52 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1921-02-03 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Das wandernde Bild' | ID: tt0011837 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Romance</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Fritz Lang</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>67 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1921-09-26 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #54 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Vier um die Frau' | ID: tt0012806 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Fritz Lang</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>52 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1921-02-03 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Das wandernde Bild' | ID: tt0011837 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Romance</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Fritz Lang</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>67 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1921-09-26 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #55 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Il castello di Vogelod' | ID: tt0012651 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Crime, Drama, Horror</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">F.W. Murnau</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>75 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1921-04-07 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Il cammino nella notte' | ID: tt0011217 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">F.W. Murnau</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>81 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1921-08-08 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #56 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Il castello di Vogelod' | ID: tt0012651 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Crime, Drama, Horror</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">F.W. Murnau</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>75 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1921-04-07 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Il cammino nella notte' | ID: tt0011217 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">F.W. Murnau</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>81 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1921-08-08 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #57 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Dream Street' | ID: tt0012122 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Comedy, Drama, Romance</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">D.W. Griffith</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>102 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1921-04-12 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Le due orfanelle' | ID: tt0012532 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama, History, Romance</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">D.W. Griffith</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>150 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1922 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #58 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Dream Street' | ID: tt0012122 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Comedy, Drama, Romance</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">D.W. Griffith</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>102 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1921-04-12 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Le due orfanelle' | ID: tt0012532 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama, History, Romance</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">D.W. Griffith</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>150 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1922 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #59 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>La commedia umana' | ID: tt0012068 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama, Romance</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Rex Ingram</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>89 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1921-07-08 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>The Prisoner of Zenda' | ID: tt0013515 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Adventure, Romance</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Rex Ingram</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>125 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1922-09-11 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #60 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>La commedia umana' | ID: tt0012068 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama, Romance</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Rex Ingram</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>89 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1921-07-08 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>The Prisoner of Zenda' | ID: tt0013515 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Adventure, Romance</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Rex Ingram</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>125 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1922-09-11 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #61 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Fragilità, sei femmina!' | ID: tt0011909 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Comedy, Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>117 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1921-09-25 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Saturday Night' | ID: tt0013574 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Comedy, Romance</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>90 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1922-01-29 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #62 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Fragilità, sei femmina!' | ID: tt0011909 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Comedy, Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>117 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1921-09-25 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Saturday Night' | ID: tt0013574 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Comedy, Romance</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Cecil B. DeMille</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>90 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1922-01-29 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #63 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Sappho' | ID: tt0012645 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Dimitri Buchowetzki</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>82 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1922-01-02 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Othello' | ID: tt0013469 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama, Romance</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Dimitri Buchowetzki</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>79 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1922-09-17 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #64 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Sappho' | ID: tt0012645 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Dimitri Buchowetzki</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>82 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1922-01-02 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Othello' | ID: tt0013469 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama, Romance</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Dimitri Buchowetzki</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>79 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1922-09-17 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #65 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Femmine folli' | ID: tt0013140 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama, Thriller</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Erich von Stroheim</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>117 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1922-01-11 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Donne viennesi' | ID: tt0013386 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Erich von Stroheim</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>110 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1923-09-03 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #66 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Femmine folli' | ID: tt0013140 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama, Thriller</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Erich von Stroheim</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>117 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1922-01-11 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Donne viennesi' | ID: tt0013386 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Erich von Stroheim</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>110 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1923-09-03 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #67 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Nosferatu - Il vampiro' | ID: tt0013442 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Fantasy, Horror</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">F.W. Murnau</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>94 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1922-03-04 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>La terra che brucia' | ID: tt0012973 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">F.W. Murnau</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>98 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1922-04-24 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #68 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Nosferatu - Il vampiro' | ID: tt0013442 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Fantasy, Horror</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">F.W. Murnau</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>94 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1922-03-04 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>La terra che brucia' | ID: tt0012973 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">F.W. Murnau</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>98 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1922-04-24 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #69 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>I quattro cavalieri dell-Apocalisse' | ID: tt0012190 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama, Romance, War</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Rex Ingram</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>150 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1923-04-16 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Scaramouche' | ID: tt0014440 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama, Romance</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Rex Ingram</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>124 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1924-02-01 </b>
+                    </div>
+                </div>
+        </div>
+        <p style="padding-top: 30px"> Day #70 </p>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>I quattro cavalieri dell-Apocalisse' | ID: tt0012190 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama, Romance, War</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Rex Ingram</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>150 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1923-04-16 </b>
+                    </div>
+                </div>
+                <div class="container" style="flex: 1">
+                    <div class="list-group-item justify-content-between">
+                        MOVIE: <b>Scaramouche' | ID: tt0014440 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Genres:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Drama, Romance</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Directors:
+                        <div class="col-md-1">
+                                <span class="badge badge-default badge-pill">Rex Ingram</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Rating: <b>124 </b>
+                    </div>
+                    <div class="list-group-item justify-content-between">
+                        Release date: <b>1924-02-01 </b>
+                    </div>
+                </div>
+        </div>
+</div>
+</body>
+</html>

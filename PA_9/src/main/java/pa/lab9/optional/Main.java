@@ -91,9 +91,9 @@ public class Main {
 
 //        //testInsertMovie();
 
-        testSelectMovieById();
-        testSelectMovieByName();
+//        testSelectMovieById();
+//        testSelectMovieByName();
 
-//        createCharByRating();
+        createCharByRating();
     }
 }

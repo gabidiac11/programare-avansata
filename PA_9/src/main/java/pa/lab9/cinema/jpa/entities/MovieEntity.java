@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
         ),
         @NamedQuery(
                 name = "Movie_fetchByReleaseDate",
-                query = "SELECT movie from MovieEntity movie ORDER BY movie.releaseDate"
+                query = "SELECT movie from MovieEntity movie where movie.persons.size > 0 ORDER BY movie.releaseDate"
         ),
         @NamedQuery(
                 name = "Movie_fetchByRating",
@@ -144,7 +144,7 @@ public class MovieEntity {
     @Override
     public String toString() {
 
-        return "MovieEntity{" +
+        return "\nMovieEntity{" +
                 "title='" + title + '\'' +
                 ", releaseDate='" + releaseDate + '\'' +
                 ", duration=" + duration +
@@ -152,6 +152,6 @@ public class MovieEntity {
                 ", movieId='" + movieId + '\'' +
                 ", genreEntities=" + (genreEntities != null ? genreEntities.stream().map(GenreEntity::getName).collect(Collectors.toList()) : "null")  +
                 ", directorEntities=" + (persons != null ? persons.stream().map(PersonsEntity::getName).collect(Collectors.toList()) : "null")  +
-                '}';
+                "}\n";
     }
 }
