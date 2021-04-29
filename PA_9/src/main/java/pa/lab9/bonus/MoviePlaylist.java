@@ -25,11 +25,11 @@ import java.util.*;
 import java.util.List;
 
 /**
- * uses DenseEdmondsMaximumCardinalityMatching to create a pair of movies
+ * To implement this functionality I used org.jgrapht.alg.matching.DenseEdmondsMaximumCardinalityMatching to create a pair of movies
  *
  * The process follows these steps:
- * 1. generate a graph representing each connection movies have with themselves (share at least one director)
- * 2. solve maximum cardinal matching and obtain a graph with edges that are not adjacent
+ * 1. generate a graph representing each connection movies have with each other (share at least one director)
+ * 2. solve the maximum cardinal matching and obtain a graph with edges that are not adjacent with each other
  * 3. filter out the result pairs with edges that still share the a director
  *
  * Output, a html file (pa.lab9.hml.output) containing:
