@@ -46,8 +46,8 @@ INFO: MovieEntity{title='The Bargain', releaseDate='1914-12-03', duration=70, sc
 #### - Create a generic AbstractRepository using generics in order to simplify the creation of the repository classes. You may take a look at the CrudRepository interface from Spring Framework.
 #### - Implement both the JDBC and JPA implementations and use an AbstractFactory in order to create the DAO objects (the repositories).
 #### - The application will use JDBC or JPA depending on a parameter given in an initialization file. (At least for one entity!)
-   I've created a Repository<T> interface responsable with basic functions described in the compusory module above. I also created a Factory interface responsable with with generating a repository for movie and one for the genres based on a configuration file (Config file jpa/jdbc is at `PA_9\src\main\resources\config.json`). The configuration file is json parsed with one property. 
-   The optional package has 2 distinct parts: jpa and jdbc packages. Jdbc has Dao classes from the previous lab and uses raw sql. Jdbc also have its own implementation of repository factory, that helps the abstract factory to generate the same functionality based on the configuration file. Jdbc and Jpa shares the same entities as models for each table (which are placed in jpa package as it's more closed to jpa).
+   I've created a Repository<T> interface responsable with basic functionalities described in the compusory module above (find by name or id, create), for each setting (jpa & jdbc). In the same manner I've also created a Factory interface responsable with with generating a repository for movie and one for the genres based on a configuration file (Config file jpa/jdbc is at `PA_9\src\main\resources\config.json`). The configuration file is json parsed with one property that holds the value of a setting ("jpa", "jdbc", values found in the `pa.lab9.cinema.factory.ConnectionType` enum). A certain class is reponsable with parsing the file and returning the factory of the jpa or the factory class of the jbdc.
+   The optional package has 2 distinct parts: jpa and jdbc packages. Jdbc has Dao classes from the previous lab and uses raw sql. Jdbc also have its own implementation of repository factory, that helps the abstract factory to generate the same functionality based on the configuration file. Jdbc and Jpa shares the same entities as models for each table (which are placed in jpa package (/entities) as it's more closed to jpa and contains its adnotations).
    
    A Main class is provided with example for this part in the optional package.
    
@@ -66,7 +66,7 @@ any two movies from different days cannot be related;
  *
  * The process follows these steps:
  * 1. generate a graph representing each connection movies have with each other (share at least one director)
- * 2. solve the maximum cardinal matching and obtain a graph with edges that are not adjacent with each other
+ * 2. solve the maximum cardinal matching and obtain a graph with edges that are not adjacent with each other (meaning they don't share the same director)
  * 3. filter out the result pairs with edges that still share the a director
  *
  * Output, a html file (pa.lab9.hml.output) containing:
