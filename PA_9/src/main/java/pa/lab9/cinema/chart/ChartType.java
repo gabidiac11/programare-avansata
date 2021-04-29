@@ -1,5 +1,8 @@
 package pa.lab9.cinema.chart;
 
+/**
+ * labels how a list of movies can be ordered for the chart
+ */
 public enum ChartType {
     BY_RATING("Chart by rating", "By-rating"),
     BY_RELEASE_DATE("Chart by release date", "By-release-date");

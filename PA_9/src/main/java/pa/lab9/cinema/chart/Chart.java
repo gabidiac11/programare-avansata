@@ -27,9 +27,15 @@ import freemarker.cache.MultiTemplateLoader;
 import freemarker.cache.TemplateLoader;
 import pa.lab9.html.TemplateMaker;
 
+/**
+ * fetches a 100 list of movies sort by release date or by rating
+ *
+ * Output:
+ * - a html file with the list of movies
+ */
 public class Chart {
-    private ChartType chartType;
-    private Timestamp creationDate;
+    private final ChartType chartType;
+    private final Timestamp creationDate;
     private List<MovieEntity> movieEntityList;
 
     public Chart(ChartType chartType) throws Exception {
@@ -41,8 +47,6 @@ public class Chart {
     public void fetchList() throws Exception {
             AbstractFactory factory = FactoryProvider.getConfiguredFactory();
             movieEntityList = factory.createMovieRepository().fetchOrderedBy(this.chartType);
-
-            System.out.println(movieEntityList.size());
     }
 
     public void chartToHtml() throws IOException, SQLException, TemplateException {
