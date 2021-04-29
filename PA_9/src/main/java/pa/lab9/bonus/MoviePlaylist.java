@@ -32,7 +32,7 @@ import java.util.List;
  * 2. solve maximum cardinal matching and obtain a graph with edges that are not adjacent
  * 3. filter out the result pairs with edges that still share the a director
  *
- * Output, a html file containing:
+ * Output, a html file (pa.lab9.hml.output) containing:
  * - a side by side images of initial graph and the resulting graph
  * - a list of pairs of movies per day
  */
