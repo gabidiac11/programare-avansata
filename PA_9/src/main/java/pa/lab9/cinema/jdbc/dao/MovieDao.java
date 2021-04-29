@@ -104,10 +104,10 @@ public class MovieDao implements Repository<MovieEntity> {
         ResultSet rs = con.createStatement()
                 .executeQuery(String.format(
                         "SELECT " +
-                                "persons.*" +
-                                "FROM movie_persons " +
-                                "INNER JOIN persons " +
-                                "ON movie_persons.persons_imdb_name_id = persons.imdb_name_id " +
+                                "genre.name, genre.genre_id " +
+                                "FROM movie_genre " +
+                                "INNER JOIN genre " +
+                                "ON genre.genre_id = movie_genre.genreEntities_genre_id " +
                                 "where movie_genre.MovieEntity_movie_id = '%s'",
                         movieId));
 
@@ -128,11 +128,11 @@ public class MovieDao implements Repository<MovieEntity> {
         ResultSet rs = con.createStatement()
                 .executeQuery(String.format(
                         "SELECT " +
-                                "genre.name, genre.genre_id " +
-                                "FROM movie_genre " +
-                                "INNER JOIN genre " +
-                                "ON genre.genre_id = movie_genre.genreEntities_genre_id " +
-                                "where movie_genre.MovieEntity_movie_id = '%s'",
+                                "persons.*" +
+                                "FROM movie_persons " +
+                                "INNER JOIN persons " +
+                                "ON movie_persons.persons_imdb_name_id = persons.imdb_name_id " +
+                                "where movie_persons.MovieEntity_movie_id = '%s'",
 
                         movieId));
 
@@ -188,7 +188,7 @@ public class MovieDao implements Repository<MovieEntity> {
         List<MovieEntity> movieList = new ArrayList<>();
         try {
             ResultSet rs = con.createStatement()
-                    .executeQuery(String.format("SELECT * FROM movie ORDER BY %s LIMIT 100", orderByBasedOnChartType(chartType)));
+                    .executeQuery(String.format("SELECT * FROM movie where (SELECT COUNT(*) FROM movie_persons where movie_persons.MovieEntity_movie_id = movie.movie_id) > 0 ORDER BY %s LIMIT 100", orderByBasedOnChartType(chartType)));
 
             while (rs.next()) {
                 movieList.add(createMovieEntityFromResult(rs));
