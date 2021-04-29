@@ -40,7 +40,8 @@ INFO: MovieEntity{title='The Bargain', releaseDate='1914-12-03', duration=70, sc
 
 #### - Add support for charts. A chart has a name, a creation date and an ordered list of movies.
    I added 2 extra queries for the movie entities in which I fetch 100 records and sort them by rating or by release date (as is requested). The output consist of a html file with the list:
-  [![N|Solid]https://github.com/gabidiac11/programare-avansata/blob/main/PA_9/optional-chart-output.png)](https://github.com/gabidiac11/programare-avansata/blob/main/PA_9/optional-chart-output.png)
+   
+  [![N|Solid](https://github.com/gabidiac11/programare-avansata/blob/main/PA_9/optional-chart-output.png)](https://github.com/gabidiac11/programare-avansata/blob/main/PA_9/optional-chart-output.png)
   
 #### - Create a generic AbstractRepository using generics in order to simplify the creation of the repository classes. You may take a look at the CrudRepository interface from Spring Framework.
 #### - Implement both the JDBC and JPA implementations and use an AbstractFactory in order to create the DAO objects (the repositories).
@@ -58,7 +59,7 @@ each day you will watch two related movies;
 any two movies from different days cannot be related;
 #### -Implement an efficient algorithm (for a bonus+) or use one from a third-party library, like JGraphT.
 #### -Test your algorithm for large subsets of movies from your database and describe the runtime performance in a suggestive manner.
-
+   In `pa.lab9.bonus.MoviePlaylist`:
 ````
 /**
  * To implement this functionality I used org.jgrapht.alg.matching.DenseEdmondsMaximumCardinalityMatching to create a pair of movies
@@ -74,5 +75,5 @@ any two movies from different days cannot be related;
  */
 ````
 
-  [![N|Solid]https://github.com/gabidiac11/programare-avansata/blob/main/PA_9/bonus-output.PNG)](https://github.com/gabidiac11/programare-avansata/blob/main/PA_9/bonus-output.PNG)
+  [![N|Solid](https://github.com/gabidiac11/programare-avansata/blob/main/PA_9/bonus-output.PNG)](https://github.com/gabidiac11/programare-avansata/blob/main/PA_9/bonus-output.PNG)
 
