@@ -133,8 +133,6 @@ public class Client {
 
             user.setFriends(updatedUser.getFriends());
             user.setMessages(updatedUser.getMessages());
-
-            System.out.println("Friend requests sent. User:\n" + user.toString());
         } else {
             System.out.println("Bad response from server: " + response + "\nRequestBody: " + command.getRequestBody() + "\n");
         }
@@ -183,8 +181,12 @@ public class Client {
         ) {
             Command commandStatus = this.sendRequestAndUpdateUser(command);
 
-            if(commandStatus.getCommandType() != ClientCommandType.ERROR && command.getCommandType() == ClientCommandType.READ_MESSAGES) {
-                this.user.printMessages();
+            if(commandStatus.getCommandType() != ClientCommandType.ERROR) {
+                System.out.println("Request fulfilled.");
+
+                if(command.getCommandType() == ClientCommandType.READ_MESSAGES) {
+                    this.user.printMessages();
+                }
             }
 
             return commandStatus;

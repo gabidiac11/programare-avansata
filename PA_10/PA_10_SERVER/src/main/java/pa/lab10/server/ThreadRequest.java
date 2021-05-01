@@ -21,14 +21,6 @@ public class ThreadRequest {
         this.message = message;
     }
 
-    public static ThreadRequest sendFriendRequest(User sender, List<User> users) {
-        return new ThreadRequest(ThreadCommandType.SEND_FRIEND_REQUEST, sender, users, null);
-    }
-
-    public static ThreadRequest sendMessageToAllFriends(User sender, String message) {
-        return new ThreadRequest(ThreadCommandType.SEND_FRIEND_REQUEST, sender, sender.getFriends(), message);
-    }
-
     @Override
     public String toString() {
         return "ThreadRequest{" +

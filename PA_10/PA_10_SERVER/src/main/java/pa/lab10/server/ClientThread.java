@@ -7,6 +7,7 @@ import org.json.simple.parser.JSONParser;
 
 import java.io.*;
 import java.net.Socket;
+import java.net.SocketException;
 import java.security.KeyPair;
 import java.util.Date;
 import java.util.List;
@@ -18,8 +19,9 @@ class ClientThread implements Runnable {
     private User user = null;
     private final ThreadProvider threadProvider;
 
-    public ClientThread (Socket socket, ThreadProvider threadProvider) {
+    public ClientThread (Socket socket, ThreadProvider threadProvider) throws SocketException {
         this.socket = socket;
+        this.socket.setSoTimeout(1000 * 60 * 5); //5 minute timeout
         this.threadProvider = threadProvider;
     }
 
@@ -117,7 +119,7 @@ class ClientThread implements Runnable {
             List<User> userList = new Vector<>();
             jsonArray.forEach(userName -> {
                 for(User userItem : threadProvider.getAllUsers()) {
-                    if(userItem.getUserName().equals(userName) && !this.user.equals(userItem.getUserName())
+                    if(userItem.getUserName().equals(userName) && !this.user.getUserName().equals(userItem.getUserName())
                     && this.user.getFriends().stream().filter(item -> item.getUserName().equals(userName)).toArray().length == 0
                     ) {
                         userList.add(userItem);

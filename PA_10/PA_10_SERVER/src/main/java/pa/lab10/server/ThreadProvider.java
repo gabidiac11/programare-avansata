@@ -25,37 +25,6 @@ public class ThreadProvider {
         this.allUsers.add(user);
     }
 
-    public synchronized void addThreadRequest(ThreadRequest threadRequest) {
-        this.threadRequests.add(threadRequest);
-    }
-
-    public synchronized ThreadRequest getFulFilledRequestOfUser(User user) {
-        for(ThreadRequest threadRequest : threadRequests) {
-            if(threadRequest.getSender().getUserName().equals(user.getUserName())
-            && threadRequest.getReceivers().size() == 0
-            ) {
-                return threadRequest;
-            }
-        }
-        return null;
-    }
-
-    public synchronized void filterOutSenderRequests(User user) {
-        this.threadRequests = threadRequests.stream().filter(item -> item.getSender().getUserName().equals(user.getUserName())).collect(Collectors.toList());
-    }
-
-    public synchronized ThreadRequest popThreadRequestOfReceiver(User receiver) {
-        for(int i = 0; i < this.threadRequests.size(); i++) {
-            for(int ii = 0; ii < this.threadRequests.get(i).getReceivers().size(); ii++) {
-                if(threadRequests.get(i).getReceivers().get(ii).getUserName().equals(receiver.getUserName())) {
-                    threadRequests.get(i).getReceivers().remove(ii);
-                    return threadRequests.get(i);
-                }
-            }
-        }
-
-        return null;
-    }
     public synchronized boolean getIsExiting() {
         return this.isExiting;
     }
