@@ -1,6 +1,7 @@
 package pa.lab6.drawingapp;
 
 import javafx.util.Pair;
+import jdk.internal.util.xml.impl.Pair;
 import pa.lab6.drawingapp.actionpanel.ActionPanel;
 
 import javax.swing.*;
