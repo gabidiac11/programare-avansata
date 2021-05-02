@@ -37,7 +37,7 @@ If the text doesn't match to the expected enum types or has wrong arguments, a s
 This type of command has attached a error message that will be visible to the user. 
 Because of the delicate nature of this class, I wrote a small unit test to have an overview of most of the scenarios:
 
-````
+````java
 public class CommandTest extends TestCase {
 
     private Command create(String text) {
