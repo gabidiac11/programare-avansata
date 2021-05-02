@@ -17,28 +17,29 @@ Diac P. Gabriel
 
    I've created separated projects, one for the server and one for the client. 
 ##### SERVER 
-   The connections are holded using a while loop in the Server class. The server creates a ThreadProvider instance which is shared with all threads that are created when a connection is accepted. The thread class used is called ClientThread. The ThreadProvider instance holds all the instances of User class, represeting the users that were created when any client who registered an username. 
+   The connections are expected in a while loop. When a connection is made a new thread is created, of ClientThread. Each thread receives the ThreadProvider instance which is shared with all other threads that are created when a connection is accepted. The ThreadProvider instance holds all the instances of User class, represeting the users that were created by clients so far (using register command). 
    
-This ThereadProvider also signals other threads that the server is in the proccess of exiting, so at that point each client waiting for a response will receive a response that the server is unavailable. The behavior I choose is that the client reads the response and if stops its execution if response is evaluated as such. The client exiting, stops its conterpart thread from the server part. 
+This ThereadProvider instance also signals other threads (and the Server class itself) that the server is in the proccess of exiting, so at that point each client waiting will receive a response which signals that the server is unavailable. The client reads the response and stops its execution if is evaluated as such. By  exiting, the client stops its conterpart thread in the server part. 
+
 The while loop where new connections are accepted runs as long as the ThreadProvider doesn't signals an exit. The accept method has a timeout in order to frequently engage with the loop condition, to check if an exit is needed (the while needs to stop).
 
 Each thread has associated a User instance, meaning the client connected to that thread is logged in with that specific user. 
 
 The server and client comunicates usign JSON strings. The server thread always includes a status code, with the same values and meaning as HTTP requests. The client parses the response and always checks for a 200 OK response before going forward with an action. 
 
-The server is design to always accompany a bad request with a message of what's wrong (Ex. username already used, a parse error has occured, etc). 
+The server is design to always accompany a bad response with a message of what's wrong (Ex. username already used, a parse error has occured, etc). 
 The flow for almost all requests implies:
     1. an update done to instances from ThreadProvider's list of users (Ex. an user gets a new friend) 
     2. a response containing the updated user instance in the form of a JSON string. This string is used by the client to update it's own User instance, then go ahead with the action disired (for example: display messages)
  
 ##### CLIENT
-The client, after establishing the connection, reads in a while loop a command from keyboad. This proccess relies havily on Command class to parse the text.
+The client, after establishing the connection, reads in a while loop a command from keyboad. This proccess relies havily on Command class, which is task with parsing the text.
 
 Each command (send message, read, friend, login, register) has a regex associated and a numeric-string code recognised by the server. All of this is put together in the CommandType enum. 
-Command class ha a method that receives a text and matches that to one of the enum types using the regex. Then extracts the expected arguments and pre-creates a JSON string to be used for the future request body.
+Command class has a method that receives a text and matches that to one of the enum types, using the regex. Then, it extracts the expected arguments and pre-creates a JSON string to be used for the future request body.
 
 If the text doesn't match to the expected enum types or has wrong arguments, a special kind of Command instance is made to signal an error. 
-This type of command has attached an error message that will be visible to the user in the console. In that case no request is made to the server and the user is directed to type again a correct command text.
+This type of command has attached an error message that will be visible to the actual user typing, in the console. In that case no request is made to the server and the user is advised to type again a correct command text.
 
 Because of the delicate nature of this class, I wrote a small unit test to have an overview of most of the scenarios:
 
