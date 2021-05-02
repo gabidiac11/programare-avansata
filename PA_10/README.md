@@ -79,9 +79,29 @@ public class CommandTest extends TestCase {
 }
 ````
 
-##### EXEMPLE VIDEO
+##### VIDEO EXAMPLE 
 
-![https://github.com/gabidiac11/programare-avansata/blob/main/PA_10/exemple-console.mp4](https://github.com/gabidiac11/programare-avansata/blob/main/PA_10/exemple-console.mp4)
+![exemple-console.mp4](https://github.com/gabidiac11/programare-avansata/blob/main/PA_10/exemple-console.mp4)
 
 ##### Server verbose
 [![N|Solid](https://github.com/gabidiac11/programare-avansata/blob/main/PA_10/server-output.PNG)](https://github.com/gabidiac11/programare-avansata/blob/main/PA_10/server-output.PNG)
+
+### Optional (2p)
+
+#### - Create the project for the server application.
+#### - Create an object-oriented model for your application and implement the commands.
+#### - The command stop should "gracefully" stop the server - it will not accept new connections but it will finish those in progress. When there are no more connections, it will shutdown.
+#### - Implement a timeout for a connection (a number of minutes). If the server does not receive any command from a logged in client in the specified period of time, it will terminate the connection.
+#### - Create an HTML embeddable representation of the social network using JFreeChart, JGraphT and Apache Batik, or other technology.
+#### - Upload the HTML representation directly from the application to a Web server. You may use JCraft for connecting to a server using SFTP and transferring a file (or a similar solution).
+
+Each thread has a socket with 5 minutes timeout. 
+
+The mechanism of exit is described above in the 2nd and 3rd paragraphs of the compulsory summary.
+
+I've a summary using JFreeChart when the server stops its execution. This contains 2 charts, as showned in the bellow example:
+[![N|Solid](https://github.com/gabidiac11/programare-avansata/blob/main/PA_10/server-char-output.png)](https://github.com/gabidiac11/programare-avansata/blob/main/PA_10/server-char-output.png)
+
+Using JCraft I managed to create a file that should connect to a STFTP connection, but I didn't manage to test it (because of faculty server being unresponsive - here, and in Putty, and on the faculty new mail website). I tried testing using public sftp's from the Internet, but those are raadonly.
+
+
