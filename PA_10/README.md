@@ -25,12 +25,14 @@ The while loop where new connections are accepted runs as long as the ThreadProv
 
 Each thread has associated a User instance, meaning the client connected to that thread is logged in with that specific user. 
 
-The server and client comunicates usign JSON strings. The server thread always includes a status code, with the same values and meaning as HTTP requests. The client parses the response and always checks for a 200 OK response before going forward with an action. 
+The server and client comunicates usign JSON strings. The server thread always includes a status code, with the same values and meaning as normal HTTP request model. The client parses the response and always checks for a 200 OK response before going forward with an action. 
 
 The server is design to always accompany a bad response with a message of what's wrong (Ex. username already used, a parse error has occured, etc). 
 The flow for almost all requests implies:
-    1. an update done to instances from ThreadProvider's list of users (Ex. an user gets a new friend) 
-    2. a response containing the updated user instance in the form of a JSON string. This string is used by the client to update it's own User instance, then go ahead with the action disired (for example: display messages)
+
+  1. an update done to instances from ThreadProvider's list of users (Ex. an user gets a new friend) 
+  
+  3. a response containing the updated user instance in the form of a JSON string. This string is used by the client to update it's own User instance, then go ahead with the action disired (for example: display messages)
  
 ##### CLIENT
 The client, after establishing the connection, reads in a while loop a command from keyboad. This proccess relies havily on Command class, which is task with parsing the text.
