@@ -8,6 +8,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Vector;
 
+/**
+ * holds user info and identification
+ * can create JSON string representation of a instance
+ */
 @Getter
 public class User {
     private String userName;
@@ -33,6 +37,12 @@ public class User {
         return Objects.hash(userName);
     }
 
+
+    /**
+     * instance to JSON string
+     * avoids creating nested structure (for the friends instances)
+     * @return
+     */
     @Override
     public String toString() {
         JSONObject jo = new JSONObject();
@@ -43,6 +53,10 @@ public class User {
         return JSONObject.toJSONString(jo);
     }
 
+    /**
+     * helps avoid un-necessary deep structure
+     * @return
+     */
     public String toStringAvoidNesting() {
         JSONObject jo = new JSONObject();
         jo.put("username", this.userName);

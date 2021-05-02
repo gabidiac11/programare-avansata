@@ -9,12 +9,10 @@ import java.util.stream.Collectors;
 
 public class ThreadProvider {
     private List<User> allUsers;
-    private List<ThreadRequest> threadRequests;
     private boolean isExiting = false;
 
     public ThreadProvider() {
         allUsers = new Vector<>();
-        threadRequests = new Vector<>();
     }
 
     public synchronized List<User> getAllUsers() {
@@ -31,12 +29,5 @@ public class ThreadProvider {
 
     public synchronized void startExiting() {
         this.isExiting = true;
-    }
-
-    @Override
-    public String toString() {
-        return "ThreadProvider{" +
-                "\n, threadRequests=" + threadRequests.stream().map(item -> item.toString()).collect(Collectors.joining("\n")) +
-                "\n}";
     }
 }

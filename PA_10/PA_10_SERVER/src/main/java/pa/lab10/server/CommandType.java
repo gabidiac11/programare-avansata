@@ -2,8 +2,11 @@ package pa.lab10.server;
 
 import lombok.Getter;
 
+/**
+ * identify what type of request the client is sending
+ */
 @Getter
-public enum ThreadCommandType {
+public enum CommandType {
     LOGIN("0"),
     REGISTER("1"),
     SEND_FRIEND_REQUEST("2"),
@@ -14,7 +17,7 @@ public enum ThreadCommandType {
 
     private final String commandCode;
 
-    ThreadCommandType(String commandCode) {
+    CommandType(String commandCode) {
         this.commandCode = commandCode;
     }
 }

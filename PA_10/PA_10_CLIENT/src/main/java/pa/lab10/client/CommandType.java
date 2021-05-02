@@ -3,7 +3,7 @@ package pa.lab10.client;
 import lombok.Getter;
 
 @Getter
-public enum ClientCommandType {
+public enum CommandType {
     LOGIN("0", "login\\s[\\w\\d]+"),
     REGISTER("1", "register\\s[\\w\\d]+"),
     SEND_FRIEND_REQUEST("2", "friend\\s[\\w\\d\\s]+"),
@@ -15,7 +15,7 @@ public enum ClientCommandType {
     private final String commandCode;
     private final String regex;
 
-    ClientCommandType(String commandCode, String regex) {
+    CommandType(String commandCode, String regex) {
         this.commandCode = commandCode;
         this.regex = regex;
     }

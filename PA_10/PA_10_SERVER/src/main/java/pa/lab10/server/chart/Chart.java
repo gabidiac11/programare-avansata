@@ -10,6 +10,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * is used after a session is done (in the Server.java)
+ * to creates 2 images that are referenced by a HTML file (chart.html):
+ * 1. image showing the proportion of messages received by the each user involved
+ * 2. image showing the proprotion of friends received by the each user involved
+ *
+ */
 public class Chart {
     private static void createMessagesChart(List<User> userList) throws IOException {
         var dataset = new DefaultPieDataset();

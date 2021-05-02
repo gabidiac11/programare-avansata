@@ -1,4 +1,4 @@
-package pa.lab10.compulsory;
+package pa.lab10;
 
 import pa.lab10.client.Client;
 

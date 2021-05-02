@@ -1,12 +1,10 @@
-package pa.lab10.compulsory;
+package pa.lab10;
 
 import pa.lab10.server.Server;
 import pa.lab10.server.User;
 import pa.lab10.server.chart.Chart;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) throws IOException {

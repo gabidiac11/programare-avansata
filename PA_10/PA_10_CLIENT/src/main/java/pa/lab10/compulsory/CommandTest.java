@@ -2,7 +2,7 @@ package pa.lab10.compulsory;
 
 import pa.lab10.client.Command;
 
-public class RegTest {
+public class CommandTest {
 
     public static void main(String[] args) {
         System.out.println(Command.commandFromText("login ion2").toString());
