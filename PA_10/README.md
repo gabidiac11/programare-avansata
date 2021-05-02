@@ -84,7 +84,7 @@ public class CommandTest extends TestCase {
 ![exemple-console.mp4](https://github.com/gabidiac11/programare-avansata/blob/main/PA_10/exemple-console.mp4)
 
 ##### Server verbose
-[![N|Solid](https://github.com/gabidiac11/programare-avansata/blob/main/PA_10/server-output.PNG)](https://github.com/gabidiac11/programare-avansata/blob/main/PA_10/server-output.PNG)
+[![N|Solid](https://youtu.be/HGNVhmcpWb4)](https://youtu.be/HGNVhmcpWb4)
 
 ### Optional (2p)
 
