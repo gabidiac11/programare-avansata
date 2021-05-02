@@ -1,5 +1,5 @@
 
-# Lab 9
+# Lab 10
 ## _Advanced Programming 2021_
 [![N|Solid](https://plati-taxe.uaic.ro/img/logo-retina1.png)](https://www.info.uaic.ro/)
 
@@ -78,3 +78,10 @@ public class CommandTest extends TestCase {
     }
 }
 ````
+
+##### EXEMPLE VIDEO
+
+![https://github.com/gabidiac11/programare-avansata/blob/main/PA_10/exemple-console.mp4](https://github.com/gabidiac11/programare-avansata/blob/main/PA_10/exemple-console.mp4)
+
+##### Server verbose
+[![N|Solid](https://github.com/gabidiac11/programare-avansata/blob/main/PA_10/server-output.PNG)](https://github.com/gabidiac11/programare-avansata/blob/main/PA_10/server-output.PNG)
