@@ -103,6 +103,6 @@ The mechanism of exit is described above in the 2nd and 3rd paragraphs of the co
 I've a summary using JFreeChart when the server stops its execution. This contains 2 charts, as showned in the bellow example:
 [![N|Solid](https://github.com/gabidiac11/programare-avansata/blob/main/PA_10/server-char-output.png)](https://github.com/gabidiac11/programare-avansata/blob/main/PA_10/server-char-output.png)
 
-Using JCraft I managed to create a file that should connect to a STFTP connection, but I didn't manage to test it (because of faculty server being unresponsive - here, and in Putty, and on the faculty new mail website). I tried testing using public sftp's from the Internet, but those are raadonly.
+Using JCraft I managed to create a file that should connect to a STFTP connection, I tested on stable ssh endpoint and it works very well.
 
 
